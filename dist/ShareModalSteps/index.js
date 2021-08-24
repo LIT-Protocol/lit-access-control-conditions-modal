@@ -51,6 +51,12 @@ Object.defineProperty(exports, "RecentRequirement", {
     return _RecentRequirement.default;
   }
 });
+Object.defineProperty(exports, "CurrentRequirements", {
+  enumerable: true,
+  get: function get() {
+    return _CurrentRequirements.default;
+  }
+});
 
 var _WhatToDo = _interopRequireDefault(require("./WhatToDo"));
 
@@ -67,5 +73,7 @@ var _AccessCreated = _interopRequireDefault(require("./AccessCreated"));
 var _SelectTokens = _interopRequireDefault(require("./SelectTokens"));
 
 var _RecentRequirement = _interopRequireDefault(require("./RecentRequirement"));
+
+var _CurrentRequirements = _interopRequireDefault(require("./CurrentRequirements"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

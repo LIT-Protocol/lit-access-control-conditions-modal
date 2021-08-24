@@ -21,7 +21,7 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken)
 
-    if (selectedToken.value === 'ethereum') {
+    if (selectedToken.address === 'ethereum') {
       // ethereum
       const amountInWei = ethers.utils.parseEther(amount)
       const accessControlConditions = [

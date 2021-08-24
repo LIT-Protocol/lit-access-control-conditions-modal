@@ -8,7 +8,7 @@ const AccessCreated = ({ setActiveStep, copyToClipboard }) => {
     <div>
       <div className={styles.titles}>
         <h3>Access Requirement Created!</h3>
-        <a className={styles.link} onClick={() => setActiveStep('whatToDo')}>Create Another</a>
+        {/* <a className={styles.link} onClick={() => setActiveStep('whatToDo')}>Create Another</a> */}
       </div>
       <div className={styles.types}>
         <div className={styles.type} onClick={copyToClipboard}>
@@ -21,7 +21,7 @@ const AccessCreated = ({ setActiveStep, copyToClipboard }) => {
               </svg>
               <div className={styles.linkIcon}></div>
             </div>
-            <h5><a className={styles.link}>Click to copy link.</a>  <br /> Only authorized wallets  can open the file</h5>
+            <h5><a className={styles.link}>Click to copy link.</a>  <br /> Only authorized wallets can open the file</h5>
           </div>
         </div>
       </div>

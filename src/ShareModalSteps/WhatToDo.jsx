@@ -9,7 +9,7 @@ const WhatToDo = ({ setActiveStep, sharingItems, awaitingUpload, copyToClipboard
     <div>
       <div className={styles.titles}>
         <h3>What would you like to do?</h3>
-        <a className={styles.link} onClick={() => setActiveStep('recentRequirement')}>Use a recent requirement</a>
+        {/* <a className={styles.link} onClick={() => setActiveStep('recentRequirement')}>Use a recent requirement</a> */}
       </div>
       <div className={styles.types}>
         <div className={styles.type} onClick={() => setActiveStep('ableToAccess')}>

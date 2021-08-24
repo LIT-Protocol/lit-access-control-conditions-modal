@@ -41,21 +41,21 @@ const ModalComponents = {
   DAOMembers: _ShareModalSteps.DAOMembers,
   accessCreated: _ShareModalSteps.AccessCreated,
   selectTokens: _ShareModalSteps.SelectTokens,
-  recentRequirement: _ShareModalSteps.RecentRequirement
+  recentRequirement: _ShareModalSteps.RecentRequirement,
+  currentRequirements: _ShareModalSteps.CurrentRequirements
 };
 
 const ShareModal = props => {
   const {
     onClose,
     sharingItems,
-    awaitingUpload,
-    folderId,
+    showStep,
     onAccessControlConditionsSelected,
     getSharingLink
-  } = props; // console.log('rendering ShareModal and sharingItems is', sharingItems)
-
+  } = props;
+  console.log('rendering ShareModal and sharingItems is', sharingItems);
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
-  const [activeStep, setActiveStep] = (0, _react.useState)('whatToDo'); // console.log('accessControlConditions', accessControlConditions)
+  const [activeStep, setActiveStep] = (0, _react.useState)(showStep || 'whatToDo'); // console.log('accessControlConditions', accessControlConditions)
 
   const copyToClipboard = async () => {
     const fileUrl = getSharingLink(sharingItems[0]);
@@ -71,10 +71,8 @@ const ShareModal = props => {
     let Component = ModalComponents[type];
     return /*#__PURE__*/_react.default.createElement(Component, _extends({}, props, {
       sharingItems: sharingItems,
-      awaitingUpload: awaitingUpload,
       copyToClipboard: copyToClipboard,
-      onAccessControlConditionsSelected: onAccessControlConditionsSelected,
-      folderId: folderId
+      onAccessControlConditionsSelected: onAccessControlConditionsSelected
     }));
   };
 
@@ -91,10 +89,10 @@ const ShareModal = props => {
     view: "brand"
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.fileName
-  }, /*#__PURE__*/_react.default.createElement("h3", null, sharingItems.length > 1 ? "".concat(sharingItems.length, " files") : sharingItems[0].name), sharingItems.length === 1 && !awaitingUpload ? /*#__PURE__*/_react.default.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, sharingItems.length > 1 ? "".concat(sharingItems.length, " files") : sharingItems[0].name), sharingItems.length === 1 && sharingItems[0].accessControlConditions ? /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
-    onClick: () => setActiveStep('recentRequirement')
-  }, "5 acceptable access requiments") : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
+    onClick: () => setActiveStep('currentRequirements')
+  }, sharingItems[0].accessControlConditions.length, " access requirement", sharingItems[0].accessControlConditions.length > 1 ? 's' : '') : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _shareModalModule.default.close,
     onClick: onClose
   })), /*#__PURE__*/_react.default.createElement("div", {

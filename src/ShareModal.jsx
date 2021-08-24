@@ -7,7 +7,7 @@ import { Modal } from '@consta/uikit/Modal'
 import { IconClose } from "@consta/uikit/IconClose"
 import { SnackBar } from '@consta/uikit/SnackBar';
 
-import { WhatToDo, AbleToAccess, WhichWallet, AssetWallet, DAOMembers, AccessCreated, SelectTokens, RecentRequirement } from './ShareModalSteps'
+import { WhatToDo, AbleToAccess, WhichWallet, AssetWallet, DAOMembers, AccessCreated, SelectTokens, RecentRequirement, CurrentRequirements } from './ShareModalSteps'
 
 
 const ModalComponents = {
@@ -19,15 +19,22 @@ const ModalComponents = {
   accessCreated: AccessCreated,
   selectTokens: SelectTokens,
   recentRequirement: RecentRequirement,
+  currentRequirements: CurrentRequirements
 }
 
 const ShareModal = (props) => {
-  const { onClose, sharingItems, awaitingUpload, folderId, onAccessControlConditionsSelected, getSharingLink } = props
+  const {
+    onClose,
+    sharingItems,
+    showStep,
+    onAccessControlConditionsSelected,
+    getSharingLink,
+  } = props
 
-  // console.log('rendering ShareModal and sharingItems is', sharingItems)
+  console.log('rendering ShareModal and sharingItems is', sharingItems)
 
   const [showingSnackbar, setShowingSnackbar] = useState(false)
-  const [activeStep, setActiveStep] = useState('whatToDo')
+  const [activeStep, setActiveStep] = useState(showStep || 'whatToDo')
 
   // console.log('accessControlConditions', accessControlConditions)
 
@@ -47,10 +54,8 @@ const ShareModal = (props) => {
     return (<Component
       {...props}
       sharingItems={sharingItems}
-      awaitingUpload={awaitingUpload}
       copyToClipboard={copyToClipboard}
       onAccessControlConditionsSelected={onAccessControlConditionsSelected}
-      folderId={folderId}
     />)
   }
 
@@ -66,8 +71,8 @@ const ShareModal = (props) => {
                   ? `${sharingItems.length} files`
                   : sharingItems[0].name}
               </h3>
-              {sharingItems.length === 1 && !awaitingUpload
-                ? <a className={styles.link} onClick={() => setActiveStep('recentRequirement')}>5 acceptable access requiments</a>
+              {sharingItems.length === 1 && sharingItems[0].accessControlConditions
+                ? <a className={styles.link} onClick={() => setActiveStep('currentRequirements')}>{sharingItems[0].accessControlConditions.length} access requirement{sharingItems[0].accessControlConditions.length > 1 ? 's' : ''}</a>
                 : null}
             </div>
           </div>

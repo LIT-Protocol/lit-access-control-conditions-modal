@@ -26,10 +26,7 @@ const WhatToDo = _ref => {
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "What would you like to do?"), /*#__PURE__*/_react.default.createElement("a", {
-    className: _shareModalModule.default.link,
-    onClick: () => setActiveStep('recentRequirement')
-  }, "Use a recent requirement")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "What would you like to do?")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.types
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,

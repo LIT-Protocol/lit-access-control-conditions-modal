@@ -24,10 +24,7 @@ const AccessCreated = _ref => {
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Access Requirement Created!"), /*#__PURE__*/_react.default.createElement("a", {
-    className: _shareModalModule.default.link,
-    onClick: () => setActiveStep('whatToDo')
-  }, "Create Another")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Access Requirement Created!")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.types
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
@@ -52,7 +49,7 @@ const AccessCreated = _ref => {
     className: _shareModalModule.default.linkIcon
   })), /*#__PURE__*/_react.default.createElement("h5", null, /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link
-  }, "Click to copy link."), "  ", /*#__PURE__*/_react.default.createElement("br", null), " Only authorized wallets  can open the file")))));
+  }, "Click to copy link."), "  ", /*#__PURE__*/_react.default.createElement("br", null), " Only authorized wallets can open the file")))));
 };
 
 var _default = AccessCreated;
