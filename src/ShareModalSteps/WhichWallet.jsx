@@ -8,11 +8,27 @@ import { IconBackward } from "@consta/uikit/IconBackward"
 import InputWrapper from '../InputWrapper/InputWrapper'
 import ChainSelector from '../ChainSelector/ChainSelector'
 
-const WhichWallet = ({ setActiveStep }) => {
+const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   const [walletAddress, setWalletAddress] = useState('')
   const [chain, setChain] = useState(null)
 
   const handleSubmit = () => {
+    const accessControlConditions = [
+      {
+        contractAddress: '',
+        standardContractType: '',
+        chain,
+        method: '',
+        parameters: [
+          ':userAddress',
+        ],
+        returnValueTest: {
+          comparator: '=',
+          value: walletAddress
+        }
+      }
+    ]
+    onAccessControlConditionsSelected(accessControlConditions)
     setActiveStep('accessCreated')
   }
 

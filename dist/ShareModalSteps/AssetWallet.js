@@ -25,12 +25,25 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 const AssetWallet = _ref => {
   let {
-    setActiveStep
+    setActiveStep,
+    onAccessControlConditionsSelected
   } = _ref;
-  const [contactAdress, setContactAdress] = (0, _react.useState)('');
+  const [contractAddress, setContractAddress] = (0, _react.useState)('');
   const [tokenId, setTokenId] = (0, _react.useState)('');
 
   const handleSubmit = () => {
+    const accessControlConditions = [{
+      contractAddress: contractAddress,
+      standardContractType: 'ERC721',
+      chain,
+      method: 'ownerOf',
+      parameters: [tokenId],
+      returnValueTest: {
+        comparator: '=',
+        value: ':userAddress'
+      }
+    }];
+    onAccessControlConditionsSelected(accessControlConditions);
     setActiveStep('accessCreated');
   };
 
@@ -45,13 +58,13 @@ const AssetWallet = _ref => {
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
-    value: contactAdress,
+    value: contractAddress,
     className: _shareModalModule.default.input,
     label: "Add Contract Address",
-    id: "contactAdress",
+    id: "contractAddress",
     autoFocus: true,
     size: "m",
-    handleChange: value => setContactAdress(value)
+    handleChange: value => setContractAddress(value)
   }), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: tokenId,
     className: _shareModalModule.default.input,
@@ -64,7 +77,7 @@ const AssetWallet = _ref => {
     className: _shareModalModule.default.btn,
     onClick: handleSubmit,
     size: "l",
-    disabled: !contactAdress || !tokenId
+    disabled: !contractAddress || !tokenId
   })));
 };
 

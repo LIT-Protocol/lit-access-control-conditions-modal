@@ -28,7 +28,6 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const DAOMembers = _ref => {
   let {
     setActiveStep,
-    awaitingUpload,
     onAccessControlConditionsSelected
   } = _ref;
   const [DAOAddress, setDAOAddress] = (0, _react.useState)('');
@@ -47,12 +46,7 @@ const DAOMembers = _ref => {
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
-
-    if (awaitingUpload) {
-      setActiveStep('uploading');
-    } else {
-      setActiveStep('accessCreated');
-    }
+    setActiveStep('accessCreated');
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {

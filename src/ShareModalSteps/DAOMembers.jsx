@@ -8,7 +8,7 @@ import { IconBackward } from "@consta/uikit/IconBackward"
 import InputWrapper from '../InputWrapper/InputWrapper'
 import ChainSelector from '../ChainSelector/ChainSelector'
 
-const DAOMembers = ({ setActiveStep, awaitingUpload, onAccessControlConditionsSelected }) => {
+const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   const [DAOAddress, setDAOAddress] = useState('')
   const [chain, setChain] = useState(null)
 
@@ -29,11 +29,7 @@ const DAOMembers = ({ setActiveStep, awaitingUpload, onAccessControlConditionsSe
       }
     ]
     onAccessControlConditionsSelected(accessControlConditions)
-    if (awaitingUpload) {
-      setActiveStep('uploading')
-    } else {
-      setActiveStep('accessCreated')
-    }
+    setActiveStep('accessCreated')
   }
 
   return (

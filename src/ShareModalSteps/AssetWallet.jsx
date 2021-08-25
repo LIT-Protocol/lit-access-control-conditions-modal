@@ -7,11 +7,27 @@ import { IconBackward } from "@consta/uikit/IconBackward"
 
 import InputWrapper from '../InputWrapper/InputWrapper'
 
-const AssetWallet = ({ setActiveStep }) => {
-  const [contactAdress, setContactAdress] = useState('')
+const AssetWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
+  const [contractAddress, setContractAddress] = useState('')
   const [tokenId, setTokenId] = useState('')
 
   const handleSubmit = () => {
+    const accessControlConditions = [
+      {
+        contractAddress: contractAddress,
+        standardContractType: 'ERC721',
+        chain,
+        method: 'ownerOf',
+        parameters: [
+          tokenId
+        ],
+        returnValueTest: {
+          comparator: '=',
+          value: ':userAddress'
+        }
+      }
+    ]
+    onAccessControlConditionsSelected(accessControlConditions)
     setActiveStep('accessCreated')
   }
 
@@ -25,13 +41,13 @@ const AssetWallet = ({ setActiveStep }) => {
       </div>
       <div className={styles.form}>
         <InputWrapper
-          value={contactAdress}
+          value={contractAddress}
           className={styles.input}
           label="Add Contract Address"
-          id="contactAdress"
+          id="contractAddress"
           autoFocus
           size="m"
-          handleChange={(value) => setContactAdress(value)}
+          handleChange={(value) => setContractAddress(value)}
         />
         <InputWrapper
           value={tokenId}
@@ -41,7 +57,7 @@ const AssetWallet = ({ setActiveStep }) => {
           size="m"
           handleChange={(value) => setTokenId(value)}
         />
-        <Button label="Create Requirement" className={styles.btn} onClick={handleSubmit} size="l" disabled={!contactAdress || !tokenId} />
+        <Button label="Create Requirement" className={styles.btn} onClick={handleSubmit} size="l" disabled={!contractAddress || !tokenId} />
       </div>
     </div>
   )

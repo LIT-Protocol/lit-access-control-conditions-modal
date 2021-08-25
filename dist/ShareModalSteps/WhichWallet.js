@@ -27,12 +27,25 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 const WhichWallet = _ref => {
   let {
-    setActiveStep
+    setActiveStep,
+    onAccessControlConditionsSelected
   } = _ref;
   const [walletAddress, setWalletAddress] = (0, _react.useState)('');
   const [chain, setChain] = (0, _react.useState)(null);
 
   const handleSubmit = () => {
+    const accessControlConditions = [{
+      contractAddress: '',
+      standardContractType: '',
+      chain,
+      method: '',
+      parameters: [':userAddress'],
+      returnValueTest: {
+        comparator: '=',
+        value: walletAddress
+      }
+    }];
+    onAccessControlConditionsSelected(accessControlConditions);
     setActiveStep('accessCreated');
   };
 
