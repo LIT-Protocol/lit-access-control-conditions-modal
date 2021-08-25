@@ -17,6 +17,8 @@ var _IconBackward = require("@consta/uikit/IconBackward");
 
 var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
 
+var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -30,12 +32,13 @@ const AssetWallet = _ref => {
   } = _ref;
   const [contractAddress, setContractAddress] = (0, _react.useState)('');
   const [tokenId, setTokenId] = (0, _react.useState)('');
+  const [chain, setChain] = (0, _react.useState)(null);
 
   const handleSubmit = () => {
     const accessControlConditions = [{
       contractAddress: contractAddress,
       standardContractType: 'ERC721',
-      chain,
+      chain: chain.value,
       method: 'ownerOf',
       parameters: [tokenId],
       returnValueTest: {
@@ -57,7 +60,14 @@ const AssetWallet = _ref => {
     className: _shareModalModule.default.titles
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
-  }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: _shareModalModule.default.label
+  }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
+    chain: chain,
+    setChain: setChain
+  })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: contractAddress,
     className: _shareModalModule.default.input,
     label: "Add Contract Address",
@@ -77,7 +87,7 @@ const AssetWallet = _ref => {
     className: _shareModalModule.default.btn,
     onClick: handleSubmit,
     size: "l",
-    disabled: !contractAddress || !tokenId
+    disabled: !contractAddress || !tokenId || !chain
   })));
 };
 

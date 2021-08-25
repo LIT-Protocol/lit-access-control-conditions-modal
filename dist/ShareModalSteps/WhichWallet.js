@@ -37,7 +37,7 @@ const WhichWallet = _ref => {
     const accessControlConditions = [{
       contractAddress: '',
       standardContractType: '',
-      chain,
+      chain: chain.value,
       method: '',
       parameters: [':userAddress'],
       returnValueTest: {
@@ -78,7 +78,7 @@ const WhichWallet = _ref => {
     size: "m",
     handleChange: value => setWalletAddress(value)
   }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create  Requirment",
+    label: "Create Requirement",
     className: _shareModalModule.default.btn,
     size: "l",
     onClick: handleSubmit,

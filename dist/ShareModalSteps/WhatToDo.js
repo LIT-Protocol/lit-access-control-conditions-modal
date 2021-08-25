@@ -49,7 +49,7 @@ const WhatToDo = _ref => {
     fill: "white"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.lockIcon
-  })), /*#__PURE__*/_react.default.createElement("h5", null, "Lock this content with an  existing token, NFT, or contract"))), sharingItems.length === 1 && !awaitingUpload ? /*#__PURE__*/_react.default.createElement("div", {
+  })), /*#__PURE__*/_react.default.createElement("h5", null, "Lock this content with an  existing token, NFT, or contract"))), sharingItems.length === 1 && sharingItems[0].accessControlConditions ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
     onClick: () => copyToClipboard()
   }, /*#__PURE__*/_react.default.createElement("h4", null, "Share"), /*#__PURE__*/_react.default.createElement("div", {

@@ -17,7 +17,7 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
       {
         contractAddress: '',
         standardContractType: '',
-        chain,
+        chain: chain.value,
         method: '',
         parameters: [
           ':userAddress',
@@ -55,7 +55,7 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
           size="m"
           handleChange={(value) => setWalletAddress(value)}
         />
-        <Button label="Create  Requirment" className={styles.btn} size="l" onClick={handleSubmit} disabled={!walletAddress || !chain} />
+        <Button label="Create Requirement" className={styles.btn} size="l" onClick={handleSubmit} disabled={!walletAddress || !chain} />
       </div>
     </div>
   )

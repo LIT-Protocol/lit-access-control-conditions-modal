@@ -6,17 +6,19 @@ import { Button } from "@consta/uikit/Button";
 import { IconBackward } from "@consta/uikit/IconBackward"
 
 import InputWrapper from '../InputWrapper/InputWrapper'
+import ChainSelector from '../ChainSelector/ChainSelector'
 
 const AssetWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   const [contractAddress, setContractAddress] = useState('')
   const [tokenId, setTokenId] = useState('')
+  const [chain, setChain] = useState(null)
 
   const handleSubmit = () => {
     const accessControlConditions = [
       {
         contractAddress: contractAddress,
         standardContractType: 'ERC721',
-        chain,
+        chain: chain.value,
         method: 'ownerOf',
         parameters: [
           tokenId
@@ -40,6 +42,10 @@ const AssetWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         <h3>Which asset does a wallet need to own to access this file?</h3>
       </div>
       <div className={styles.form}>
+        <div className={styles.select}>
+          <span className={styles.label}>Select blockchain</span>
+          <ChainSelector chain={chain} setChain={setChain} />
+        </div>
         <InputWrapper
           value={contractAddress}
           className={styles.input}
@@ -57,7 +63,7 @@ const AssetWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
           size="m"
           handleChange={(value) => setTokenId(value)}
         />
-        <Button label="Create Requirement" className={styles.btn} onClick={handleSubmit} size="l" disabled={!contractAddress || !tokenId} />
+        <Button label="Create Requirement" className={styles.btn} onClick={handleSubmit} size="l" disabled={!contractAddress || !tokenId || !chain} />
       </div>
     </div>
   )

@@ -25,7 +25,7 @@ const WhatToDo = ({ setActiveStep, sharingItems, awaitingUpload, copyToClipboard
             <h5>Lock this content with an  existing token, NFT, or contract</h5>
           </div>
         </div>
-        {sharingItems.length === 1 && !awaitingUpload
+        {sharingItems.length === 1 && sharingItems[0].accessControlConditions
           ? <div className={styles.type} onClick={() => copyToClipboard()}>
             <h4>Share</h4>
             <div className={styles.btnBock}>
