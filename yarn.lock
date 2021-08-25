@@ -8224,12 +8224,13 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lit-js-sdk@^1.1.45:
-  version "1.1.45"
-  resolved "https://registry.yarnpkg.com/lit-js-sdk/-/lit-js-sdk-1.1.45.tgz#aa3a2fd625bde5369f72885d67f335ce26e79dd8"
-  integrity sha512-sipvOlgeb3IMhw4ealgCbd2iqeVuI554lzBjR6LZR2ZW2fkEVMz5kXP8lmmy9eGKhyi+rpt2MOdh2V7gBJjiPw==
+lit-js-sdk@^1.1.46:
+  version "1.1.46"
+  resolved "https://registry.yarnpkg.com/lit-js-sdk/-/lit-js-sdk-1.1.46.tgz#a914b3e9f322c46391939103ee32a64faac1d046"
+  integrity sha512-C82Fabc+tZdX/l5dFuVLTKrh/jeAHhFlZjQJqYGq1esDcZ7I0xn13nuUW+C6OkFwjN1jy+NHM8R6TntICoH8Gg==
   dependencies:
     "@ethersproject/contracts" "^5.2.0"
+    "@ethersproject/hash" "^5.4.0"
     "@ethersproject/providers" "^5.2.0"
     "@ethersproject/units" "^5.4.0"
     "@ethersproject/wallet" "^5.2.0"

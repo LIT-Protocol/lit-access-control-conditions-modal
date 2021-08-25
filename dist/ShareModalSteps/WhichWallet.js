@@ -7,7 +7,13 @@ exports.default = void 0;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
+require("core-js/modules/es.promise.js");
+
+require("core-js/modules/es.string.includes.js");
+
 var _react = _interopRequireWildcard(require("react"));
+
+var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
 var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
 
@@ -33,7 +39,17 @@ const WhichWallet = _ref => {
   const [walletAddress, setWalletAddress] = (0, _react.useState)('');
   const [chain, setChain] = (0, _react.useState)(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    let resolvedAddress = walletAddress;
+
+    if (walletAddress.includes(".")) {
+      // do domain name lookup
+      resolvedAddress = await _litJsSdk.default.lookupNameServiceAddress({
+        chain: chain.value,
+        name: walletAddress
+      });
+    }
+
     const accessControlConditions = [{
       contractAddress: '',
       standardContractType: '',
@@ -42,7 +58,7 @@ const WhichWallet = _ref => {
       parameters: [':userAddress'],
       returnValueTest: {
         comparator: '=',
-        value: walletAddress
+        value: resolvedAddress
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
@@ -72,7 +88,7 @@ const WhichWallet = _ref => {
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: walletAddress,
     className: _shareModalModule.default.input,
-    label: "Add Wallet Address or Blockchain Domain (e.g. ENS, Unstoppable) here:",
+    label: "Add Wallet Address or Blockchain Domain (e.g. ENS) here:",
     id: "walletAddress",
     autoFocus: true,
     size: "m",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import LitJsSdk from 'lit-js-sdk'
 import styles from '../share-modal.module.scss'
 
 import { Button } from "@consta/uikit/Button"
@@ -12,7 +12,12 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   const [walletAddress, setWalletAddress] = useState('')
   const [chain, setChain] = useState(null)
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    let resolvedAddress = walletAddress
+    if (walletAddress.includes(".")) {
+      // do domain name lookup
+      resolvedAddress = await LitJsSdk.lookupNameServiceAddress({ chain: chain.value, name: walletAddress })
+    }
     const accessControlConditions = [
       {
         contractAddress: '',
@@ -24,7 +29,7 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         ],
         returnValueTest: {
           comparator: '=',
-          value: walletAddress
+          value: resolvedAddress
         }
       }
     ]
@@ -49,7 +54,7 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         <InputWrapper
           value={walletAddress}
           className={styles.input}
-          label="Add Wallet Address or Blockchain Domain (e.g. ENS, Unstoppable) here:"
+          label="Add Wallet Address or Blockchain Domain (e.g. ENS) here:"
           id="walletAddress"
           autoFocus
           size="m"
