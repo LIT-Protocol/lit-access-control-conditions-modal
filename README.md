@@ -12,7 +12,7 @@ This package provides a modal for the use with Lit Protocol that lets the user c
 
 # Installation
 
-`yarn install lit-access-control-conditions-modal`
+`yarn add lit-access-control-conditions-modal`
 
 # Usage
 
