@@ -21,8 +21,6 @@ var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
 var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
 
-var _tokens = _interopRequireDefault(require("../tokens.json"));
-
 var _Button = require("@consta/uikit/Button");
 
 var _IconBackward = require("@consta/uikit/IconBackward");
@@ -40,7 +38,8 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const SelectTokens = _ref => {
   let {
     setActiveStep,
-    onAccessControlConditionsSelected
+    onAccessControlConditionsSelected,
+    tokenList
   } = _ref;
   const [amount, setAmount] = (0, _react.useState)('');
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
@@ -95,7 +94,7 @@ const SelectTokens = _ref => {
       const accessControlConditions = [{
         contractAddress: selectedToken.address,
         standardContractType: 'ERC20',
-        chain,
+        chain: chain.value,
         method: 'balanceOf',
         parameters: [':userAddress'],
         returnValueTest: {
@@ -169,7 +168,7 @@ const SelectTokens = _ref => {
       name: 'Ethereum',
       logoURI: null,
       address: 'ethereum'
-    }, ..._tokens.default.tokens],
+    }, ...tokenList],
     value: selectedToken // getNewOptionData={inputValue => ({ name: inputValue })}
     ,
     onChange: value => setSelectedToken(value)

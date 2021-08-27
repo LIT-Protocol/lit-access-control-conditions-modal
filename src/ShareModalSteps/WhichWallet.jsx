@@ -54,7 +54,7 @@ const WhichWallet = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         <InputWrapper
           value={walletAddress}
           className={styles.input}
-          label="Add Wallet Address or Blockchain Domain (e.g. ENS) here:"
+          label="Add Wallet Address or Blockchain Domain (e.g. ENS, UNS) here:"
           id="walletAddress"
           autoFocus
           size="m"

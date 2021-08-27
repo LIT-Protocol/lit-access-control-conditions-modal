@@ -4,7 +4,6 @@ import { ethers } from 'ethers'
 import LitJsSdk from 'lit-js-sdk'
 
 import styles from '../share-modal.module.scss'
-import tokens from '../tokens.json'
 
 import { Button } from "@consta/uikit/Button"
 import { IconBackward } from "@consta/uikit/IconBackward"
@@ -13,7 +12,7 @@ import InputWrapper from '../InputWrapper/InputWrapper'
 import ChainSelector from '../ChainSelector/ChainSelector'
 
 
-const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected }) => {
+const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenList }) => {
   const [amount, setAmount] = useState('')
   const [selectedToken, setSelectedToken] = useState(null)
   const [chain, setChain] = useState(null)
@@ -64,7 +63,7 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         {
           contractAddress: selectedToken.address,
           standardContractType: 'ERC20',
-          chain,
+          chain: chain.value,
           method: 'balanceOf',
           parameters: [
             ':userAddress'
@@ -133,7 +132,7 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected }) => {
                 logoURI: null,
                 address: 'ethereum'
               },
-              ...tokens.tokens
+              ...tokenList
             ]}
             value={selectedToken}
             // getNewOptionData={inputValue => ({ name: inputValue })}

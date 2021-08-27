@@ -28,16 +28,33 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const CurrentRequirements = _ref => {
   let {
     setActiveStep,
-    sharingItems
+    sharingItems,
+    tokenList
   } = _ref;
   const [rows, setRows] = (0, _react.useState)([]);
   const accessControlConditions = sharingItems[0].accessControlConditions;
   (0, _react.useEffect)(() => {
     const go = async () => {
-      const humanized = await _litJsSdk.default.humanizeAccessControlConditions({
-        accessControlConditions
-      });
-      setRows(humanized.map(h => ({
+      const humanizedMainCondition = (await _litJsSdk.default.humanizeAccessControlConditions({
+        accessControlConditions,
+        tokenList
+      })).join(' and '); // sharingItems[0].additionalAccessControlConditions is an array objects
+      // and each object contains an accessControlCondition array
+
+      let humanizedAdditionalConditions = [];
+
+      if (sharingItems[0].additionalAccessControlConditions) {
+        const justConditions = sharingItems[0].additionalAccessControlConditions.map(a => a.accessControlConditions);
+        humanizedAdditionalConditions = await Promise.all(justConditions.map(async c => {
+          return (await _litJsSdk.default.humanizeAccessControlConditions({
+            accessControlConditions: c,
+            tokenList
+          })).join(' and ');
+        }));
+      }
+
+      const regularAndAdditional = [humanizedMainCondition, ...humanizedAdditionalConditions];
+      setRows(regularAndAdditional.map(h => ({
         requirement: h
       })));
     };

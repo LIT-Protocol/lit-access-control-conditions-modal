@@ -88,7 +88,7 @@ const WhichWallet = _ref => {
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: walletAddress,
     className: _shareModalModule.default.input,
-    label: "Add Wallet Address or Blockchain Domain (e.g. ENS) here:",
+    label: "Add Wallet Address or Blockchain Domain (e.g. ENS, UNS) here:",
     id: "walletAddress",
     autoFocus: true,
     size: "m",

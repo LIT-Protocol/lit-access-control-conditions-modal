@@ -6,14 +6,27 @@ import styles from '../share-modal.module.scss'
 import { Table } from "@consta/uikit/Table"
 import { IconBackward } from "@consta/uikit/IconBackward"
 
-const CurrentRequirements = ({ setActiveStep, sharingItems }) => {
+const CurrentRequirements = ({ setActiveStep, sharingItems, tokenList }) => {
   const [rows, setRows] = useState([])
   const accessControlConditions = sharingItems[0].accessControlConditions
 
   useEffect(() => {
     const go = async () => {
-      const humanized = await LitJsSdk.humanizeAccessControlConditions({ accessControlConditions })
-      setRows(humanized.map(h => ({ requirement: h })))
+      const humanizedMainCondition = (await LitJsSdk.humanizeAccessControlConditions({ accessControlConditions, tokenList })).join(' and ')
+      // sharingItems[0].additionalAccessControlConditions is an array objects
+      // and each object contains an accessControlCondition array
+      let humanizedAdditionalConditions = []
+      if (sharingItems[0].additionalAccessControlConditions) {
+        const justConditions = sharingItems[0].additionalAccessControlConditions.map(a => a.accessControlConditions)
+        humanizedAdditionalConditions = await Promise.all(justConditions.map(async c => {
+          return (await LitJsSdk.humanizeAccessControlConditions({
+            accessControlConditions: c,
+            tokenList
+          })).join(' and ')
+        }))
+      }
+      const regularAndAdditional = [humanizedMainCondition, ...humanizedAdditionalConditions]
+      setRows(regularAndAdditional.map(h => ({ requirement: h })))
     }
 
     go()

@@ -55,7 +55,18 @@ const ShareModal = props => {
   } = props;
   console.log('rendering ShareModal and sharingItems is', sharingItems);
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
-  const [activeStep, setActiveStep] = (0, _react.useState)(showStep || 'whatToDo'); // console.log('accessControlConditions', accessControlConditions)
+  const [activeStep, setActiveStep] = (0, _react.useState)(showStep || 'whatToDo');
+  const [tokenList, setTokenList] = (0, _react.useState)([]);
+  (0, _react.useEffect)(() => {
+    const go = async () => {
+      // get token list and cache it
+      const url = "https://www.gemini.com/uniswap/manifest.json";
+      const resp = await fetch(url).then(r => r.json());
+      setTokenList(resp.tokens);
+    };
+
+    go();
+  }, []); // console.log('accessControlConditions', accessControlConditions)
 
   const copyToClipboard = async () => {
     const fileUrl = getSharingLink(sharingItems[0]);
@@ -63,6 +74,14 @@ const ShareModal = props => {
     setShowingSnackbar(true);
     setTimeout(() => setShowingSnackbar(false), 5000);
   };
+
+  let totalAccessControlConditions = 1;
+
+  if (sharingItems.length === 1) {
+    if (sharingItems[0].additionalAccessControlConditions) {
+      totalAccessControlConditions += sharingItems[0].additionalAccessControlConditions.length;
+    }
+  }
 
   const ModalComponent = props => {
     const {
@@ -72,7 +91,8 @@ const ShareModal = props => {
     return /*#__PURE__*/_react.default.createElement(Component, _extends({}, props, {
       sharingItems: sharingItems,
       copyToClipboard: copyToClipboard,
-      onAccessControlConditionsSelected: onAccessControlConditionsSelected
+      onAccessControlConditionsSelected: onAccessControlConditionsSelected,
+      tokenList: tokenList
     }));
   };
 
@@ -92,7 +112,7 @@ const ShareModal = props => {
   }, /*#__PURE__*/_react.default.createElement("h3", null, sharingItems.length > 1 ? "".concat(sharingItems.length, " files") : sharingItems[0].name), sharingItems.length === 1 && sharingItems[0].accessControlConditions ? /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
     onClick: () => setActiveStep('currentRequirements')
-  }, sharingItems[0].accessControlConditions.length, " access requirement", sharingItems[0].accessControlConditions.length > 1 ? 's' : '') : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
+  }, totalAccessControlConditions, " access requirement", totalAccessControlConditions > 1 ? 's' : '') : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _shareModalModule.default.close,
     onClick: onClose
   })), /*#__PURE__*/_react.default.createElement("div", {

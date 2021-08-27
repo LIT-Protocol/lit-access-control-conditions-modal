@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import styles from './share-modal.module.scss'
 
@@ -35,6 +35,17 @@ const ShareModal = (props) => {
 
   const [showingSnackbar, setShowingSnackbar] = useState(false)
   const [activeStep, setActiveStep] = useState(showStep || 'whatToDo')
+  const [tokenList, setTokenList] = useState([])
+
+  useEffect(() => {
+    const go = async () => {
+      // get token list and cache it
+      const url = "https://www.gemini.com/uniswap/manifest.json"
+      const resp = await fetch(url).then(r => r.json())
+      setTokenList(resp.tokens)
+    }
+    go()
+  }, [])
 
   // console.log('accessControlConditions', accessControlConditions)
 
@@ -43,6 +54,13 @@ const ShareModal = (props) => {
     await navigator.clipboard.writeText(fileUrl)
     setShowingSnackbar(true)
     setTimeout(() => setShowingSnackbar(false), 5000)
+  }
+
+  let totalAccessControlConditions = 1
+  if (sharingItems.length === 1) {
+    if (sharingItems[0].additionalAccessControlConditions) {
+      totalAccessControlConditions += sharingItems[0].additionalAccessControlConditions.length
+    }
   }
 
 
@@ -56,6 +74,7 @@ const ShareModal = (props) => {
       sharingItems={sharingItems}
       copyToClipboard={copyToClipboard}
       onAccessControlConditionsSelected={onAccessControlConditionsSelected}
+      tokenList={tokenList}
     />)
   }
 
@@ -72,7 +91,7 @@ const ShareModal = (props) => {
                   : sharingItems[0].name}
               </h3>
               {sharingItems.length === 1 && sharingItems[0].accessControlConditions
-                ? <a className={styles.link} onClick={() => setActiveStep('currentRequirements')}>{sharingItems[0].accessControlConditions.length} access requirement{sharingItems[0].accessControlConditions.length > 1 ? 's' : ''}</a>
+                ? <a className={styles.link} onClick={() => setActiveStep('currentRequirements')}>{totalAccessControlConditions} access requirement{totalAccessControlConditions > 1 ? 's' : ''}</a>
                 : null}
             </div>
           </div>
