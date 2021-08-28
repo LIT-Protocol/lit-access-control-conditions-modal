@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import CreatableSelect from 'react-select/creatable'
+import { Creatable } from 'react-select-virtualized'
 import { ethers } from 'ethers'
 import LitJsSdk from 'lit-js-sdk'
 
@@ -25,7 +25,8 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
       },
       ...tokenList.map(t => ({
         label: t.name,
-        value: t.address
+        value: t.address,
+        standard: t.standard
       }))
     ]
   }, [tokenList])
@@ -33,7 +34,7 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken)
 
-    if (selectedToken.address === 'ethereum') {
+    if (selectedToken.value === 'ethereum') {
       // ethereum
       const amountInWei = ethers.utils.parseEther(amount)
       const accessControlConditions = [
@@ -54,14 +55,15 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
       ]
       onAccessControlConditionsSelected(accessControlConditions)
     } else {
-      // erc20 token
       console.log('selectedToken', selectedToken)
-      let amountInBaseUnit
-      if (selectedToken.decimals) {
-        amountInBaseUnit = ethers.utils.parseUnits(amount, selectedToken.decimals)
+
+      let tokenType
+      if (selectedToken.standard?.toLowerCase() === 'erc721') {
+        tokenType = 'erc721'
+      } else if (selectedToken.decimals) {
+        tokenType = 'erc20'
       } else {
-        // need to check the contract for decimals
-        // this will auto switch the chain to the selected one in metamask
+        // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: chain.value })
         let decimals = 0
         try {
@@ -69,25 +71,68 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
         } catch (e) {
           console.log(e)
         }
-        console.log(`decimals in ${selectedToken.value}`, decimals)
-        amountInBaseUnit = ethers.utils.parseUnits(amount, decimals)
-      }
-      const accessControlConditions = [
-        {
-          contractAddress: selectedToken.address,
-          standardContractType: 'ERC20',
-          chain: chain.value,
-          method: 'balanceOf',
-          parameters: [
-            ':userAddress'
-          ],
-          returnValueTest: {
-            comparator: '>=',
-            value: amountInBaseUnit.toString()
-          }
+        if (decimals == 0) {
+          tokenType = 'erc721'
+        } else {
+          tokenType = 'erc20'
         }
-      ]
-      onAccessControlConditionsSelected(accessControlConditions)
+      }
+
+      console.log('tokenType is', tokenType)
+
+      if (tokenType == 'erc721') {
+        // erc721
+        const accessControlConditions = [
+          {
+            contractAddress: selectedToken.value,
+            standardContractType: 'ERC721',
+            chain: chain.value,
+            method: 'balanceOf',
+            parameters: [
+              ':userAddress'
+            ],
+            returnValueTest: {
+              comparator: '>',
+              value: '0'
+            }
+          }
+        ]
+        onAccessControlConditionsSelected(accessControlConditions)
+      } else {
+        // erc20 token
+        let amountInBaseUnit
+        if (selectedToken.decimals) {
+          amountInBaseUnit = ethers.utils.parseUnits(amount, selectedToken.decimals)
+        } else {
+          // need to check the contract for decimals
+          // this will auto switch the chain to the selected one in metamask
+          const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: chain.value })
+          let decimals = 0
+          try {
+            decimals = await LitJsSdk.decimalPlaces({ contractAddress: selectedToken.value })
+          } catch (e) {
+            console.log(e)
+          }
+          console.log(`decimals in ${selectedToken.value}`, decimals)
+          amountInBaseUnit = ethers.utils.parseUnits(amount, decimals)
+        }
+        const accessControlConditions = [
+          {
+            contractAddress: selectedToken.value,
+            standardContractType: 'ERC20',
+            chain: chain.value,
+            method: 'balanceOf',
+            parameters: [
+              ':userAddress'
+            ],
+            returnValueTest: {
+              comparator: '>=',
+              value: amountInBaseUnit.toString()
+            }
+          }
+        ]
+        onAccessControlConditionsSelected(accessControlConditions)
+      }
     }
     setActiveStep('accessCreated')
 
@@ -133,16 +178,12 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
           <ChainSelector chain={chain} setChain={setChain} />
         </div>
         <div className={styles.select}>
-          <span className={styles.label}>Select token or enter contract address</span>
-          <CreatableSelect
+          <span className={styles.label}>Select token or enter contract address.  Supports erc20 and erc721.</span>
+          <Creatable
             isClearable
             isSearchable
             defaultValue={''}
-            // formatOptionLabel={formatOptionLabel}
-            // getOptionValue={(option) => option.address}
             options={tokenSelectBoxRows}
-            value={selectedToken}
-            // getNewOptionData={inputValue => ({ name: inputValue })}
             onChange={value => setSelectedToken(value)}
           />
         </div>

@@ -13,7 +13,7 @@ require("core-js/modules/es.regexp.to-string.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _creatable = _interopRequireDefault(require("react-select/creatable"));
+var _reactSelectVirtualized = require("react-select-virtualized");
 
 var _ethers = require("ethers");
 
@@ -50,14 +50,15 @@ const SelectTokens = _ref => {
       value: 'ethereum'
     }, ...tokenList.map(t => ({
       label: t.name,
-      value: t.address
+      value: t.address,
+      standard: t.standard
     }))];
   }, [tokenList]);
 
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken);
 
-    if (selectedToken.address === 'ethereum') {
+    if (selectedToken.value === 'ethereum') {
       // ethereum
       const amountInWei = _ethers.ethers.utils.parseEther(amount);
 
@@ -74,15 +75,17 @@ const SelectTokens = _ref => {
       }];
       onAccessControlConditionsSelected(accessControlConditions);
     } else {
-      // erc20 token
-      console.log('selectedToken', selectedToken);
-      let amountInBaseUnit;
+      var _selectedToken$standa;
 
-      if (selectedToken.decimals) {
-        amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, selectedToken.decimals);
+      console.log('selectedToken', selectedToken);
+      let tokenType;
+
+      if (((_selectedToken$standa = selectedToken.standard) === null || _selectedToken$standa === void 0 ? void 0 : _selectedToken$standa.toLowerCase()) === 'erc721') {
+        tokenType = 'erc721';
+      } else if (selectedToken.decimals) {
+        tokenType = 'erc20';
       } else {
-        // need to check the contract for decimals
-        // this will auto switch the chain to the selected one in metamask
+        // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.
         const authSig = await _litJsSdk.default.checkAndSignAuthMessage({
           chain: chain.value
         });
@@ -96,22 +99,68 @@ const SelectTokens = _ref => {
           console.log(e);
         }
 
-        console.log("decimals in ".concat(selectedToken.value), decimals);
-        amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, decimals);
+        if (decimals == 0) {
+          tokenType = 'erc721';
+        } else {
+          tokenType = 'erc20';
+        }
       }
 
-      const accessControlConditions = [{
-        contractAddress: selectedToken.address,
-        standardContractType: 'ERC20',
-        chain: chain.value,
-        method: 'balanceOf',
-        parameters: [':userAddress'],
-        returnValueTest: {
-          comparator: '>=',
-          value: amountInBaseUnit.toString()
+      console.log('tokenType is', tokenType);
+
+      if (tokenType == 'erc721') {
+        // erc721
+        const accessControlConditions = [{
+          contractAddress: selectedToken.value,
+          standardContractType: 'ERC721',
+          chain: chain.value,
+          method: 'balanceOf',
+          parameters: [':userAddress'],
+          returnValueTest: {
+            comparator: '>',
+            value: '0'
+          }
+        }];
+        onAccessControlConditionsSelected(accessControlConditions);
+      } else {
+        // erc20 token
+        let amountInBaseUnit;
+
+        if (selectedToken.decimals) {
+          amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, selectedToken.decimals);
+        } else {
+          // need to check the contract for decimals
+          // this will auto switch the chain to the selected one in metamask
+          const authSig = await _litJsSdk.default.checkAndSignAuthMessage({
+            chain: chain.value
+          });
+          let decimals = 0;
+
+          try {
+            decimals = await _litJsSdk.default.decimalPlaces({
+              contractAddress: selectedToken.value
+            });
+          } catch (e) {
+            console.log(e);
+          }
+
+          console.log("decimals in ".concat(selectedToken.value), decimals);
+          amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, decimals);
         }
-      }];
-      onAccessControlConditionsSelected(accessControlConditions);
+
+        const accessControlConditions = [{
+          contractAddress: selectedToken.value,
+          standardContractType: 'ERC20',
+          chain: chain.value,
+          method: 'balanceOf',
+          parameters: [':userAddress'],
+          returnValueTest: {
+            comparator: '>=',
+            value: amountInBaseUnit.toString()
+          }
+        }];
+        onAccessControlConditionsSelected(accessControlConditions);
+      }
     }
 
     setActiveStep('accessCreated');
@@ -159,15 +208,11 @@ const SelectTokens = _ref => {
     className: _shareModalModule.default.select
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: _shareModalModule.default.label
-  }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_creatable.default, {
+  }, "Select token or enter contract address.  Supports erc20 and erc721."), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
     isClearable: true,
     isSearchable: true,
-    defaultValue: '' // formatOptionLabel={formatOptionLabel}
-    // getOptionValue={(option) => option.address}
-    ,
+    defaultValue: '',
     options: tokenSelectBoxRows,
-    value: selectedToken // getNewOptionData={inputValue => ({ name: inputValue })}
-    ,
     onChange: value => setSelectedToken(value)
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,

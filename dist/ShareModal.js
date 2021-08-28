@@ -70,7 +70,7 @@ const ShareModal = props => {
       const erc721Promise = fetch(erc721Url).then(r => r.json());
       const [erc20s, erc721s] = await Promise.all([erc20Promise, erc721Promise]);
       const sorted = [...erc20s.tokens, ...erc721s.tokens].sort((a, b) => a.name > b.name ? 1 : -1);
-      setTokenList(resp.tokens);
+      setTokenList(sorted);
     };
 
     go();

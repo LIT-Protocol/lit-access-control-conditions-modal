@@ -9,6 +9,8 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactSelectVirtualized = require("react-select-virtualized");
+
 var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
 
 var _Button = require("@consta/uikit/Button");
@@ -28,15 +30,26 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const AssetWallet = _ref => {
   let {
     setActiveStep,
-    onAccessControlConditionsSelected
+    onAccessControlConditionsSelected,
+    tokenList
   } = _ref;
-  const [contractAddress, setContractAddress] = (0, _react.useState)('');
   const [tokenId, setTokenId] = (0, _react.useState)('');
   const [chain, setChain] = (0, _react.useState)(null);
+  const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
+  const tokenSelectBoxRows = (0, _react.useMemo)(() => {
+    return tokenList.filter(t => {
+      var _t$standard;
+
+      return ((_t$standard = t.standard) === null || _t$standard === void 0 ? void 0 : _t$standard.toLowerCase()) === 'erc721';
+    }).map(t => ({
+      label: t.name,
+      value: t.address
+    }));
+  }, [tokenList]);
 
   const handleSubmit = () => {
     const accessControlConditions = [{
-      contractAddress: contractAddress,
+      contractAddress: selectedToken.value,
       standardContractType: 'ERC721',
       chain: chain.value,
       method: 'ownerOf',
@@ -67,15 +80,17 @@ const AssetWallet = _ref => {
   }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: _shareModalModule.default.label
+  }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
+    isClearable: true,
+    isSearchable: true,
+    defaultValue: '',
+    options: tokenSelectBoxRows,
+    onChange: value => setSelectedToken(value)
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
-    value: contractAddress,
-    className: _shareModalModule.default.input,
-    label: "Add Contract Address",
-    id: "contractAddress",
-    autoFocus: true,
-    size: "m",
-    handleChange: value => setContractAddress(value)
-  }), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: tokenId,
     className: _shareModalModule.default.input,
     label: "Add Token ID",
@@ -87,7 +102,7 @@ const AssetWallet = _ref => {
     className: _shareModalModule.default.btn,
     onClick: handleSubmit,
     size: "l",
-    disabled: !contractAddress || !tokenId || !chain
+    disabled: !selectedToken || !tokenId || !chain
   })));
 };
 
