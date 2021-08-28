@@ -17,6 +17,19 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
   const [selectedToken, setSelectedToken] = useState(null)
   const [chain, setChain] = useState(null)
 
+  const tokenSelectBoxRows = useMemo(() => {
+    return [
+      {
+        label: 'Ethereum',
+        value: 'ethereum'
+      },
+      ...tokenList.map(t => ({
+        label: t.name,
+        value: t.address
+      }))
+    ]
+  }, [tokenList])
+
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken)
 
@@ -80,31 +93,31 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
 
   }
 
-  const formatOptionLabel = (option, extra) => {
-    const { name, logoURI, value } = option
-    const { inputValue } = extra
+  // const formatOptionLabel = (option, extra) => {
+  //   const { name, logoURI, value } = option
+  //   const { inputValue } = extra
 
-    // console.log('option', option)
-    // console.log('extra', extra)
+  //   // console.log('option', option)
+  //   // console.log('extra', extra)
 
-    if (inputValue) {
-      return inputValue
-    }
+  //   if (inputValue) {
+  //     return inputValue
+  //   }
 
-    if (value) {
-      return value
-    }
+  //   if (value) {
+  //     return value
+  //   }
 
-    return (
-      <div style={{ display: "flex" }}>
-        {logoURI ?
-          <img className={styles.selectIcon} src={logoURI} alt="img" />
-          : null
-        }
-        <div>{name}</div>
-      </div>
-    )
-  };
+  //   return (
+  //     <div style={{ display: "flex" }}>
+  //       {logoURI ?
+  //         <img className={styles.selectIcon} src={logoURI} alt="img" />
+  //         : null
+  //       }
+  //       <div>{name}</div>
+  //     </div>
+  //   )
+  // };
 
   return (
     <div>
@@ -120,20 +133,14 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
           <ChainSelector chain={chain} setChain={setChain} />
         </div>
         <div className={styles.select}>
-          <span className={styles.label}>Select token</span>
+          <span className={styles.label}>Select token or enter contract address</span>
           <CreatableSelect
             isClearable
+            isSearchable
             defaultValue={''}
-            formatOptionLabel={formatOptionLabel}
-            getOptionValue={(option) => option.address}
-            options={[
-              {
-                name: 'Ethereum',
-                logoURI: null,
-                address: 'ethereum'
-              },
-              ...tokenList
-            ]}
+            // formatOptionLabel={formatOptionLabel}
+            // getOptionValue={(option) => option.address}
+            options={tokenSelectBoxRows}
             value={selectedToken}
             // getNewOptionData={inputValue => ({ name: inputValue })}
             onChange={value => setSelectedToken(value)}

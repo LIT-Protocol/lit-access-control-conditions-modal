@@ -11,6 +11,8 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 require("core-js/modules/es.promise.js");
 
+require("core-js/modules/es.array.sort.js");
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _shareModalModule = _interopRequireDefault(require("./share-modal.module.scss"));
@@ -60,8 +62,14 @@ const ShareModal = props => {
   (0, _react.useEffect)(() => {
     const go = async () => {
       // get token list and cache it
-      const url = "https://www.gemini.com/uniswap/manifest.json";
-      const resp = await fetch(url).then(r => r.json());
+      // erc20
+      const erc20Url = "https://t2crtokens.eth.link";
+      const erc20Promise = fetch(erc20Url).then(r => r.json()); // erc721
+
+      const erc721Url = "https://raw.githubusercontent.com/0xsequence/token-directory/main/index/mainnet/erc721.json";
+      const erc721Promise = fetch(erc721Url).then(r => r.json());
+      const [erc20s, erc721s] = await Promise.all([erc20Promise, erc721Promise]);
+      const sorted = [...erc20s.tokens, ...erc721s.tokens].sort((a, b) => a.name > b.name ? 1 : -1);
       setTokenList(resp.tokens);
     };
 

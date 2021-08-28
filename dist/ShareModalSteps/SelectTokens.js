@@ -44,6 +44,15 @@ const SelectTokens = _ref => {
   const [amount, setAmount] = (0, _react.useState)('');
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [chain, setChain] = (0, _react.useState)(null);
+  const tokenSelectBoxRows = (0, _react.useMemo)(() => {
+    return [{
+      label: 'Ethereum',
+      value: 'ethereum'
+    }, ...tokenList.map(t => ({
+      label: t.name,
+      value: t.address
+    }))];
+  }, [tokenList]);
 
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken);
@@ -106,37 +115,28 @@ const SelectTokens = _ref => {
     }
 
     setActiveStep('accessCreated');
-  };
+  }; // const formatOptionLabel = (option, extra) => {
+  //   const { name, logoURI, value } = option
+  //   const { inputValue } = extra
+  //   // console.log('option', option)
+  //   // console.log('extra', extra)
+  //   if (inputValue) {
+  //     return inputValue
+  //   }
+  //   if (value) {
+  //     return value
+  //   }
+  //   return (
+  //     <div style={{ display: "flex" }}>
+  //       {logoURI ?
+  //         <img className={styles.selectIcon} src={logoURI} alt="img" />
+  //         : null
+  //       }
+  //       <div>{name}</div>
+  //     </div>
+  //   )
+  // };
 
-  const formatOptionLabel = (option, extra) => {
-    const {
-      name,
-      logoURI,
-      value
-    } = option;
-    const {
-      inputValue
-    } = extra; // console.log('option', option)
-    // console.log('extra', extra)
-
-    if (inputValue) {
-      return inputValue;
-    }
-
-    if (value) {
-      return value;
-    }
-
-    return /*#__PURE__*/_react.default.createElement("div", {
-      style: {
-        display: "flex"
-      }
-    }, logoURI ? /*#__PURE__*/_react.default.createElement("img", {
-      className: _shareModalModule.default.selectIcon,
-      src: logoURI,
-      alt: "img"
-    }) : null, /*#__PURE__*/_react.default.createElement("div", null, name));
-  };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
@@ -159,16 +159,13 @@ const SelectTokens = _ref => {
     className: _shareModalModule.default.select
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: _shareModalModule.default.label
-  }, "Select token"), /*#__PURE__*/_react.default.createElement(_creatable.default, {
+  }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_creatable.default, {
     isClearable: true,
-    defaultValue: '',
-    formatOptionLabel: formatOptionLabel,
-    getOptionValue: option => option.address,
-    options: [{
-      name: 'Ethereum',
-      logoURI: null,
-      address: 'ethereum'
-    }, ...tokenList],
+    isSearchable: true,
+    defaultValue: '' // formatOptionLabel={formatOptionLabel}
+    // getOptionValue={(option) => option.address}
+    ,
+    options: tokenSelectBoxRows,
     value: selectedToken // getNewOptionData={inputValue => ({ name: inputValue })}
     ,
     onChange: value => setSelectedToken(value)
