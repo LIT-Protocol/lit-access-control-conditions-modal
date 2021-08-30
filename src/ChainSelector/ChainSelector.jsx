@@ -1,8 +1,15 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import Select from 'react-select'
 import LitJsSdk from 'lit-js-sdk'
 
 const ChainSelector = ({ chain, setChain }) => {
+
+  // default is eth
+  useEffect(() => setChain({
+    label: 'Ethereum',
+    id: 'ethereum',
+    value: 'ethereum'
+  }), [])
 
   const chainOptions = useMemo(() =>
     Object.keys(LitJsSdk.LIT_CHAINS).map(item => {
@@ -16,7 +23,6 @@ const ChainSelector = ({ chain, setChain }) => {
   return (
     <Select
       isClearable
-      defaultValue={''}
       options={chainOptions}
       value={chain}
       onChange={value => setChain(value)}

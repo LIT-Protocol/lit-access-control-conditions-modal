@@ -24,6 +24,12 @@ const ChainSelector = _ref => {
     chain,
     setChain
   } = _ref;
+  // default is eth
+  (0, _react.useEffect)(() => setChain({
+    label: 'Ethereum',
+    id: 'ethereum',
+    value: 'ethereum'
+  }), []);
   const chainOptions = (0, _react.useMemo)(() => Object.keys(_litJsSdk.default.LIT_CHAINS).map(item => {
     return {
       label: _litJsSdk.default.LIT_CHAINS[item].name,
@@ -33,7 +39,6 @@ const ChainSelector = _ref => {
   }), [_litJsSdk.default.LIT_CHAINS]);
   return /*#__PURE__*/_react.default.createElement(_reactSelect.default, {
     isClearable: true,
-    defaultValue: '',
     options: chainOptions,
     value: chain,
     onChange: value => setChain(value)
