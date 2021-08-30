@@ -29,6 +29,8 @@ const ShareModal = (props) => {
     showStep,
     onAccessControlConditionsSelected,
     getSharingLink,
+    onlyAllowCopySharingLink,
+    copyLinkText
   } = props
 
   console.log('rendering ShareModal and sharingItems is', sharingItems)
@@ -84,6 +86,8 @@ const ShareModal = (props) => {
       copyToClipboard={copyToClipboard}
       onAccessControlConditionsSelected={onAccessControlConditionsSelected}
       tokenList={tokenList}
+      onlyAllowCopySharingLink={onlyAllowCopySharingLink}
+      copyLinkText={copyLinkText}
     />)
   }
 

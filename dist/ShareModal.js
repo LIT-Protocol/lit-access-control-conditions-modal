@@ -53,7 +53,9 @@ const ShareModal = props => {
     sharingItems,
     showStep,
     onAccessControlConditionsSelected,
-    getSharingLink
+    getSharingLink,
+    onlyAllowCopySharingLink,
+    copyLinkText
   } = props;
   console.log('rendering ShareModal and sharingItems is', sharingItems);
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
@@ -100,7 +102,9 @@ const ShareModal = props => {
       sharingItems: sharingItems,
       copyToClipboard: copyToClipboard,
       onAccessControlConditionsSelected: onAccessControlConditionsSelected,
-      tokenList: tokenList
+      tokenList: tokenList,
+      onlyAllowCopySharingLink: onlyAllowCopySharingLink,
+      copyLinkText: copyLinkText
     }));
   };
 
