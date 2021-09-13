@@ -12,7 +12,7 @@
     "@babel/polyfill": "^7.12.1",
     "@consta/uikit": "^3.0.0",
     "classnames": "^2.3.1",
-    "lit-js-sdk": "^1.1.50",
+    "lit-js-sdk": "^1.1.58",
     "react-select-virtualized": "^3.5.0",
     "react-virtualized": "^9.22.3"
   },

@@ -8253,10 +8253,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lit-js-sdk@^1.1.50:
-  version "1.1.50"
-  resolved "https://registry.yarnpkg.com/lit-js-sdk/-/lit-js-sdk-1.1.50.tgz#1c6dd513a43cf175ccffa9e4c4554f9b8c1d6bb1"
-  integrity sha512-FMCsnlxJsEktzzlPqNbNIbTyawu6CeB11FNT856CZMbE6QHmFOla5qqv6jPJs0270ulaL8N+7XbHulmaUlFbxQ==
+lit-js-sdk@^1.1.58:
+  version "1.1.58"
+  resolved "https://registry.yarnpkg.com/lit-js-sdk/-/lit-js-sdk-1.1.58.tgz#093f9f6f3c98f7096a9e62eee020b12641dc42a6"
+  integrity sha512-PwhHmytm2OWbdwiNFnMiWg+9QE0LQbHKqBHjaX4TpNGtOa7R3UyLZOvBNyrG+NNS4dRM459m7oEvFHm/cF4pWg==
   dependencies:
     "@ethersproject/contracts" "^5.2.0"
     "@ethersproject/hash" "^5.4.0"
@@ -8269,7 +8269,7 @@ lit-js-sdk@^1.1.50:
     buffer "^6.0.3"
     jszip "^3.6.0"
     node-fetch-polyfill "^2.0.6"
-    pako "^2.0.3"
+    pako "^2.0.4"
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
     uint8arrays "^2.1.5"
@@ -9302,7 +9302,7 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-pako@^2.0.3:
+pako@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pako/-/pako-2.0.4.tgz#6cebc4bbb0b6c73b0d5b8d7e8476e2b2fbea576d"
   integrity sha512-v8tweI900AUkZN6heMU/4Uy4cXRc2AYNRggVmTR+dEncawDJgCdLMximOVA2p4qO57WMynangsfGRb5WD6L1Bg==
