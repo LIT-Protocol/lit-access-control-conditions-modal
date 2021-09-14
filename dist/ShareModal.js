@@ -11,8 +11,6 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 require("core-js/modules/es.promise.js");
 
-require("core-js/modules/es.array.sort.js");
-
 var _react = _interopRequireWildcard(require("react"));
 
 var _shareModalModule = _interopRequireDefault(require("./share-modal.module.scss"));
@@ -56,23 +54,17 @@ const ShareModal = props => {
     getSharingLink,
     onlyAllowCopySharingLink,
     copyLinkText
-  } = props;
-  console.log('rendering ShareModal and sharingItems is', sharingItems);
+  } = props; // console.log("rendering ShareModal and sharingItems is", sharingItems);
+
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
-  const [activeStep, setActiveStep] = (0, _react.useState)(showStep || 'whatToDo');
+  const [activeStep, setActiveStep] = (0, _react.useState)(showStep || "whatToDo");
   const [tokenList, setTokenList] = (0, _react.useState)([]);
+  const [requirementCreated, setRequirementCreated] = (0, _react.useState)(false);
   (0, _react.useEffect)(() => {
     const go = async () => {
       // get token list and cache it
-      // erc20
-      const erc20Url = "https://t2crtokens.eth.link";
-      const erc20Promise = fetch(erc20Url).then(r => r.json()); // erc721
-
-      const erc721Url = "https://raw.githubusercontent.com/0xsequence/token-directory/main/index/mainnet/erc721.json";
-      const erc721Promise = fetch(erc721Url).then(r => r.json());
-      const [erc20s, erc721s] = await Promise.all([erc20Promise, erc721Promise]);
-      const sorted = [...erc20s.tokens, ...erc721s.tokens].sort((a, b) => a.name > b.name ? 1 : -1);
-      setTokenList(sorted);
+      const tokens = await LitJsSdk.getTokenList();
+      setTokenList(tokens);
     };
 
     go();
@@ -104,7 +96,9 @@ const ShareModal = props => {
       onAccessControlConditionsSelected: onAccessControlConditionsSelected,
       tokenList: tokenList,
       onlyAllowCopySharingLink: onlyAllowCopySharingLink,
-      copyLinkText: copyLinkText
+      copyLinkText: copyLinkText,
+      setRequirementCreated: setRequirementCreated,
+      requirementCreated: requirementCreated
     }));
   };
 
@@ -123,8 +117,8 @@ const ShareModal = props => {
     className: _shareModalModule.default.fileName
   }, /*#__PURE__*/_react.default.createElement("h3", null, sharingItems.length > 1 ? "".concat(sharingItems.length, " files") : sharingItems[0].name), sharingItems.length === 1 && sharingItems[0].accessControlConditions ? /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
-    onClick: () => setActiveStep('currentRequirements')
-  }, totalAccessControlConditions, " access requirement", totalAccessControlConditions > 1 ? 's' : '') : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
+    onClick: () => setActiveStep("currentRequirements")
+  }, totalAccessControlConditions, " access requirement", totalAccessControlConditions > 1 ? "s" : "") : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _shareModalModule.default.close,
     onClick: onClose
   })), /*#__PURE__*/_react.default.createElement("div", {
@@ -136,7 +130,7 @@ const ShareModal = props => {
     styles: _shareModalModule.default.snackbar,
     items: [{
       key: 1,
-      message: 'Copied!'
+      message: "Copied!"
     }]
   }) : null)));
 };

@@ -29,7 +29,8 @@ const CurrentRequirements = _ref => {
   let {
     setActiveStep,
     sharingItems,
-    tokenList
+    tokenList,
+    requirementCreated
   } = _ref;
   const [rows, setRows] = (0, _react.useState)([]);
   const accessControlConditions = sharingItems[0].accessControlConditions;
@@ -38,20 +39,32 @@ const CurrentRequirements = _ref => {
       const humanizedMainCondition = (await _litJsSdk.default.humanizeAccessControlConditions({
         accessControlConditions,
         tokenList
-      })).join(' and '); // sharingItems[0].additionalAccessControlConditions is an array objects
+      })).join(" and "); // console.log("humanized main condition", humanizedMainCondition);
+      // sharingItems[0].additionalAccessControlConditions is an array objects
       // and each object contains an accessControlCondition array
 
       let humanizedAdditionalConditions = [];
 
       if (sharingItems[0].additionalAccessControlConditions) {
-        const justConditions = sharingItems[0].additionalAccessControlConditions.map(a => a.accessControlConditions);
+        const justConditions = sharingItems[0].additionalAccessControlConditions.map(a => a.accessControlConditions); // console.log(
+        //   "additional access control conditions justConditions",
+        //   justConditions
+        // );
+
         humanizedAdditionalConditions = await Promise.all(justConditions.map(async c => {
-          return (await _litJsSdk.default.humanizeAccessControlConditions({
+          // console.log("humanizing additional access control condition", c);
+          const humanized = await _litJsSdk.default.humanizeAccessControlConditions({
             accessControlConditions: c,
             tokenList
-          })).join(' and ');
+          }); // console.log("humanized ", humanized);
+
+          return humanized.join(" and ");
         }));
-      }
+      } // console.log(
+      //   "humanizedAdditionalConditions",
+      //   humanizedAdditionalConditions
+      // );
+
 
       const regularAndAdditional = [humanizedMainCondition, ...humanizedAdditionalConditions];
       setRows(regularAndAdditional.map(h => ({
@@ -62,21 +75,21 @@ const CurrentRequirements = _ref => {
     go();
   }, [sharingItems]);
   const columns = [{
-    title: 'Requirement',
-    accessor: 'requirement',
+    title: "Requirement",
+    accessor: "requirement",
     width: 600
   } // {
   //   title: 'Date Added',
   //   accessor: 'date',
   // },
   ];
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", null, !requirementCreated ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('ableToAccess')
+    onClick: () => setActiveStep("ableToAccess")
   }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
     view: "link",
     className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
+  }), " Back") : null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Wallets that meet one of these requirements can access this file")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.table

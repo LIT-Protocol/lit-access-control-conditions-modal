@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -8,11 +9,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-This package provides a modal for the use with Lit Protocol that lets the user choose the access control conditions under which to share content or data.
+This React package provides a modal for the use with Lit Protocol that lets the user choose the access control conditions under which to share content or data.
 
 # Installation
 
 `yarn add lit-access-control-conditions-modal`
+
+Note: This project requires React as a peer dependency so make sure you are using this in a project with React installed
 
 # Usage
 
@@ -30,8 +33,8 @@ This package provides a modal for the use with Lit Protocol that lets the user c
 
 # Props
 
-* onClose: Pass a function.  This will be called when the user clicks the "X" button on the modal
-* sharingItems: An array of items being shared.  Each item should have a "name" property.
-* onAccessControlConditionsSelected: Pass a function.  This will be called when the user has selected their access control requirements.
-* getSharingLink: Pass a fuction.  This will be used when the user clicks the "Copy share link" button.  This function should return a string that is the url to be shared.  This function will be called with the sharingItems[0] as a parameter.  It is only used when sharingItems.length == 1
-* showStep: Optional.  Pass a string.  If you'd like to force the modal into a specific step, you can use this function.  It will immediately show this step when opened.  The options you can choose from are the keys in src/ShareModal.jsx in the ModalComponents variable.  I use this because when a user picks their access control conditions, and onAccessControlConditionsSelected is called, I close this modal, and open a "file upload progress" modal.  When the upload is complete, I show this modal again, but I set showStep to "accessCreated" so the user sees the page that lets them copy the share link.  
+- onClose: Pass a function. This will be called when the user clicks the "X" button on the modal
+- sharingItems: An array of items being shared. Each item should have a "name" property.
+- onAccessControlConditionsSelected: Pass a function. This will be called when the user has selected their access control requirements.
+- getSharingLink: Pass a fuction. This will be used when the user clicks the "Copy share link" button. This function should return a string that is the url to be shared. This function will be called with the sharingItems[0] as a parameter. It is only used when sharingItems.length == 1
+- showStep: Optional. Pass a string. If you'd like to force the modal into a specific step, you can use this function. It will immediately show this step when opened. The options you can choose from are the keys in src/ShareModal.jsx in the ModalComponents variable. I use this because when a user picks their access control conditions, and onAccessControlConditionsSelected is called, I close this modal, and open a "file upload progress" modal. When the upload is complete, I show this modal again, but I set showStep to "accessCreated" so the user sees the page that lets them copy the share link.
