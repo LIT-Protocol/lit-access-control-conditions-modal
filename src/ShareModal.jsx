@@ -6,6 +6,7 @@ import { IconDocFilled } from "@consta/uikit/IconDocFilled";
 import { Modal } from "@consta/uikit/Modal";
 import { IconClose } from "@consta/uikit/IconClose";
 import { SnackBar } from "@consta/uikit/SnackBar";
+import LitJsSdk from "lit-js-sdk";
 
 import {
   WhatToDo,

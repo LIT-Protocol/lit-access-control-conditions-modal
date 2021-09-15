@@ -23,6 +23,8 @@ var _IconClose = require("@consta/uikit/IconClose");
 
 var _SnackBar = require("@consta/uikit/SnackBar");
 
+var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
+
 var _ShareModalSteps = require("./ShareModalSteps");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -63,7 +65,7 @@ const ShareModal = props => {
   (0, _react.useEffect)(() => {
     const go = async () => {
       // get token list and cache it
-      const tokens = await LitJsSdk.getTokenList();
+      const tokens = await _litJsSdk.default.getTokenList();
       setTokenList(tokens);
     };
 
