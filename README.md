@@ -1,8 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [Props](#props)
@@ -15,7 +13,10 @@ This React package provides a modal for the use with Lit Protocol that lets the 
 
 `yarn add lit-access-control-conditions-modal`
 
-Note: This project requires React as a peer dependency so make sure you are using this in a project with React installed
+Note: This project requires a few peer dependencies so make sure you install them in your main project:
+
+- react
+- lit-js-sdk
 
 # Usage
 
