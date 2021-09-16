@@ -1,6 +1,6 @@
 {
   "name": "lit-access-control-conditions-modal",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "license": "MIT",
@@ -12,7 +12,6 @@
     "@babel/polyfill": "^7.12.1",
     "@consta/uikit": "^3.0.0",
     "classnames": "^2.3.1",
-    "lit-js-sdk": "^1.1.65",
     "react-select-virtualized": "^3.5.0",
     "react-virtualized": "^9.22.3"
   },
@@ -23,6 +22,7 @@
     "react-scripts": "^4.0.3"
   },
   "peerDependencies": {
+    "lit-js-sdk": "^1.1.67",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
