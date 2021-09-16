@@ -6,6 +6,8 @@ import { IconDocFilled } from "@consta/uikit/IconDocFilled";
 import { Modal } from "@consta/uikit/Modal";
 import { IconClose } from "@consta/uikit/IconClose";
 import { SnackBar } from "@consta/uikit/SnackBar";
+import { Informer } from "@consta/uikit/Informer";
+
 import LitJsSdk from "lit-js-sdk";
 
 import {
@@ -49,6 +51,7 @@ const ShareModal = (props) => {
   const [activeStep, setActiveStep] = useState(showStep || "whatToDo");
   const [tokenList, setTokenList] = useState([]);
   const [requirementCreated, setRequirementCreated] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const go = async () => {
@@ -92,6 +95,7 @@ const ShareModal = (props) => {
         copyLinkText={copyLinkText}
         setRequirementCreated={setRequirementCreated}
         requirementCreated={requirementCreated}
+        setError={setError}
       />
     );
   };
@@ -122,6 +126,17 @@ const ShareModal = (props) => {
           </div>
           <IconClose className={styles.close} onClick={onClose} />
         </div>
+        {error ? (
+          <div className={styles.error}>
+            <div style={{ height: 24 }} />
+            <Informer
+              status="alert"
+              view="filled"
+              title={error.title}
+              label={error.details}
+            />
+          </div>
+        ) : null}
         <div className={styles.body}>
           <ModalComponent type={activeStep} setActiveStep={setActiveStep} />
           {showingSnackbar ? (

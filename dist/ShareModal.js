@@ -23,6 +23,8 @@ var _IconClose = require("@consta/uikit/IconClose");
 
 var _SnackBar = require("@consta/uikit/SnackBar");
 
+var _Informer = require("@consta/uikit/Informer");
+
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
 var _ShareModalSteps = require("./ShareModalSteps");
@@ -62,6 +64,7 @@ const ShareModal = props => {
   const [activeStep, setActiveStep] = (0, _react.useState)(showStep || "whatToDo");
   const [tokenList, setTokenList] = (0, _react.useState)([]);
   const [requirementCreated, setRequirementCreated] = (0, _react.useState)(false);
+  const [error, setError] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
     const go = async () => {
       // get token list and cache it
@@ -100,7 +103,8 @@ const ShareModal = props => {
       onlyAllowCopySharingLink: onlyAllowCopySharingLink,
       copyLinkText: copyLinkText,
       setRequirementCreated: setRequirementCreated,
-      requirementCreated: requirementCreated
+      requirementCreated: requirementCreated,
+      setError: setError
     }));
   };
 
@@ -123,7 +127,18 @@ const ShareModal = props => {
   }, totalAccessControlConditions, " access requirement", totalAccessControlConditions > 1 ? "s" : "") : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _shareModalModule.default.close,
     onClick: onClose
-  })), /*#__PURE__*/_react.default.createElement("div", {
+  })), error ? /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.error
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      height: 24
+    }
+  }), /*#__PURE__*/_react.default.createElement(_Informer.Informer, {
+    status: "alert",
+    view: "filled",
+    title: error.title,
+    label: error.details
+  })) : null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.body
   }, /*#__PURE__*/_react.default.createElement(ModalComponent, {
     type: activeStep,

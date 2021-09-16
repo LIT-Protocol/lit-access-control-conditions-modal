@@ -34,9 +34,10 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 const WhichWallet = _ref => {
   let {
     setActiveStep,
-    onAccessControlConditionsSelected
+    onAccessControlConditionsSelected,
+    setError
   } = _ref;
-  const [walletAddress, setWalletAddress] = (0, _react.useState)('');
+  const [walletAddress, setWalletAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
 
   const handleSubmit = async () => {
@@ -48,26 +49,35 @@ const WhichWallet = _ref => {
         chain: chain.value,
         name: walletAddress
       });
+
+      if (!resolvedAddress) {
+        console.log("failed to resolve ENS address");
+        setError({
+          title: "Could not resolve ENS address",
+          details: "Try another wallet address"
+        });
+        return;
+      }
     }
 
     const accessControlConditions = [{
-      contractAddress: '',
-      standardContractType: '',
+      contractAddress: "",
+      standardContractType: "",
       chain: chain.value,
-      method: '',
-      parameters: [':userAddress'],
+      method: "",
+      parameters: [":userAddress"],
       returnValueTest: {
-        comparator: '=',
+        comparator: "=",
         value: resolvedAddress
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
-    setActiveStep('accessCreated');
+    setActiveStep("accessCreated");
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('ableToAccess')
+    onClick: () => setActiveStep("ableToAccess")
   }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
     view: "link",
     className: _shareModalModule.default.icon
@@ -75,7 +85,7 @@ const WhichWallet = _ref => {
     className: _shareModalModule.default.titles
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
-    onClick: () => setActiveStep('assetWallet')
+    onClick: () => setActiveStep("assetWallet")
   }, "Grant Access on NFT Ownership")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
