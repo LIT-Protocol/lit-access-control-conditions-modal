@@ -6,6 +6,7 @@ const AccessCreated = ({
   setActiveStep,
   copyToClipboard,
   setRequirementCreated,
+  copyLinkText,
 }) => {
   useEffect(() => {
     setRequirementCreated(true);
@@ -41,8 +42,9 @@ const AccessCreated = ({
               <div className={styles.linkIcon}></div>
             </div>
             <h5>
-              <a className={styles.link}>Click to copy link.</a> <br /> Only
-              authorized wallets can open the file
+              <a className={styles.link}>Click to copy link.</a> <br />{" "}
+              {copyLinkText ||
+                "Only authorized users can join the Zoom meeting"}
             </h5>
           </div>
         </div>

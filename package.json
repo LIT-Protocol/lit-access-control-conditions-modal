@@ -12,8 +12,12 @@
     "@babel/polyfill": "^7.12.1",
     "@consta/uikit": "^3.0.0",
     "classnames": "^2.3.1",
+    "ethers": "^5.4.7",
+    "node-sass": "^6.0.1",
+    "react-select": "^4.3.1",
     "react-select-virtualized": "^3.5.0",
-    "react-virtualized": "^9.22.3"
+    "react-virtualized": "^9.22.3",
+    "sass": "^1.42.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
