@@ -1,6 +1,6 @@
 {
   "name": "lit-access-control-conditions-modal",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "react-scripts": "^4.0.3"
   },
   "peerDependencies": {
-    "lit-js-sdk": "^1.1.67",
+    "lit-js-sdk": "^1.1.74",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
