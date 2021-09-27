@@ -43,6 +43,7 @@ const ShareModal = (props) => {
     getSharingLink,
     onlyAllowCopySharingLink,
     copyLinkText,
+    myWalletAddress,
   } = props;
 
   // console.log("rendering ShareModal and sharingItems is", sharingItems);
@@ -96,6 +97,7 @@ const ShareModal = (props) => {
         setRequirementCreated={setRequirementCreated}
         requirementCreated={requirementCreated}
         setError={setError}
+        myWalletAddress={myWalletAddress}
       />
     );
   };

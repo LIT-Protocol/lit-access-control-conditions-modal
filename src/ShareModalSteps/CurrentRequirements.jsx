@@ -11,6 +11,7 @@ const CurrentRequirements = ({
   sharingItems,
   tokenList,
   requirementCreated,
+  myWalletAddress,
 }) => {
   const [rows, setRows] = useState([]);
   const accessControlConditions = sharingItems[0].accessControlConditions;
@@ -21,6 +22,7 @@ const CurrentRequirements = ({
         await LitJsSdk.humanizeAccessControlConditions({
           accessControlConditions,
           tokenList,
+          myWalletAddress,
         })
       ).join(" and ");
       // console.log("humanized main condition", humanizedMainCondition);
@@ -42,6 +44,7 @@ const CurrentRequirements = ({
             const humanized = await LitJsSdk.humanizeAccessControlConditions({
               accessControlConditions: c,
               tokenList,
+              myWalletAddress,
             });
             // console.log("humanized ", humanized);
             return humanized.join(" and ");

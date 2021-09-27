@@ -30,7 +30,8 @@ const CurrentRequirements = _ref => {
     setActiveStep,
     sharingItems,
     tokenList,
-    requirementCreated
+    requirementCreated,
+    myWalletAddress
   } = _ref;
   const [rows, setRows] = (0, _react.useState)([]);
   const accessControlConditions = sharingItems[0].accessControlConditions;
@@ -38,7 +39,8 @@ const CurrentRequirements = _ref => {
     const go = async () => {
       const humanizedMainCondition = (await _litJsSdk.default.humanizeAccessControlConditions({
         accessControlConditions,
-        tokenList
+        tokenList,
+        myWalletAddress
       })).join(" and "); // console.log("humanized main condition", humanizedMainCondition);
       // sharingItems[0].additionalAccessControlConditions is an array objects
       // and each object contains an accessControlCondition array
@@ -55,7 +57,8 @@ const CurrentRequirements = _ref => {
           // console.log("humanizing additional access control condition", c);
           const humanized = await _litJsSdk.default.humanizeAccessControlConditions({
             accessControlConditions: c,
-            tokenList
+            tokenList,
+            myWalletAddress
           }); // console.log("humanized ", humanized);
 
           return humanized.join(" and ");

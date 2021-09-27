@@ -57,7 +57,8 @@ const ShareModal = props => {
     onAccessControlConditionsSelected,
     getSharingLink,
     onlyAllowCopySharingLink,
-    copyLinkText
+    copyLinkText,
+    myWalletAddress
   } = props; // console.log("rendering ShareModal and sharingItems is", sharingItems);
 
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
@@ -104,7 +105,8 @@ const ShareModal = props => {
       copyLinkText: copyLinkText,
       setRequirementCreated: setRequirementCreated,
       requirementCreated: requirementCreated,
-      setError: setError
+      setError: setError,
+      myWalletAddress: myWalletAddress
     }));
   };
 
