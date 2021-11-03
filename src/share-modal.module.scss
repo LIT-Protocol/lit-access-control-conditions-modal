@@ -1,7 +1,7 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 .fileModal {
-  width: 900px;
+  // width: 900px;
   padding: $space-3xl;
   height: 600px;
   @media (max-width: 1180px) {
@@ -10,7 +10,7 @@
     padding: $space-xl;
   }
   @media (max-width: 1180px) {
-    width: 94vw;
+    // width: 94vw;
     height: 100%;
   }
   @media (max-width: 400px) {
@@ -25,18 +25,18 @@
   border-bottom: 1px solid $border;
   padding-bottom: $space-2xl;
   justify-content: space-between;
-  @media (max-width: 450px){
+  @media (max-width: 450px) {
     padding-bottom: $space-xl;
   }
   .close {
     cursor: pointer;
     margin-left: 15px;
   }
-  >div {
+  > div {
     display: flex;
     align-items: center;
     @media (max-width: 450px) {
-     flex-direction: column;
+      flex-direction: column;
       align-items: flex-start;
       .icon {
         margin-bottom: 10px;
@@ -95,7 +95,10 @@
           .imgIcon {
             height: 60px;
             width: 60px;
-            .walletIcon, .tokenIcon, .daoIcon {
+            .walletIcon,
+            .tokenIcon,
+            .daoIcon,
+            .poapIcon {
               height: 60px;
               width: 60px;
             }
@@ -113,7 +116,10 @@
           .imgIcon {
             height: 40px;
             width: 40px;
-            .walletIcon, .tokenIcon, .daoIcon {
+            .walletIcon,
+            .tokenIcon,
+            .daoIcon,
+            .poapIcon {
               height: 40px;
               width: 40px;
             }
@@ -125,7 +131,10 @@
           .imgIcon {
             height: 60px;
             width: 60px;
-            .walletIcon, .tokenIcon, .daoIcon {
+            .walletIcon,
+            .tokenIcon,
+            .daoIcon,
+            .poapIcon {
               height: 60px;
               width: 60px;
             }
@@ -177,6 +186,7 @@
   .types {
     margin-top: $space-m;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     @media (max-width: 400px) {
       flex-direction: column;
@@ -220,7 +230,7 @@
           width: 30px;
           height: 30px;
           top: 48%;
-          left: 34%;;
+          left: 34%;
         }
       }
       &:hover {
@@ -237,21 +247,25 @@
           color: white;
         }
         .lockIcon {
-          background-image: url('./assets/lock.png');
+          background-image: url("./assets/lock.png");
         }
         .linkIcon {
-          background-image: url('./assets/link.png');
+          background-image: url("./assets/link.png");
         }
         .daoIcon {
-          background-image: url('./assets/dao-hover.png');
+          background-image: url("./assets/dao-hover.png");
         }
-        
+
         .tokenIcon {
-          background-image: url('./assets/token-hover.png');
+          background-image: url("./assets/token-hover.png");
         }
-        
+
         .walletIcon {
-          background-image: url('./assets/wallet-hover.png');
+          background-image: url("./assets/wallet-hover.png");
+        }
+
+        .poapIcon {
+          background-image: url("./assets/poap-logo.svg");
         }
       }
       .img {
@@ -309,10 +323,10 @@
 }
 
 .lockIcon {
-  background-image: url('./assets/lock-hover.png');
+  background-image: url("./assets/lock-hover.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position:center center;
+  background-position: center center;
   height: 50px;
   width: 50px;
   position: absolute;
@@ -322,10 +336,10 @@
 }
 
 .linkIcon {
-  background-image: url('./assets/link-hover.png');
+  background-image: url("./assets/link-hover.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position:center center;
+  background-position: center center;
   height: 50px;
   width: 50px;
   position: absolute;
@@ -341,10 +355,13 @@
   margin-bottom: $space-m;
 }
 
-.daoIcon, .tokenIcon, .walletIcon {
+.daoIcon,
+.tokenIcon,
+.walletIcon,
+.poapIcon {
   background-repeat: no-repeat;
   background-size: contain;
-  background-position:center center;
+  background-position: center center;
   height: 80px;
   width: 80px;
   position: absolute;
@@ -355,15 +372,19 @@
 }
 
 .daoIcon {
-  background-image: url('./assets/DAO.png');
+  background-image: url("./assets/DAO.png");
 }
 
 .tokenIcon {
-  background-image: url('./assets/token.png');
+  background-image: url("./assets/token.png");
 }
 
 .walletIcon {
-  background-image: url('./assets/wallet.png');
+  background-image: url("./assets/wallet.png");
+}
+
+.poapIcon {
+  background-image: url("./assets/poap-logo.svg");
 }
 
 .selectIcon {

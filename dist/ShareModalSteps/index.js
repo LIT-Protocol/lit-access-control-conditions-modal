@@ -57,6 +57,12 @@ Object.defineProperty(exports, "CurrentRequirements", {
     return _CurrentRequirements.default;
   }
 });
+Object.defineProperty(exports, "ChoosePOAP", {
+  enumerable: true,
+  get: function get() {
+    return _ChoosePOAP.default;
+  }
+});
 
 var _WhatToDo = _interopRequireDefault(require("./WhatToDo"));
 
@@ -75,5 +81,7 @@ var _SelectTokens = _interopRequireDefault(require("./SelectTokens"));
 var _RecentRequirement = _interopRequireDefault(require("./RecentRequirement"));
 
 var _CurrentRequirements = _interopRequireDefault(require("./CurrentRequirements"));
+
+var _ChoosePOAP = _interopRequireDefault(require("./ChoosePOAP"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

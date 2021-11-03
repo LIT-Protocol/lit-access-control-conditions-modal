@@ -46,7 +46,8 @@ const ModalComponents = {
   accessCreated: _ShareModalSteps.AccessCreated,
   selectTokens: _ShareModalSteps.SelectTokens,
   recentRequirement: _ShareModalSteps.RecentRequirement,
-  currentRequirements: _ShareModalSteps.CurrentRequirements
+  currentRequirements: _ShareModalSteps.CurrentRequirements,
+  choosePOAP: _ShareModalSteps.ChoosePOAP
 };
 
 const ShareModal = props => {

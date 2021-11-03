@@ -27,7 +27,7 @@ const AbleToAccess = _ref => {
     className: _shareModalModule.default.ableToAccess
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('whatToDo')
+    onClick: () => setActiveStep("whatToDo")
   }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
     view: "link",
     className: _shareModalModule.default.icon
@@ -37,7 +37,7 @@ const AbleToAccess = _ref => {
     className: _shareModalModule.default.types
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
-    onClick: () => setActiveStep('whichWallet')
+    onClick: () => setActiveStep("whichWallet")
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.btnBock
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -46,7 +46,7 @@ const AbleToAccess = _ref => {
     className: _shareModalModule.default.walletIcon
   })), /*#__PURE__*/_react.default.createElement("h5", null, "An Individual Wallet"))), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
-    onClick: () => setActiveStep('selectTokens')
+    onClick: () => setActiveStep("selectTokens")
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.btnBock
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -55,14 +55,23 @@ const AbleToAccess = _ref => {
     className: _shareModalModule.default.tokenIcon
   })), /*#__PURE__*/_react.default.createElement("h5", null, "A Group of Token or NFT Owners"))), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
-    onClick: () => setActiveStep('DAOMembers')
+    onClick: () => setActiveStep("DAOMembers")
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.btnBock
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.imgIcon
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.daoIcon
-  })), /*#__PURE__*/_react.default.createElement("h5", null, "DAO Members")))));
+  })), /*#__PURE__*/_react.default.createElement("h5", null, "DAO Members"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.type,
+    onClick: () => setActiveStep("choosePOAP")
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.btnBock
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.imgIcon
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _shareModalModule.default.poapIcon
+  })), /*#__PURE__*/_react.default.createElement("h5", null, "POAP")))));
 };
 
 var _default = AbleToAccess;

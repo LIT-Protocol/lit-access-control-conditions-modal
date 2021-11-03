@@ -20,6 +20,7 @@ import {
   SelectTokens,
   RecentRequirement,
   CurrentRequirements,
+  ChoosePOAP,
 } from "./ShareModalSteps";
 
 const ModalComponents = {
@@ -32,6 +33,7 @@ const ModalComponents = {
   selectTokens: SelectTokens,
   recentRequirement: RecentRequirement,
   currentRequirements: CurrentRequirements,
+  choosePOAP: ChoosePOAP,
 };
 
 const ShareModal = (props) => {
