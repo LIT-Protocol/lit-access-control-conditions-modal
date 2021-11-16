@@ -11,7 +11,7 @@ const AbleToAccess = ({ setActiveStep }) => {
         <IconBackward view="link" className={styles.icon} /> Back
       </div>
       <div className={styles.titles}>
-        <h3>Who should be able to access this file?</h3>
+        <h3>Who should be able to access this?</h3>
       </div>
       <div className={styles.types}>
         <div
