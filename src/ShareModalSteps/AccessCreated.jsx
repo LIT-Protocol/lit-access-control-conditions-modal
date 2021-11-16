@@ -44,7 +44,7 @@ const AccessCreated = ({
             <h5>
               <a className={styles.link}>Click to copy link.</a> <br />{" "}
               {copyLinkText ||
-                "Only authorized users can join the Zoom meeting"}
+                "Only authorized users will be able to access this"}
             </h5>
           </div>
         </div>
