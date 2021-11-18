@@ -1,0 +1,29 @@
+.modal {
+  position: relative;
+  max-width: 668px !important;
+  width: 100%;
+
+  .title {
+    width: 100%;
+    background-color: rgba(158, 119, 243, 0.1);
+    padding: 19px 25px;
+    font-family: 'Space Grotesk';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0, 5, 51, 0.6);
+    box-sizing: border-box;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    .icon {
+      cursor: pointer;
+    }
+  }
+}

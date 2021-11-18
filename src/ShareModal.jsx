@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./share-modal.module.scss";
 
 import { IconDocFilled } from "@consta/uikit/IconDocFilled";
-import { Modal } from "@consta/uikit/Modal";
-import { IconClose } from "@consta/uikit/IconClose";
 import { SnackBar } from "@consta/uikit/SnackBar";
 import { Informer } from "@consta/uikit/Informer";
+
+import Modal from './Modal'
 
 import LitJsSdk from "lit-js-sdk";
 
@@ -39,7 +39,7 @@ const ModalComponents = {
 const ShareModal = (props) => {
   const {
     onClose,
-    sharingItems,
+    sharingItems = [],
     showStep,
     onAccessControlConditionsSelected,
     getSharingLink,
@@ -48,7 +48,7 @@ const ShareModal = (props) => {
     myWalletAddress,
   } = props;
 
-  // console.log("rendering ShareModal and sharingItems is", sharingItems);
+  console.log("rendering ShareModal and sharingItems is", sharingItems);
 
   const [showingSnackbar, setShowingSnackbar] = useState(false);
   const [activeStep, setActiveStep] = useState(showStep || "whatToDo");
@@ -104,10 +104,18 @@ const ShareModal = (props) => {
     );
   };
 
+  const title = sharingItems.length > 1 ? `${sharingItems.length} FILES` : sharingItems?.[0]?.name ?? '';
+
   return (
-    <Modal className={styles.modal} isOpen={true} hasOverlay>
+    <Modal 
+      className={styles.modal} 
+      isOpen={true} 
+      hasOverlay
+      title={title}
+      onClose={onClose}
+    >
       <div className={styles.fileModal}>
-        <div className={styles.top}>
+        {/* <div className={styles.top}>
           <div>
             <IconDocFilled className={styles.icon} view="brand" />
             <div className={styles.fileName}>
@@ -129,7 +137,7 @@ const ShareModal = (props) => {
             </div>
           </div>
           <IconClose className={styles.close} onClick={onClose} />
-        </div>
+        </div> */}
         {error ? (
           <div className={styles.error}>
             <div style={{ height: 24 }} />

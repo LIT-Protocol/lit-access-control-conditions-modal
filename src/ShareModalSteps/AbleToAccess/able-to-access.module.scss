@@ -1,0 +1,52 @@
+@import "../../vars.scss";
+@import "../../style/icons.scss";
+
+.ableToAccess {
+    .title {
+        font-size: 18px;
+        line-height: 150%;
+        color: $primary;
+    }
+
+    .types {
+        margin-top: 28px;
+        display:grid;
+        grid-template-columns: 180px 180px;
+        grid-column-gap: 16px;
+        grid-row-gap: 16px;
+        justify-content: center;
+
+        .type {
+            display: flex;
+            flex-direction: column;
+            width: 180px;
+            height: 148px;
+            border: 1px solid #2C0C72;
+            box-sizing: border-box;
+            border-radius: 4px;
+            cursor: pointer;
+            
+            .icon {
+                flex-grow: 1;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .typeTitle {
+                font-size: 16px;
+                line-height: 150%;
+                color: black;
+                width: 100%;
+                margin-bottom: 7px;
+                text-align: center;
+            }
+        }
+    }
+
+    .navigation {
+        margin-top: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

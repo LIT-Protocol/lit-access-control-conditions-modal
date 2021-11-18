@@ -17,13 +17,11 @@ var _shareModalModule = _interopRequireDefault(require("./share-modal.module.scs
 
 var _IconDocFilled = require("@consta/uikit/IconDocFilled");
 
-var _Modal = require("@consta/uikit/Modal");
-
-var _IconClose = require("@consta/uikit/IconClose");
-
 var _SnackBar = require("@consta/uikit/SnackBar");
 
 var _Informer = require("@consta/uikit/Informer");
+
+var _Modal = _interopRequireDefault(require("./Modal"));
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
@@ -51,17 +49,19 @@ const ModalComponents = {
 };
 
 const ShareModal = props => {
+  var _sharingItems$0$name, _sharingItems$;
+
   const {
     onClose,
-    sharingItems,
+    sharingItems = [],
     showStep,
     onAccessControlConditionsSelected,
     getSharingLink,
     onlyAllowCopySharingLink,
     copyLinkText,
     myWalletAddress
-  } = props; // console.log("rendering ShareModal and sharingItems is", sharingItems);
-
+  } = props;
+  console.log("rendering ShareModal and sharingItems is", sharingItems);
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
   const [activeStep, setActiveStep] = (0, _react.useState)(showStep || "whatToDo");
   const [tokenList, setTokenList] = (0, _react.useState)([]);
@@ -111,26 +111,16 @@ const ShareModal = props => {
     }));
   };
 
-  return /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " FILES") : (_sharingItems$0$name = sharingItems === null || sharingItems === void 0 ? void 0 : (_sharingItems$ = sharingItems[0]) === null || _sharingItems$ === void 0 ? void 0 : _sharingItems$.name) !== null && _sharingItems$0$name !== void 0 ? _sharingItems$0$name : '';
+  return /*#__PURE__*/_react.default.createElement(_Modal.default, {
     className: _shareModalModule.default.modal,
     isOpen: true,
-    hasOverlay: true
+    hasOverlay: true,
+    title: title,
+    onClose: onClose
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.fileModal
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.top
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_IconDocFilled.IconDocFilled, {
-    className: _shareModalModule.default.icon,
-    view: "brand"
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.fileName
-  }, /*#__PURE__*/_react.default.createElement("h3", null, sharingItems.length > 1 ? "".concat(sharingItems.length, " files") : sharingItems[0].name), sharingItems.length === 1 && sharingItems[0].accessControlConditions ? /*#__PURE__*/_react.default.createElement("a", {
-    className: _shareModalModule.default.link,
-    onClick: () => setActiveStep("currentRequirements")
-  }, totalAccessControlConditions, " access requirement", totalAccessControlConditions > 1 ? "s" : "") : null)), /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
-    className: _shareModalModule.default.close,
-    onClick: onClose
-  })), error ? /*#__PURE__*/_react.default.createElement("div", {
+  }, error ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.error
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
