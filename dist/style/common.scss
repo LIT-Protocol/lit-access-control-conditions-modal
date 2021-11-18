@@ -1,0 +1,47 @@
+@import "../vars.scss";
+
+.title {
+    font-size: 18px;
+    line-height: 150%;
+    color: $primary;
+}
+
+label {
+    display: block;
+    color: $primary;
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 8px;
+    @media (max-width: 700px) {
+      font-size: 16px;
+      line-height: 150%;
+    }
+    @media (max-width: 450px) {
+      font-size: 14px;
+      line-height: 150%;
+    }
+}
+
+:global(.react-select__control){
+    height: 40px;
+    border-color:rgba(0, 66, 105, 0.28);
+
+    &:hover {
+        border-color: var(--color-control-bg-border-default-hover) !important;
+    }
+}
+
+:global(.react-select__control--is-focused) {
+    box-shadow: none !important;
+    border-color: var(--color-control-bg-border-focus) !important;
+    outline: none !important;
+}
+
+:global(.react-select__menu) {
+    color: $primary !important;
+    z-index:9999;
+}
+
+:global(.react-select__single-value) {
+    color: $primary !important;
+}

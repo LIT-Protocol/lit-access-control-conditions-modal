@@ -111,7 +111,7 @@ const ShareModal = props => {
     }));
   };
 
-  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " FILES") : (_sharingItems$0$name = sharingItems === null || sharingItems === void 0 ? void 0 : (_sharingItems$ = sharingItems[0]) === null || _sharingItems$ === void 0 ? void 0 : _sharingItems$.name) !== null && _sharingItems$0$name !== void 0 ? _sharingItems$0$name : '';
+  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " Files") : (_sharingItems$0$name = sharingItems === null || sharingItems === void 0 ? void 0 : (_sharingItems$ = sharingItems[0]) === null || _sharingItems$ === void 0 ? void 0 : _sharingItems$.name) !== null && _sharingItems$0$name !== void 0 ? _sharingItems$0$name : '';
   return /*#__PURE__*/_react.default.createElement(_Modal.default, {
     className: _shareModalModule.default.modal,
     isOpen: true,

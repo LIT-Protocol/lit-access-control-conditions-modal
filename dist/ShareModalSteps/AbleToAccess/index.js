@@ -13,15 +13,12 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 var _ableToAccessModule = _interopRequireDefault(require("./able-to-access.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
-
-var _IconBackward = require("@consta/uikit/IconBackward");
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-// import { IconForward } from "@consta/uikit/IconForward";
 const TypeButton = props => {
   const {
     type,
@@ -57,27 +54,23 @@ const ITEMS = [{
   title: 'POAP Owners'
 }];
 
-const AbleToAccess = _ref => {
-  let {
+const AbleToAccess = props => {
+  const {
     setActiveStep
-  } = _ref;
+  } = props;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.ableToAccess
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.title
-  }, "Who should be able to access this file??"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Who should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.types
   }, ITEMS.map(item => /*#__PURE__*/_react.default.createElement(TypeButton, _extends({}, item, {
     onClick: setActiveStep
-  })))), /*#__PURE__*/_react.default.createElement("div", {
-    className: _ableToAccessModule.default.navigation
-  }, /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Back",
-    size: "l",
-    view: "secondary",
-    iconLeft: _IconBackward.IconBackward,
-    onClick: () => setActiveStep("whatToDo")
-  })));
+  })))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep('whatToDo')
+    }
+  }));
 };
 
 var _default = AbleToAccess;

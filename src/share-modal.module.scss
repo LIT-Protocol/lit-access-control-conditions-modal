@@ -7,7 +7,7 @@
   height: min-content;
   @media (max-width: 1180px) {
     box-sizing: border-box;
-    width: 700px;
+    //width: 700px;
     //padding: $space-xl;
   }
   @media (max-width: 1180px) {
@@ -15,7 +15,7 @@
     //height: 100%;
   }
   @media (max-width: 400px) {
-    width: 100%;
+    //width: 100%;
     //min-height: 98vh;
   }
 }

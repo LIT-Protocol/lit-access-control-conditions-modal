@@ -3,9 +3,7 @@ import cx from 'classnames'
 
 import styles from "./able-to-access.module.scss";
 
-import { Button } from "@consta/uikit/Button";
-import { IconBackward } from "@consta/uikit/IconBackward";
-// import { IconForward } from "@consta/uikit/IconForward";
+import Navigation from '../../Navigation'
 
 const TypeButton = (props) => {
   const { 
@@ -49,32 +47,20 @@ const ITEMS = [
   }
 ]
 
-const AbleToAccess = ({ setActiveStep }) => {
+const AbleToAccess = (props) => {
+  const { setActiveStep } = props
+  
   return (
     <div className={styles.ableToAccess}>
       <div className={styles.title}>
-        Who should be able to access this file??
+        Who should be able to access this file?
       </div>
       <div className={styles.types}>
         {ITEMS.map((item)=>(
           <TypeButton {...item} onClick={setActiveStep} />
         ))}
       </div>
-
-      <div className={styles.navigation}>
-          <Button 
-            label="Back"
-            size="l"
-            view="secondary"
-            iconLeft={IconBackward}
-            onClick={() => setActiveStep("whatToDo")} 
-          />
-          {/* <Button 
-            label="Next"
-            size="l"
-            iconRight={IconForward}
-          /> */}
-      </div>
+      <Navigation backward={{ onClick: () => setActiveStep('whatToDo') }} />
     </div>
   );
 };

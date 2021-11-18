@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import styles from "../share-modal.module.scss";
+import styles from "./choose-poap.module.scss";
 
 import { Button } from "@consta/uikit/Button";
-import { IconBackward } from "@consta/uikit/IconBackward";
 
 import Select from "react-select";
 
-import InputWrapper from "../InputWrapper/InputWrapper";
+import InputWrapper from "../../InputWrapper/InputWrapper";
+import Navigation from '../../Navigation';
 
 const matchConditionOptions = [
   {
@@ -58,14 +58,8 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
 
   return (
     <div>
-      <div
-        className={styles.back}
-        onClick={() => setActiveStep("ableToAccess")}
-      >
-        <IconBackward view="link" className={styles.icon} /> Back
-      </div>
-      <div className={styles.titles}>
-        <h3>Which POAP holders should be able to access this?</h3>
+      <div className={styles.title}>
+        Which POAP should be able to access this file?
       </div>
       <div className={styles.form}>
         <InputWrapper
@@ -78,22 +72,28 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
           handleChange={(value) => setPOAPName(value)}
         />
         <div className={styles.select}>
-          <span className={styles.label}>Match Conditions</span>
+          <label>Match Conditions</label>
           <Select
+            classNamePrefix="react-select"
+            placeholder="Select one..."
             isClearable
             options={matchConditionOptions}
             value={matchCondition}
+            menuPortalTarget={document.body}
             onChange={(value) => setMatchCondition(value)}
           />
         </div>
-        <Button
-          label="Create  Requirment"
-          className={styles.btn}
-          size="l"
-          onClick={handleSubmit}
-          disabled={!POAPName || !matchCondition}
-        />
       </div>
+
+      <Navigation 
+        backward={{ onClick: () => setActiveStep('ableToAccess') }}
+        forward={{ 
+          label: 'Create  Requirment', 
+          onClick: handleSubmit, 
+          withoutIcon: true,
+          disabled: !POAPName || !matchCondition
+        }}
+      />
     </div>
   );
 };

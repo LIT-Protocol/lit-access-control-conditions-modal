@@ -9,15 +9,15 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
+var _choosePoapModule = _interopRequireDefault(require("./choose-poap.module.scss"));
 
 var _Button = require("@consta/uikit/Button");
 
-var _IconBackward = require("@consta/uikit/IconBackward");
-
 var _reactSelect = _interopRequireDefault(require("react-select"));
 
-var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
+var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
+
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -71,39 +71,38 @@ const DAOMembers = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.back,
-    onClick: () => setActiveStep("ableToAccess")
-  }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
-    view: "link",
-    className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which POAP holders should be able to access this?")), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.form
+    className: _choosePoapModule.default.title
+  }, "Which POAP should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+    className: _choosePoapModule.default.form
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: POAPName,
-    className: _shareModalModule.default.input,
+    className: _choosePoapModule.default.input,
     label: "POAP Name",
     id: "POAPName",
     autoFocus: true,
     size: "m",
     handleChange: value => setPOAPName(value)
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
-  }, "Match Conditions"), /*#__PURE__*/_react.default.createElement(_reactSelect.default, {
+    className: _choosePoapModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Match Conditions"), /*#__PURE__*/_react.default.createElement(_reactSelect.default, {
+    classNamePrefix: "react-select",
+    placeholder: "Select one...",
     isClearable: true,
     options: matchConditionOptions,
     value: matchCondition,
+    menuPortalTarget: document.body,
     onChange: value => setMatchCondition(value)
-  })), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create  Requirment",
-    className: _shareModalModule.default.btn,
-    size: "l",
-    onClick: handleSubmit,
-    disabled: !POAPName || !matchCondition
-  })));
+  }))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep('ableToAccess')
+    },
+    forward: {
+      label: 'Create  Requirment',
+      onClick: handleSubmit,
+      withoutIcon: true,
+      disabled: !POAPName || !matchCondition
+    }
+  }));
 };
 
 var _default = DAOMembers;
