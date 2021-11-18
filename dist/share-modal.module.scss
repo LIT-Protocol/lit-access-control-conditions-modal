@@ -2,20 +2,21 @@
 
 .fileModal {
   // width: 900px;
-  padding: $space-3xl;
-  height: 600px;
+  //padding: $space-3xl;
+  padding: 28px 32px 30px 32px;
+  height: min-content;
   @media (max-width: 1180px) {
     box-sizing: border-box;
     width: 700px;
-    padding: $space-xl;
+    //padding: $space-xl;
   }
   @media (max-width: 1180px) {
     // width: 94vw;
-    height: 100%;
+    //height: 100%;
   }
   @media (max-width: 400px) {
     width: 100%;
-    min-height: 98vh;
+    //min-height: 98vh;
   }
 }
 
@@ -81,68 +82,8 @@
 }
 
 .body {
-  padding: $space-2xl 0;
-  .ableToAccess {
-    .types {
-      @media (max-width: 600px) {
-        margin: 5px;
-        .type {
-          flex: 0 1 150px;
-          margin: 5px;
-          .btnBock {
-            height: 200px;
-          }
-          .imgIcon {
-            height: 60px;
-            width: 60px;
-            .walletIcon,
-            .tokenIcon,
-            .daoIcon,
-            .poapIcon {
-              height: 60px;
-              width: 60px;
-            }
-          }
-        }
-      }
-      @media (max-width: 440px) {
-        .type {
-          flex: 0 1 150px;
-          margin: 5px;
-          .btnBock {
-            height: 150px;
-            padding: 5px;
-          }
-          .imgIcon {
-            height: 40px;
-            width: 40px;
-            .walletIcon,
-            .tokenIcon,
-            .daoIcon,
-            .poapIcon {
-              height: 40px;
-              width: 40px;
-            }
-          }
-        }
-      }
-      @media (max-width: 400px) {
-        .type {
-          .imgIcon {
-            height: 60px;
-            width: 60px;
-            .walletIcon,
-            .tokenIcon,
-            .daoIcon,
-            .poapIcon {
-              height: 60px;
-              width: 60px;
-            }
-          }
-        }
-      }
-    }
-  }
+  //padding: $space-2xl 0;
+  
   .back {
     margin: 0 0 $space-xl;
     display: flex;
