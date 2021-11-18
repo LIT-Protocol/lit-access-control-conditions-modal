@@ -1,6 +1,6 @@
 {
   "name": "lit-access-control-conditions-modal",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "license": "MIT",
