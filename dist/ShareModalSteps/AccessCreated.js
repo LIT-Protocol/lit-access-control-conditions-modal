@@ -54,7 +54,7 @@ const AccessCreated = _ref => {
     className: _shareModalModule.default.linkIcon
   })), /*#__PURE__*/_react.default.createElement("h5", null, /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link
-  }, "Click to copy link."), " ", /*#__PURE__*/_react.default.createElement("br", null), " ", copyLinkText || "Only authorized users can join the Zoom meeting")))));
+  }, "Click to copy link."), " ", /*#__PURE__*/_react.default.createElement("br", null), " ", copyLinkText || "Only authorized users will be able to access this")))));
 };
 
 var _default = AccessCreated;
