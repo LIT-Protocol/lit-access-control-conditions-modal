@@ -9,15 +9,13 @@ require("core-js/modules/web.dom-collections.iterator.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
+var _daoMembersModule = _interopRequireDefault(require("./dao-members.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
 
-var _IconBackward = require("@consta/uikit/IconBackward");
+var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
 
-var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
-
-var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50,37 +48,37 @@ const DAOMembers = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('ableToAccess')
-  }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
-    view: "link",
-    className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which DAO\u2019s members should be able to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.form
+    className: _daoMembersModule.default.title
+  }, "Which DAO\u2019s members should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+    className: _daoMembersModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
-  }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
+    className: _daoMembersModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Select blockchain to check requirements against:"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
-  })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: _daoMembersModule.default.input
+  }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: DAOAddress,
-    className: _shareModalModule.default.input,
+    className: _daoMembersModule.default.input,
     label: "Add DAO contract address",
     id: "DAOAddress",
     autoFocus: true,
     size: "m",
     handleChange: value => setDAOAddress(value)
-  }), /*#__PURE__*/_react.default.createElement("p", null, "Lit Gateway currently supports DAOs using the MolochDAOv2.1 contract (includes DAOhaus) "), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create  Requirment",
-    className: _shareModalModule.default.btn,
-    size: "l",
-    onClick: handleSubmit,
-    disabled: !DAOAddress || !chain
-  })));
+  }))), /*#__PURE__*/_react.default.createElement("p", {
+    className: _daoMembersModule.default.info
+  }, "Lit Gateway currently supports DAOs using the MolochDAOv2.1 contract (includes DAOhaus) "), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep('ableToAccess')
+    },
+    forward: {
+      label: 'Create Requirment',
+      onClick: handleSubmit,
+      withoutIcon: true,
+      disabled: !DAOAddress || !chain
+    }
+  }));
 };
 
 var _default = DAOMembers;

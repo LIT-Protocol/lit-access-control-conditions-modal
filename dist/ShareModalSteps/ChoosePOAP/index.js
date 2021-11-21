@@ -11,8 +11,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _choosePoapModule = _interopRequireDefault(require("./choose-poap.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
-
 var _reactSelect = _interopRequireDefault(require("react-select"));
 
 var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));

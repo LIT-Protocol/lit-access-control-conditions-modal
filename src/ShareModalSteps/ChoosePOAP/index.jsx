@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import styles from "./choose-poap.module.scss";
 
-import { Button } from "@consta/uikit/Button";
-
 import Select from "react-select";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
