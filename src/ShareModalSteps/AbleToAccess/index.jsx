@@ -10,7 +10,7 @@ const TypeButton = (props) => {
     type, 
     icon,
     title,
-    onClick
+    onClick,
   } = props
 
   return(
@@ -48,7 +48,7 @@ const ITEMS = [
 ]
 
 const AbleToAccess = (props) => {
-  const { setActiveStep } = props
+  const { setActiveStep, onMainBack } = props
   
   return (
     <div className={styles.ableToAccess}>
@@ -60,7 +60,7 @@ const AbleToAccess = (props) => {
           <TypeButton {...item} onClick={setActiveStep} />
         ))}
       </div>
-      <Navigation backward={{ onClick: () => setActiveStep('whatToDo') }} />
+      <Navigation backward={{ onClick: onMainBack }} />
     </div>
   );
 };

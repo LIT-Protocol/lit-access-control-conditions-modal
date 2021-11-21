@@ -38,7 +38,8 @@ const ModalComponents = {
 
 const ShareModal = (props) => {
   const {
-    onClose,
+    onClose = () => false,
+    onBack = () => false,
     sharingItems = [],
     showStep,
     onAccessControlConditionsSelected,
@@ -90,6 +91,7 @@ const ShareModal = (props) => {
     return (
       <Component
         {...props}
+        onMainBack={onBack}
         sharingItems={sharingItems}
         copyToClipboard={copyToClipboard}
         onAccessControlConditionsSelected={onAccessControlConditionsSelected}

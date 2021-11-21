@@ -56,7 +56,8 @@ const ITEMS = [{
 
 const AbleToAccess = props => {
   const {
-    setActiveStep
+    setActiveStep,
+    onMainBack
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.ableToAccess
@@ -68,7 +69,7 @@ const AbleToAccess = props => {
     onClick: setActiveStep
   })))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {
-      onClick: () => setActiveStep('whatToDo')
+      onClick: onMainBack
     }
   }));
 };

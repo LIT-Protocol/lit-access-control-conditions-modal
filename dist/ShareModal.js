@@ -52,7 +52,8 @@ const ShareModal = props => {
   var _sharingItems$0$name, _sharingItems$;
 
   const {
-    onClose,
+    onClose = () => false,
+    onBack = () => false,
     sharingItems = [],
     showStep,
     onAccessControlConditionsSelected,
@@ -98,6 +99,7 @@ const ShareModal = props => {
     } = props;
     let Component = ModalComponents[type];
     return /*#__PURE__*/_react.default.createElement(Component, _extends({}, props, {
+      onMainBack: onBack,
       sharingItems: sharingItems,
       copyToClipboard: copyToClipboard,
       onAccessControlConditionsSelected: onAccessControlConditionsSelected,
