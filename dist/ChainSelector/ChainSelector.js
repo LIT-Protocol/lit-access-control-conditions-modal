@@ -38,9 +38,12 @@ const ChainSelector = _ref => {
     };
   }), [_litJsSdk.default.LIT_CHAINS]);
   return /*#__PURE__*/_react.default.createElement(_reactSelect.default, {
+    classNamePrefix: "react-select",
+    placeholder: "Select a blockchain",
     isClearable: true,
     options: chainOptions,
     value: chain,
+    menuPortalTarget: document.body,
     onChange: value => setChain(value)
   });
 };

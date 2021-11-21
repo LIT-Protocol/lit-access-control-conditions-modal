@@ -22,10 +22,13 @@ const ChainSelector = ({ chain, setChain }) => {
 
   return (
     <Select
+      classNamePrefix="react-select"
+      placeholder="Select a blockchain"
       isClearable
       options={chainOptions}
       value={chain}
-      onChange={value => setChain(value)}
+      menuPortalTarget={document.body}
+      onChange={(value) => setChain(value)}
     />
 
   )

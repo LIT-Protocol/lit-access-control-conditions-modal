@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import LitJsSdk from "lit-js-sdk";
-import styles from "../share-modal.module.scss";
+import styles from "./which-wallet.module.scss";
 
-import { Button } from "@consta/uikit/Button";
-import { IconBackward } from "@consta/uikit/IconBackward";
-
-import InputWrapper from "../InputWrapper/InputWrapper";
-import ChainSelector from "../ChainSelector/ChainSelector";
+import InputWrapper from "../../InputWrapper/InputWrapper";
+import ChainSelector from "../../ChainSelector/ChainSelector";
+import FileDropper from '../../FileDropper'
+import Navigation from '../../Navigation';
 
 const WhichWallet = ({
   setActiveStep,
@@ -15,6 +14,7 @@ const WhichWallet = ({
 }) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [chain, setChain] = useState(null);
+  const [nftOwnership, setNftOwnership] = useState(null);
 
   const handleSubmit = async () => {
     let resolvedAddress = walletAddress;
@@ -52,21 +52,12 @@ const WhichWallet = ({
 
   return (
     <div>
-      <div
-        className={styles.back}
-        onClick={() => setActiveStep("ableToAccess")}
-      >
-        <IconBackward view="link" className={styles.icon} /> Back
-      </div>
-      <div className={styles.titles}>
-        <h3>Which wallet should be able to access this file?</h3>
-        <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
-          Grant Access on NFT Ownership
-        </a>
+      <div className={styles.title}>
+          Which wallet should be able to access this file?
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
-          <span className={styles.label}>Select blockchain</span>
+          <label>Select blockchain</label>
           <ChainSelector chain={chain} setChain={setChain} />
         </div>
         <InputWrapper
@@ -78,14 +69,22 @@ const WhichWallet = ({
           size="m"
           handleChange={(value) => setWalletAddress(value)}
         />
-        <Button
-          label="Create Requirement"
-          className={styles.btn}
-          size="l"
-          onClick={handleSubmit}
-          disabled={!walletAddress || !chain}
+
+        <FileDropper 
+          className={styles.filedropper}
+          onFilesSelected={setNftOwnership}
         />
       </div>
+
+      <Navigation 
+            backward={{ onClick: () => setActiveStep("ableToAccess") }} 
+            forward={{ 
+                label: 'Create Requirment', 
+                onClick: handleSubmit, 
+                withoutIcon: true,
+                disabled: !walletAddress || !chain
+            }}
+       />
     </div>
   );
 };

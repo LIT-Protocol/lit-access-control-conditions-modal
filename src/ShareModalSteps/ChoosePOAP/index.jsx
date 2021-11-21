@@ -88,7 +88,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
       <Navigation 
         backward={{ onClick: () => setActiveStep('ableToAccess') }}
         forward={{ 
-          label: 'Create  Requirment', 
+          label: 'Create Requirment', 
           onClick: handleSubmit, 
           withoutIcon: true,
           disabled: !POAPName || !matchCondition

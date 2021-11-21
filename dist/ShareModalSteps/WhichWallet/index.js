@@ -15,15 +15,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
-var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
+var _whichWalletModule = _interopRequireDefault(require("./which-wallet.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
 
-var _IconBackward = require("@consta/uikit/IconBackward");
+var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
 
-var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
+var _FileDropper = _interopRequireDefault(require("../../FileDropper"));
 
-var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39,6 +39,7 @@ const WhichWallet = _ref => {
   } = _ref;
   const [walletAddress, setWalletAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
+  const [nftOwnership, setNftOwnership] = (0, _react.useState)(null);
 
   const handleSubmit = async () => {
     let resolvedAddress = walletAddress;
@@ -76,40 +77,36 @@ const WhichWallet = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.back,
-    onClick: () => setActiveStep("ableToAccess")
-  }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
-    view: "link",
-    className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("a", {
-    className: _shareModalModule.default.link,
-    onClick: () => setActiveStep("assetWallet")
-  }, "Grant Access on NFT Ownership")), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.form
+    className: _whichWalletModule.default.title
+  }, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+    className: _whichWalletModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
-  }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
+    className: _whichWalletModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: walletAddress,
-    className: _shareModalModule.default.input,
+    className: _whichWalletModule.default.input,
     label: "Add Wallet Address or Blockchain Domain (e.g. ENS, UNS) here:",
     id: "walletAddress",
     autoFocus: true,
     size: "m",
     handleChange: value => setWalletAddress(value)
-  }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create Requirement",
-    className: _shareModalModule.default.btn,
-    size: "l",
-    onClick: handleSubmit,
-    disabled: !walletAddress || !chain
-  })));
+  }), /*#__PURE__*/_react.default.createElement(_FileDropper.default, {
+    className: _whichWalletModule.default.filedropper,
+    onFilesSelected: setNftOwnership
+  })), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep("ableToAccess")
+    },
+    forward: {
+      label: 'Create Requirment',
+      onClick: handleSubmit,
+      withoutIcon: true,
+      disabled: !walletAddress || !chain
+    }
+  }));
 };
 
 var _default = WhichWallet;
