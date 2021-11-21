@@ -112,6 +112,7 @@ const ShareModal = (props) => {
       isOpen={true} 
       hasOverlay
       title={title}
+      unsavedPopup
       onClose={onClose}
     >
       <div className={styles.fileModal}>

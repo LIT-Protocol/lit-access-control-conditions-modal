@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cx from 'classnames'
 
 import styles from './modal.module.scss'
 
 import { Modal } from '@consta/uikit/Modal'
 import { IconClose } from "@consta/uikit/IconClose";
+
+import UnsavedPopup from './UnsavedPopup'
 
 const ModalComponent = (props) => {
   const {
@@ -17,6 +19,8 @@ const ModalComponent = (props) => {
     onClose = () => false,
   } = props
 
+  const [showUnsavedPopup, setShowUnsavedPopup] = useState(false)
+
   const passedProps = { ...props }
   delete passedProps.children
   delete passedProps.withCloseButton
@@ -25,7 +29,11 @@ const ModalComponent = (props) => {
   delete passedProps.title
 
   const handleClose = () => {
-    onClose()
+    if (!unsavedPopup) {
+      onClose()
+    } else {
+      setShowUnsavedPopup(true)
+    }
   }
 
   if (!isOpen) {
@@ -38,6 +46,13 @@ const ModalComponent = (props) => {
       onOverlayClick={handleClose}
       className={cx(passedProps.className, styles.modal, darkMode && styles.dark)}
     >
+      {showUnsavedPopup ? (
+        <UnsavedPopup
+          onClose={onClose}
+          onCancel={() => setShowUnsavedPopup(false)}
+        />
+      ) : null}
+
       {withCloseButton ? (
         <div className={styles.closeButton}>
           <IconClose className={styles.icon} onClick={handleClose} />

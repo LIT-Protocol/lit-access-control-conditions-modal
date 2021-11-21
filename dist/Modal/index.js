@@ -7,7 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+require("core-js/modules/web.dom-collections.iterator.js");
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
@@ -17,7 +19,13 @@ var _Modal = require("@consta/uikit/Modal");
 
 var _IconClose = require("@consta/uikit/IconClose");
 
+var _UnsavedPopup = _interopRequireDefault(require("./UnsavedPopup"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -37,6 +45,7 @@ const ModalComponent = props => {
     unsavedPopup = false,
     onClose = () => false
   } = props;
+  const [showUnsavedPopup, setShowUnsavedPopup] = (0, _react.useState)(false);
 
   const passedProps = _objectSpread({}, props);
 
@@ -47,7 +56,11 @@ const ModalComponent = props => {
   delete passedProps.title;
 
   const handleClose = () => {
-    onClose();
+    if (!unsavedPopup) {
+      onClose();
+    } else {
+      setShowUnsavedPopup(true);
+    }
   };
 
   if (!isOpen) {
@@ -57,7 +70,10 @@ const ModalComponent = props => {
   return /*#__PURE__*/_react.default.createElement(_Modal.Modal, _extends({}, passedProps, {
     onOverlayClick: handleClose,
     className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal, darkMode && _modalModule.default.dark)
-  }), withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
+  }), showUnsavedPopup ? /*#__PURE__*/_react.default.createElement(_UnsavedPopup.default, {
+    onClose: onClose,
+    onCancel: () => setShowUnsavedPopup(false)
+  }) : null, withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.closeButton
   }, /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _modalModule.default.icon,
