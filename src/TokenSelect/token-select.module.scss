@@ -1,0 +1,92 @@
+.modal {
+    max-width: 515px !important;
+
+    .modalInner {
+        padding: 25px 38px;
+
+        label {
+            color: #2C0C72;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk';
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 26px;
+        }
+
+        .topTokens {
+            display: flex;
+
+            > div {
+                padding: 0 5px;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                border: 1.25px solid #2C0C72;
+                border-radius: 5px;
+                margin-right: 8px;
+                cursor: pointer;
+
+                .logo {
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 100%;
+                    background-color: #ccc;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                    margin-right: 3px;
+                }
+
+                .symbol {
+                    font-size: 18px;
+                    line-height: 150%;
+                    color: #2C0C72;
+                }
+            }
+        }
+
+        .search {
+            margin-top: 25px;
+        }
+
+        .button {
+            display: block;
+            margin-left: auto;
+            margin-top: 35px;
+        }
+    }
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    height: 63px;
+
+    .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background-color: #ccc;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .label {
+        font-size: 16px;
+        line-height: 150%;
+        color: black;
+    }
+
+    .symbol {
+        font-size: 14px;
+        line-height: 150%;
+        color: rgba(0, 5, 51, 0.6);
+    }
+
+    &:hover {
+        background-color: rgba(0, 66, 105, 0.05);
+    }
+}

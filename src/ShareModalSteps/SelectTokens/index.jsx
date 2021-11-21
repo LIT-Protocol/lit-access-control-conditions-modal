@@ -1,35 +1,20 @@
-import React, { useState, useMemo } from 'react'
-import { Creatable } from 'react-select-virtualized'
+import React, { useState } from 'react'
 import { ethers } from 'ethers'
 import LitJsSdk from 'lit-js-sdk'
 
-import styles from '../share-modal.module.scss'
+import styles from './select-tokens.module.scss'
 
-import { Button } from "@consta/uikit/Button"
-import { IconBackward } from "@consta/uikit/IconBackward"
-
-import InputWrapper from '../InputWrapper/InputWrapper'
-import ChainSelector from '../ChainSelector/ChainSelector'
+import InputWrapper from '../../InputWrapper/InputWrapper'
+import ChainSelector from '../../ChainSelector/ChainSelector'
+import Navigation from '../../Navigation';
+import TokenSelect from '../../TokenSelect';
 
 
 const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenList }) => {
   const [amount, setAmount] = useState('')
   const [selectedToken, setSelectedToken] = useState(null)
+  const [contractAddress, setContractAddress] = useState('')
   const [chain, setChain] = useState(null)
-
-  const tokenSelectBoxRows = useMemo(() => {
-    return [
-      {
-        label: 'Ethereum',
-        value: 'ethereum'
-      },
-      ...tokenList.map(t => ({
-        label: t.name,
-        value: t.address,
-        standard: t.standard
-      }))
-    ]
-  }, [tokenList])
 
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken)
@@ -166,38 +151,57 @@ const SelectTokens = ({ setActiveStep, onAccessControlConditionsSelected, tokenL
 
   return (
     <div>
-      <div className={styles.back} onClick={() => setActiveStep('ableToAccess')}>
-        <IconBackward view="link" className={styles.icon} /> Back
-      </div>
-      <div className={styles.titles}>
-        <h3>Which wallets should be able to access this file?</h3>
+      <div className={styles.title}>
+        Which wallet should be able to access this file?
       </div>
       <div className={styles.form}>
-        <div className={styles.select}>
-          <span className={styles.label}>Select blockchain</span>
-          <ChainSelector chain={chain} setChain={setChain} />
+        <div className={styles.inputMaxWidth}>
+            <div className={styles.select}>
+            <label>Select blockchain to check requirements against:</label>
+            <ChainSelector chain={chain} setChain={setChain} />
+            </div>
         </div>
         <div className={styles.select}>
-          <span className={styles.label}>Select token or enter contract address.  Supports erc20 and erc721.</span>
-          <Creatable
-            isClearable
-            isSearchable
-            defaultValue={''}
-            options={tokenSelectBoxRows}
-            onChange={value => setSelectedToken(value)}
-          />
+          <label>Select token/NFT or enter contract address:  </label>
+          <div className={styles.tokenOrContractAddress}>
+            <TokenSelect 
+                tokenList={tokenList} 
+                onSelect={setSelectedToken}
+            />
+            <div className={styles.separator}>OR</div>
+            <InputWrapper
+                placeholder="ERC20 or ERC721 address"
+                value={contractAddress}
+                className={styles.input}
+                id="amount"
+                autoFocus
+                size="m"
+                handleChange={setContractAddress}
+            />
+          </div>
         </div>
-        <InputWrapper
-          value={amount}
-          className={styles.input}
-          label="How many tokens does the wallet need to own?"
-          id="amount"
-          autoFocus
-          size="m"
-          handleChange={(value) => setAmount(value)}
-        />
-        <Button label="Create Requirement" className={styles.btn} size="l" onClick={handleSubmit} disabled={!amount || !selectedToken || !chain} />
+        <div className={styles.inputMaxWidth}>
+            <InputWrapper
+                value={amount}
+                className={styles.input}
+                label="How many tokens does the wallet need to own?"
+                id="amount"
+                autoFocus
+                size="m"
+                handleChange={(value) => setAmount(value)}
+            />
+        </div>
       </div>
+
+      <Navigation 
+            backward={{ onClick: () => setActiveStep("ableToAccess") }} 
+            forward={{ 
+                label: 'Create Requirment', 
+                onClick: handleSubmit, 
+                withoutIcon: true,
+                disabled: !amount || !(selectedToken  || contractAddress) || !chain
+            }}
+       />
     </div>
   )
 }

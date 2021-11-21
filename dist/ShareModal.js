@@ -60,8 +60,8 @@ const ShareModal = props => {
     onlyAllowCopySharingLink,
     copyLinkText,
     myWalletAddress
-  } = props;
-  console.log("rendering ShareModal and sharingItems is", sharingItems);
+  } = props; //console.log("rendering ShareModal and sharingItems is", sharingItems);
+
   const [showingSnackbar, setShowingSnackbar] = (0, _react.useState)(false);
   const [activeStep, setActiveStep] = (0, _react.useState)(showStep || "whatToDo");
   const [tokenList, setTokenList] = (0, _react.useState)([]);

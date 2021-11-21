@@ -26,4 +26,21 @@
       cursor: pointer;
     }
   }
+
+  &.dark {
+    background-color: #ece3ff;
+    border: 2px solid #5E36B7;
+    
+    .title {
+      color: #BFA1FF;
+      background-color: #5E36B7;
+      box-shadow: 0px 4px 4px rgba(94, 54, 183, 0.5);
+    }
+
+    .closeButton {
+      .icon {
+        color: #BFA1FF;
+      }
+    }
+  }
 }

@@ -32,6 +32,7 @@ const ModalComponent = props => {
     isOpen,
     children,
     title,
+    darkMode,
     withCloseButton = true,
     unsavedPopup = false,
     onClose = () => false
@@ -55,13 +56,15 @@ const ModalComponent = props => {
 
   return /*#__PURE__*/_react.default.createElement(_Modal.Modal, _extends({}, passedProps, {
     onOverlayClick: handleClose,
-    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal)
+    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal, darkMode && _modalModule.default.dark)
   }), withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.closeButton
   }, /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
     className: _modalModule.default.icon,
     onClick: handleClose
-  })) : null, /*#__PURE__*/_react.default.createElement("div", null, title ? /*#__PURE__*/_react.default.createElement("div", {
+  })) : null, /*#__PURE__*/_react.default.createElement("div", {
+    className: _modalModule.default.inner
+  }, title ? /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.title
   }, title) : null, children));
 };

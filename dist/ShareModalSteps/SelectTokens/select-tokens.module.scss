@@ -1,0 +1,33 @@
+@import "../../style/common.scss";
+
+.form {
+    margin-top: 38px;
+    
+    .inputMaxWidth {
+        max-width: 396px;
+    }
+
+    .select {
+        margin-top: 27px;
+    }
+
+    .input {
+        margin-top: 27px;
+    }
+
+    .tokenOrContractAddress {
+        display: flex;
+        align-items: center;
+
+        .separator {
+            margin: 0 14px;
+            color: $primary;
+            font-size: 14px;
+        }
+
+        .input {
+            margin-top: 0;
+            width: 250px;
+        }
+    }
+}

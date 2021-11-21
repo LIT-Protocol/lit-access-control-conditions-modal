@@ -17,6 +17,7 @@
     "react-select": "^4.3.1",
     "react-select-virtualized": "^3.5.0",
     "react-virtualized": "^9.22.3",
+    "react-windowed-select": "^3.1.2",
     "sass": "^1.42.0"
   },
   "devDependencies": {

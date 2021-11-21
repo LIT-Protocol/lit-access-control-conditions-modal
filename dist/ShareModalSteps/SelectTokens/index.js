@@ -13,21 +13,19 @@ require("core-js/modules/es.regexp.to-string.js");
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactSelectVirtualized = require("react-select-virtualized");
-
 var _ethers = require("ethers");
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
-var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
+var _selectTokensModule = _interopRequireDefault(require("./select-tokens.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
 
-var _IconBackward = require("@consta/uikit/IconBackward");
+var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
 
-var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
-var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
+var _TokenSelect = _interopRequireDefault(require("../../TokenSelect"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,17 +41,8 @@ const SelectTokens = _ref => {
   } = _ref;
   const [amount, setAmount] = (0, _react.useState)('');
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
+  const [contractAddress, setContractAddress] = (0, _react.useState)('');
   const [chain, setChain] = (0, _react.useState)(null);
-  const tokenSelectBoxRows = (0, _react.useMemo)(() => {
-    return [{
-      label: 'Ethereum',
-      value: 'ethereum'
-    }, ...tokenList.map(t => ({
-      label: t.name,
-      value: t.address,
-      standard: t.standard
-    }))];
-  }, [tokenList]);
 
   const handleSubmit = async () => {
     console.log('handleSubmit and selectedToken is', selectedToken);
@@ -188,47 +177,54 @@ const SelectTokens = _ref => {
 
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('ableToAccess')
-  }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
-    view: "link",
-    className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which wallets should be able to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.form
+    className: _selectTokensModule.default.title
+  }, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
-  }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
+    className: _selectTokensModule.default.inputMaxWidth
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Select blockchain to check requirements against:"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
-  }, "Select token or enter contract address.  Supports erc20 and erc721."), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
-    isClearable: true,
-    isSearchable: true,
-    defaultValue: '',
-    options: tokenSelectBoxRows,
-    onChange: value => setSelectedToken(value)
-  })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Select token/NFT or enter contract address:  "), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.tokenOrContractAddress
+  }, /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
+    tokenList: tokenList,
+    onSelect: setSelectedToken
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.separator
+  }, "OR"), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+    placeholder: "ERC20 or ERC721 address",
+    value: contractAddress,
+    className: _selectTokensModule.default.input,
+    id: "amount",
+    autoFocus: true,
+    size: "m",
+    handleChange: setContractAddress
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.inputMaxWidth
+  }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,
-    className: _shareModalModule.default.input,
+    className: _selectTokensModule.default.input,
     label: "How many tokens does the wallet need to own?",
     id: "amount",
     autoFocus: true,
     size: "m",
     handleChange: value => setAmount(value)
-  }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create Requirement",
-    className: _shareModalModule.default.btn,
-    size: "l",
-    onClick: handleSubmit,
-    disabled: !amount || !selectedToken || !chain
-  })));
+  }))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep("ableToAccess")
+    },
+    forward: {
+      label: 'Create Requirment',
+      onClick: handleSubmit,
+      withoutIcon: true,
+      disabled: !amount || !(selectedToken || contractAddress) || !chain
+    }
+  }));
 };
 
 var _default = SelectTokens;

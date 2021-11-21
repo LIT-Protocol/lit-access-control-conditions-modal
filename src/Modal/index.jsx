@@ -11,6 +11,7 @@ const ModalComponent = (props) => {
     isOpen,
     children,
     title,
+    darkMode,
     withCloseButton = true,
     unsavedPopup = false,
     onClose = () => false,
@@ -35,14 +36,14 @@ const ModalComponent = (props) => {
     <Modal
       {...passedProps}
       onOverlayClick={handleClose}
-      className={cx(passedProps.className, styles.modal)}
+      className={cx(passedProps.className, styles.modal, darkMode && styles.dark)}
     >
       {withCloseButton ? (
         <div className={styles.closeButton}>
           <IconClose className={styles.icon} onClick={handleClose} />
         </div>
       ) : null}
-      <div>
+      <div className={styles.inner}>
         {title ? <div className={styles.title}>{title}</div> : null}
         {children}
       </div>
