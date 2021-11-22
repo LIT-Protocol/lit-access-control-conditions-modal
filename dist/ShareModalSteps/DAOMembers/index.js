@@ -28,23 +28,23 @@ const DAOMembers = _ref => {
     setActiveStep,
     onAccessControlConditionsSelected
   } = _ref;
-  const [DAOAddress, setDAOAddress] = (0, _react.useState)('');
+  const [DAOAddress, setDAOAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
 
   const handleSubmit = () => {
     const accessControlConditions = [{
       contractAddress: DAOAddress,
-      standardContractType: 'MolochDAOv2.1',
+      standardContractType: "MolochDAOv2.1",
       chain: chain.value,
-      method: 'members',
-      parameters: [':userAddress'],
+      method: "members",
+      parameters: [":userAddress"],
       returnValueTest: {
-        comparator: '==',
-        value: 'true'
+        comparator: "=",
+        value: "true"
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
-    setActiveStep('accessCreated');
+    setActiveStep("accessCreated");
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
@@ -68,12 +68,12 @@ const DAOMembers = _ref => {
     handleChange: value => setDAOAddress(value)
   }))), /*#__PURE__*/_react.default.createElement("p", {
     className: _daoMembersModule.default.info
-  }, "Lit Gateway currently supports DAOs using the MolochDAOv2.1 contract (includes DAOhaus) "), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+  }, "Lit Gateway currently supports DAOs using the MolochDAOv2.1 contract (includes DAOhaus)", " "), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {
-      onClick: () => setActiveStep('ableToAccess')
+      onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: 'Create Requirment',
+      label: "Create Requirment",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !DAOAddress || !chain
