@@ -31,7 +31,7 @@ const WhatToDo = _ref => {
     className: _shareModalModule.default.types
   }, !onlyAllowCopySharingLink ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
-    onClick: () => setActiveStep('ableToAccess')
+    onClick: () => setActiveStep("ableToAccess")
   }, /*#__PURE__*/_react.default.createElement("h4", null, "Create Requirement"), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.btnBock
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -50,7 +50,7 @@ const WhatToDo = _ref => {
     fill: "white"
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.lockIcon
-  })), /*#__PURE__*/_react.default.createElement("h5", null, "Lock this content with an  existing token, NFT, or contract"))) : null, sharingItems.length === 1 && (sharingItems[0].accessControlConditions || onlyAllowCopySharingLink) ? /*#__PURE__*/_react.default.createElement("div", {
+  })), /*#__PURE__*/_react.default.createElement("h5", null, "Lock this content with an existing token, NFT, or contract"))) : null, sharingItems.length === 1 && (sharingItems[0].accessControlConditions || onlyAllowCopySharingLink) ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.type,
     onClick: () => copyToClipboard()
   }, /*#__PURE__*/_react.default.createElement("h4", null, "Share"), /*#__PURE__*/_react.default.createElement("div", {
@@ -73,7 +73,7 @@ const WhatToDo = _ref => {
     className: _shareModalModule.default.linkIcon
   })), /*#__PURE__*/_react.default.createElement("h5", null, /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link
-  }, "Click to copy link."), "  ", /*#__PURE__*/_react.default.createElement("br", null), copyLinkText || "Only authorized wallets can open the file"))) : null));
+  }, "Click to copy link."), " ", /*#__PURE__*/_react.default.createElement("br", null), copyLinkText || "Only authorized wallets can open the file"))) : null));
 };
 
 var _default = WhatToDo;

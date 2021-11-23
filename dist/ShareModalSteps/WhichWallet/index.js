@@ -78,7 +78,7 @@ const WhichWallet = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.title
-  }, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which wallet should be able to access this?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.select
@@ -101,7 +101,7 @@ const WhichWallet = _ref => {
       onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: 'Create Requirment',
+      label: "Create Requirment",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !walletAddress || !chain

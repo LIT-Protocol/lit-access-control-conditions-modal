@@ -37,21 +37,21 @@ const TypeButton = props => {
 };
 
 const ITEMS = [{
-  type: 'whichWallet',
-  icon: 'wallet',
-  title: 'An Individual Wallet'
+  type: "whichWallet",
+  icon: "wallet",
+  title: "An Individual Wallet"
 }, {
-  type: 'selectTokens',
-  icon: 'token',
-  title: 'A Group of Token or NFT Owners'
+  type: "selectTokens",
+  icon: "token",
+  title: "A Group of Token or NFT Owners"
 }, {
-  type: 'DAOMembers',
-  icon: 'dao',
-  title: 'DAO Members'
+  type: "DAOMembers",
+  icon: "dao",
+  title: "DAO Members"
 }, {
-  type: 'choosePOAP',
-  icon: 'poap',
-  title: 'POAP Owners'
+  type: "choosePOAP",
+  icon: "poap",
+  title: "POAP Owners"
 }];
 
 const AbleToAccess = props => {
@@ -63,7 +63,7 @@ const AbleToAccess = props => {
     className: _ableToAccessModule.default.ableToAccess
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.title
-  }, "Who should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Who should be able to access this?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.types
   }, ITEMS.map(item => /*#__PURE__*/_react.default.createElement(TypeButton, _extends({}, item, {
     onClick: setActiveStep

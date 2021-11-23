@@ -33,14 +33,14 @@ const AssetWallet = _ref => {
     onAccessControlConditionsSelected,
     tokenList
   } = _ref;
-  const [tokenId, setTokenId] = (0, _react.useState)('');
+  const [tokenId, setTokenId] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const tokenSelectBoxRows = (0, _react.useMemo)(() => {
     return tokenList.filter(t => {
       var _t$standard;
 
-      return ((_t$standard = t.standard) === null || _t$standard === void 0 ? void 0 : _t$standard.toLowerCase()) === 'erc721';
+      return ((_t$standard = t.standard) === null || _t$standard === void 0 ? void 0 : _t$standard.toLowerCase()) === "erc721";
     }).map(t => ({
       label: t.name,
       value: t.address
@@ -50,28 +50,28 @@ const AssetWallet = _ref => {
   const handleSubmit = () => {
     const accessControlConditions = [{
       contractAddress: selectedToken.value,
-      standardContractType: 'ERC721',
+      standardContractType: "ERC721",
       chain: chain.value,
-      method: 'ownerOf',
+      method: "ownerOf",
       parameters: [tokenId],
       returnValueTest: {
-        comparator: '=',
-        value: ':userAddress'
+        comparator: "=",
+        value: ":userAddress"
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
-    setActiveStep('accessCreated');
+    setActiveStep("accessCreated");
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('whichWallet')
+    onClick: () => setActiveStep("whichWallet")
   }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
     view: "link",
     className: _shareModalModule.default.icon
   }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this?")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.select
@@ -87,7 +87,7 @@ const AssetWallet = _ref => {
   }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
     isClearable: true,
     isSearchable: true,
-    defaultValue: '',
+    defaultValue: "",
     options: tokenSelectBoxRows,
     onChange: value => setSelectedToken(value)
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
