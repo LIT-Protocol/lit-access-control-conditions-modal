@@ -43,8 +43,7 @@ const AccessCreated = ({
             </div>
             <h5>
               <a className={styles.link}>Click to copy link.</a> <br />{" "}
-              {copyLinkText ||
-                "Only authorized users will be able to access this"}
+              {copyLinkText || "Only authorized users will be able to access"}
             </h5>
           </div>
         </div>

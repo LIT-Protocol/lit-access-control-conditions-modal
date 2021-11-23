@@ -4,8 +4,8 @@ import styles from "./which-wallet.module.scss";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
-import FileDropper from '../../FileDropper'
-import Navigation from '../../Navigation';
+import FileDropper from "../../FileDropper";
+import Navigation from "../../Navigation";
 
 const WhichWallet = ({
   setActiveStep,
@@ -53,7 +53,7 @@ const WhichWallet = ({
   return (
     <div>
       <div className={styles.title}>
-          Which wallet should be able to access this file?
+        Which wallet should be able to access this?
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
@@ -70,21 +70,21 @@ const WhichWallet = ({
           handleChange={(value) => setWalletAddress(value)}
         />
 
-        <FileDropper 
+        <FileDropper
           className={styles.filedropper}
           onFilesSelected={setNftOwnership}
         />
       </div>
 
-      <Navigation 
-            backward={{ onClick: () => setActiveStep("ableToAccess") }} 
-            forward={{ 
-                label: 'Create Requirment', 
-                onClick: handleSubmit, 
-                withoutIcon: true,
-                disabled: !walletAddress || !chain
-            }}
-       />
+      <Navigation
+        backward={{ onClick: () => setActiveStep("ableToAccess") }}
+        forward={{
+          label: "Create Requirment",
+          onClick: handleSubmit,
+          withoutIcon: true,
+          disabled: !walletAddress || !chain,
+        }}
+      />
     </div>
   );
 };
