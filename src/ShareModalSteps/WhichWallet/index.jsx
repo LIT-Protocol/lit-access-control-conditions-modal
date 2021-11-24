@@ -55,6 +55,9 @@ const WhichWallet = ({
       <div className={styles.title}>
         Which wallet should be able to access this?
       </div>
+      <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
+        Grant Access on NFT Ownership Instead
+      </a>
       <div className={styles.form}>
         <div className={styles.select}>
           <label>Select blockchain</label>
@@ -68,11 +71,6 @@ const WhichWallet = ({
           autoFocus
           size="m"
           handleChange={(value) => setWalletAddress(value)}
-        />
-
-        <FileDropper
-          className={styles.filedropper}
-          onFilesSelected={setNftOwnership}
         />
       </div>
 

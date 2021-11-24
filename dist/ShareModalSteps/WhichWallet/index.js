@@ -78,7 +78,10 @@ const WhichWallet = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.title
-  }, "Which wallet should be able to access this?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which wallet should be able to access this?"), /*#__PURE__*/_react.default.createElement("a", {
+    className: _whichWalletModule.default.link,
+    onClick: () => setActiveStep("assetWallet")
+  }, "Grant Access on NFT Ownership Instead"), /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.select
@@ -93,9 +96,6 @@ const WhichWallet = _ref => {
     autoFocus: true,
     size: "m",
     handleChange: value => setWalletAddress(value)
-  }), /*#__PURE__*/_react.default.createElement(_FileDropper.default, {
-    className: _whichWalletModule.default.filedropper,
-    onFilesSelected: setNftOwnership
   })), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {
       onClick: () => setActiveStep("ableToAccess")

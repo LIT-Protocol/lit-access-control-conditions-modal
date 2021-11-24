@@ -1,19 +1,21 @@
 @import "../../style/common.scss";
-
+.link {
+  cursor: pointer;
+}
 .form {
-    margin-top: 38px;
-    max-width: 396px;
+  margin-top: 38px;
+  max-width: 396px;
 
-    .select {
-        margin-top: 27px;
-    }
+  .select {
+    margin-top: 27px;
+  }
 
-    .input {
-        margin-top: 27px;
-    }
+  .input {
+    margin-top: 27px;
+  }
 
-    .filedropper {
-        margin-top: 32px;
-        width: 203px;
-    }
+  .filedropper {
+    margin-top: 32px;
+    width: 203px;
+  }
 }
