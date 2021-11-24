@@ -118,6 +118,14 @@ const TokenSelect = props => {
     setModalIsOpen(false);
   };
 
+  const checkForSelected = token => {
+    if (token && token['symbol'] && selectedToken && token['symbol'] === selectedToken['symbol']) {
+      return _tokenSelectModule.default.selected;
+    } else {
+      return _tokenSelectModule.default.notSelected;
+    }
+  };
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Button.Button, {
     view: "clear",
     label: "Search for a token/NFT",
@@ -133,9 +141,12 @@ const TokenSelect = props => {
     className: _tokenSelectModule.default.modalInner
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Top Tokens/NFTS"), /*#__PURE__*/_react.default.createElement("div", {
     className: _tokenSelectModule.default.topTokens
-  }, TOP_LIST.map(t => /*#__PURE__*/_react.default.createElement("div", {
+  }, TOP_LIST.map((t, i) => /*#__PURE__*/_react.default.createElement("div", {
+    className: checkForSelected(t),
     key: t.symbol,
-    onClick: () => setSelectedToken(t)
+    onClick: e => {
+      setSelectedToken(t);
+    }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _tokenSelectModule.default.logo,
     style: {

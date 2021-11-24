@@ -43,6 +43,14 @@
                     color: #2C0C72;
                 }
             }
+
+            .selected {
+                border-width: 2px;
+            }
+
+            .notSelected {
+                margin: 1px 9px 1px 1px;
+            }
         }
 
         .search {

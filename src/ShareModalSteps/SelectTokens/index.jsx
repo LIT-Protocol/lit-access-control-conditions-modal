@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import LitJsSdk from "lit-js-sdk";
+import { IconClose } from '@consta/uikit/IconClose';
+import { Button } from '@consta/uikit/Button'
 
 import styles from "./select-tokens.module.scss";
 
@@ -164,17 +166,42 @@ const SelectTokens = ({
         <div className={styles.select}>
           <label>Select token/NFT or enter contract address: </label>
           <div className={styles.tokenOrContractAddress}>
-            <TokenSelect tokenList={tokenList} onSelect={setSelectedToken} />
-            <div className={styles.separator}>OR</div>
-            <InputWrapper
-              placeholder="ERC20 or ERC721 address"
-              value={contractAddress}
-              className={styles.input}
-              id="amount"
-              autoFocus
-              size="m"
-              handleChange={setContractAddress}
-            />
+            {(!contractAddress || !contractAddress.length) && (
+              <TokenSelect className={styles.tokenSelect} tokenList={tokenList} onSelect={setSelectedToken} />
+            )}
+            {(!contractAddress || !contractAddress.length) && (!selectedToken) && (
+              <div className={styles.separator}>OR</div>
+            )}
+            {!selectedToken && (
+              <InputWrapper
+                placeholder="ERC20 or ERC721 address"
+                value={contractAddress}
+                className={styles.input}
+                id="amount"
+                autoFocus
+                size="m"
+                handleChange={setContractAddress}
+              />
+            )}
+            {!selectedToken && contractAddress && contractAddress.length && (
+              <Button className={styles.clearButton}
+                      iconRight={IconClose}
+                      onlyIcon
+                      size={'s'}
+                      onClick={() => setContractAddress('')}/>
+            )}
+            {!!selectedToken && !contractAddress && !contractAddress.length && (
+              <div className={styles.selectedTokenContainer}>
+                <div className={styles.logo} style={{ backgroundImage: `url(${selectedToken.logo})` ?? undefined }} />
+                <div className={styles.symbol}>{selectedToken.symbol}</div>
+                <Button className={styles.clearButton}
+                        iconRight={IconClose}
+                        onlyIcon
+                        size={'xs'}
+                        onClick={() => setSelectedToken(null)}/>
+
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.inputMaxWidth}>

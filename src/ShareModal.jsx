@@ -106,12 +106,13 @@ const ShareModal = (props) => {
     );
   };
 
-  const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : sharingItems?.[0]?.name ?? '';
+  // const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : sharingItems?.[0]?.name ?? '';
+  const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : `${sharingItems.length} File` ?? '';
 
   return (
-    <Modal 
-      className={styles.modal} 
-      isOpen={true} 
+    <Modal
+      className={styles.modal}
+      isOpen={true}
       hasOverlay
       title={title}
       unsavedPopup
