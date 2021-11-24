@@ -50,13 +50,13 @@ const SelectTokens = _ref => {
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
   (0, _react.useEffect)(() => {
-    console.log('CONTRACT ADDRESS', contractAddress);
-  }, [contractAddress]);
+    console.log('CHECK SELECTED', selectedToken);
+  }, [selectedToken]);
 
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken.value === "ethereum") {
+    if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = _ethers.ethers.utils.parseEther(amount);
 
@@ -78,9 +78,9 @@ const SelectTokens = _ref => {
       console.log("selectedToken", selectedToken);
       let tokenType;
 
-      if (((_selectedToken$standa = selectedToken.standard) === null || _selectedToken$standa === void 0 ? void 0 : _selectedToken$standa.toLowerCase()) === "erc721") {
+      if (selectedToken && ((_selectedToken$standa = selectedToken.standard) === null || _selectedToken$standa === void 0 ? void 0 : _selectedToken$standa.toLowerCase()) === "erc721") {
         tokenType = "erc721";
-      } else if (selectedToken.decimals) {
+      } else if (selectedToken && selectedToken.decimals) {
         tokenType = "erc20";
       } else {
         // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.

@@ -21,10 +21,14 @@ const SelectTokens = ({
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
 
+  useEffect(() => {
+    console.log('CHECK SELECTED', selectedToken)
+  }, [selectedToken])
+
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken.value === "ethereum") {
+    if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = ethers.utils.parseEther(amount);
       const accessControlConditions = [
@@ -45,9 +49,9 @@ const SelectTokens = ({
       console.log("selectedToken", selectedToken);
 
       let tokenType;
-      if (selectedToken.standard?.toLowerCase() === "erc721") {
+      if (selectedToken && selectedToken.standard?.toLowerCase() === "erc721") {
         tokenType = "erc721";
-      } else if (selectedToken.decimals) {
+      } else if (selectedToken && selectedToken.decimals) {
         tokenType = "erc20";
       } else {
         // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.
