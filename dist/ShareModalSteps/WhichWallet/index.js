@@ -95,9 +95,6 @@ const WhichWallet = _ref => {
     autoFocus: true,
     size: "m",
     handleChange: value => setWalletAddress(value)
-  }), /*#__PURE__*/_react.default.createElement(_FileDropper.default, {
-    className: _whichWalletModule.default.filedropper,
-    onFilesSelected: setNftOwnership
   })), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {
       onClick: () => setActiveStep("ableToAccess")
