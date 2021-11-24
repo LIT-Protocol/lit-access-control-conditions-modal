@@ -48,7 +48,7 @@ const AssetWallet = ({
     <div>
       <div className={styles.titles}>
         <h3>Which asset does a wallet need to own to access this?</h3>
-        <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
+        <a className={styles.link} onClick={() => setActiveStep("whichWallet")}>
           Grant Access to Wallet or Blockchain Domain
         </a>
       </div>
