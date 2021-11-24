@@ -47,7 +47,7 @@ const AssetWallet = ({
   return (
     <div>
       <div className={styles.titles}>
-        <h3>Which asset does a wallet need to own to access this?</h3>
+        <h4>Which asset does a wallet need to own to access this?</h4>
         <a className={styles.link} onClick={() => setActiveStep("whichWallet")}>
           Grant Access to Wallet or Blockchain Domain
         </a>
@@ -77,13 +77,13 @@ const AssetWallet = ({
           size="m"
           handleChange={(value) => setTokenId(value)}
         />
-        <Button
-          label="Create Requirement"
-          className={styles.btn}
-          onClick={handleSubmit}
-          size="l"
-          disabled={!selectedToken || !tokenId || !chain}
-        />
+        {/*<Button*/}
+        {/*  label="Create Requirement"*/}
+        {/*  className={styles.btn}*/}
+        {/*  onClick={handleSubmit}*/}
+        {/*  size="l"*/}
+        {/*  disabled={!selectedToken || !tokenId || !chain}*/}
+        {/*/>*/}
       </div>
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}

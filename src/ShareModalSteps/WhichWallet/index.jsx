@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LitJsSdk from "lit-js-sdk";
-import styles from "./which-wallet.module.scss";
+// import styles from "./which-wallet.module.scss";
+import styles from "../../share-modal.module.scss";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
@@ -51,8 +52,8 @@ const WhichWallet = ({
 
   return (
     <div>
-      <div className={styles.title}>
-        Which wallet should be able to access this?
+      <div className={styles.titles}>
+        <h4>Which wallet should be able to access this?</h4>
         <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
           Grant Access on NFT Ownership
         </a>

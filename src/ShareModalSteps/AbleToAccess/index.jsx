@@ -44,6 +44,7 @@ const AbleToAccess = (props) => {
 
   return (
     <div className={styles.ableToAccess}>
+      {/*<div className={styles.title}>Who should be able to access this?</div>*/}
       <div className={styles.title}>Who should be able to access this?</div>
       <div className={styles.types}>
         {ITEMS.map((item) => (

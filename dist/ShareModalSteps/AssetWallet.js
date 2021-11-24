@@ -65,9 +65,9 @@ const AssetWallet = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this?"), /*#__PURE__*/_react.default.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("h4", null, "Which asset does a wallet need to own to access this?"), /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
-    onClick: () => setActiveStep("assetWallet")
+    onClick: () => setActiveStep("whichWallet")
   }, "Grant Access to Wallet or Blockchain Domain")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -94,12 +94,6 @@ const AssetWallet = _ref => {
     id: "tokenId",
     size: "m",
     handleChange: value => setTokenId(value)
-  }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create Requirement",
-    className: _shareModalModule.default.btn,
-    onClick: handleSubmit,
-    size: "l",
-    disabled: !selectedToken || !tokenId || !chain
   })), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {
       onClick: () => setActiveStep("ableToAccess")
