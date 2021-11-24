@@ -73,7 +73,7 @@ const DAOMembers = _ref => {
       onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: "Create Requirment",
+      label: "Create Requirement",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !DAOAddress || !chain

@@ -193,7 +193,7 @@ const SelectTokens = ({
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}
         forward={{
-          label: "Create Requirment",
+          label: "Create Requirement",
           onClick: handleSubmit,
           withoutIcon: true,
           disabled: !amount || !(selectedToken || contractAddress) || !chain,

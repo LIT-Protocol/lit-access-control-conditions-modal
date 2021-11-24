@@ -39,7 +39,6 @@ const WhichWallet = _ref => {
   } = _ref;
   const [walletAddress, setWalletAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
-  const [nftOwnership, setNftOwnership] = (0, _react.useState)(null);
 
   const handleSubmit = async () => {
     let resolvedAddress = walletAddress;
@@ -78,7 +77,10 @@ const WhichWallet = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.title
-  }, "Which wallet should be able to access this?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which wallet should be able to access this?", /*#__PURE__*/_react.default.createElement("a", {
+    className: _whichWalletModule.default.link,
+    onClick: () => setActiveStep("assetWallet")
+  }, "Grant Access on NFT Ownership")), /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _whichWalletModule.default.select
@@ -101,7 +103,7 @@ const WhichWallet = _ref => {
       onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: "Create Requirment",
+      label: "Create Requirement",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !walletAddress || !chain

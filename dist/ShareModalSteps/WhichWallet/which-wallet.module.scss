@@ -4,6 +4,16 @@
     margin-top: 38px;
     max-width: 396px;
 
+    .link {
+        color: $link;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+            color: $link-hover;
+        }
+    }
+
     .select {
         margin-top: 27px;
     }

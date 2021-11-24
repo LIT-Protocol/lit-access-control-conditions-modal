@@ -14,7 +14,6 @@ const WhichWallet = ({
 }) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [chain, setChain] = useState(null);
-  const [nftOwnership, setNftOwnership] = useState(null);
 
   const handleSubmit = async () => {
     let resolvedAddress = walletAddress;
@@ -54,6 +53,9 @@ const WhichWallet = ({
     <div>
       <div className={styles.title}>
         Which wallet should be able to access this?
+        <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
+          Grant Access on NFT Ownership
+        </a>
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
@@ -79,7 +81,7 @@ const WhichWallet = ({
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}
         forward={{
-          label: "Create Requirment",
+          label: "Create Requirement",
           onClick: handleSubmit,
           withoutIcon: true,
           disabled: !walletAddress || !chain,
