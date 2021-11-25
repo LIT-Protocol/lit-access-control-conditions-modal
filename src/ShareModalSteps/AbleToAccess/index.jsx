@@ -44,10 +44,11 @@ const AbleToAccess = (props) => {
 
   return (
     <div className={styles.ableToAccess}>
+      {/*<div className={styles.title}>Who should be able to access this?</div>*/}
       <div className={styles.title}>Who should be able to access this?</div>
       <div className={styles.types}>
-        {ITEMS.map((item) => (
-          <TypeButton {...item} onClick={setActiveStep} />
+        {ITEMS.map((item, i) => (
+          <TypeButton key={i} {...item} onClick={setActiveStep} />
         ))}
       </div>
       <Navigation backward={{ onClick: onMainBack }} />

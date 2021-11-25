@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import LitJsSdk from "lit-js-sdk";
+import { IconClose } from '@consta/uikit/IconClose';
+import { Button } from '@consta/uikit/Button'
 
 import styles from "./select-tokens.module.scss";
 
@@ -19,10 +21,29 @@ const SelectTokens = ({
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
 
+  useEffect(() => {
+    console.log('CHECK SELECTED', selectedToken)
+  }, [selectedToken])
+
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken.value === "ethereum") {
+    if (contractAddress && contractAddress.length) {
+      const accessControlConditions = [
+        {
+          contractAddress: "",
+          standardContractType: "",
+          chain: chain.value,
+          method: "balanceOf",
+          parameters: [":userAddress"],
+          returnValueTest: {
+            comparator: ">=",
+            value: amount.toString(),
+          },
+        },
+      ];
+      onAccessControlConditionsSelected(accessControlConditions);
+    } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = ethers.utils.parseEther(amount);
       const accessControlConditions = [
@@ -43,9 +64,9 @@ const SelectTokens = ({
       console.log("selectedToken", selectedToken);
 
       let tokenType;
-      if (selectedToken.standard?.toLowerCase() === "erc721") {
+      if (selectedToken && selectedToken.standard?.toLowerCase() === "erc721") {
         tokenType = "erc721";
-      } else if (selectedToken.decimals) {
+      } else if (selectedToken && selectedToken.decimals) {
         tokenType = "erc20";
       } else {
         // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.
@@ -164,17 +185,42 @@ const SelectTokens = ({
         <div className={styles.select}>
           <label>Select token/NFT or enter contract address: </label>
           <div className={styles.tokenOrContractAddress}>
-            <TokenSelect tokenList={tokenList} onSelect={setSelectedToken} />
-            <div className={styles.separator}>OR</div>
-            <InputWrapper
-              placeholder="ERC20 or ERC721 address"
-              value={contractAddress}
-              className={styles.input}
-              id="amount"
-              autoFocus
-              size="m"
-              handleChange={setContractAddress}
-            />
+            {(!contractAddress || !contractAddress.length) && (
+              <TokenSelect className={styles.tokenSelect} tokenList={tokenList} onSelect={setSelectedToken} />
+            )}
+            {(!contractAddress || !contractAddress.length) && (!selectedToken) && (
+              <div className={styles.separator}>OR</div>
+            )}
+            {!selectedToken && (
+              <InputWrapper
+                placeholder="ERC20 or ERC721 address"
+                value={contractAddress}
+                className={styles.input}
+                id="amount"
+                autoFocus
+                size="m"
+                handleChange={setContractAddress}
+              />
+            )}
+            {!selectedToken && contractAddress && contractAddress.length && (
+              <Button className={styles.clearButton}
+                      iconRight={IconClose}
+                      onlyIcon
+                      size={'s'}
+                      onClick={() => setContractAddress('')}/>
+            )}
+            {!!selectedToken && !contractAddress && !contractAddress.length && (
+              <div className={styles.selectedTokenContainer}>
+                <div className={styles.logo} style={{ backgroundImage: `url(${selectedToken.logo})` ?? undefined }} />
+                <div className={styles.symbol}>{selectedToken.symbol}</div>
+                <Button className={styles.clearButton}
+                        iconRight={IconClose}
+                        onlyIcon
+                        size={'xs'}
+                        onClick={() => setSelectedToken(null)}/>
+
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.inputMaxWidth}>
@@ -193,7 +239,7 @@ const SelectTokens = ({
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}
         forward={{
-          label: "Create Requirment",
+          label: "Create Requirement",
           onClick: handleSubmit,
           withoutIcon: true,
           disabled: !amount || !(selectedToken || contractAddress) || !chain,

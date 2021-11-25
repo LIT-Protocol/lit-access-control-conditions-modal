@@ -11,7 +11,7 @@ import Modal from '../Modal'
 const Option = ({ children, data: { label, logo, symbol }, ...props }) => {
     const { onMouseMove, onMouseOver, ...rest } = props.innerProps;
     const newProps = Object.assign(props, { innerProps: rest });
-    
+
     return (
       <components.Option
         {...newProps}
@@ -73,18 +73,29 @@ const TokenSelect = (props) => {
         setModalIsOpen(false)
     }
 
+    const checkForSelected = (token) => {
+      if (token
+        && token['symbol']
+        && selectedToken
+        && token['symbol'] === selectedToken['symbol']) {
+        return styles.selected
+      } else {
+        return styles.notSelected
+      }
+    }
+
     return (
         <>
-            <Button 
+            <Button
                 view="clear"
                 label="Search for a token/NFT"
                 onClick={() => setModalIsOpen(true)}
             />
 
-            <Modal 
+            <Modal
                 className={styles.modal}
-                darkMode 
-                isOpen={modalIsOpen} 
+                darkMode
+                isOpen={modalIsOpen}
                 hasOverlay
                 title="Select a token"
                 onClose={() => setModalIsOpen(false)}
@@ -93,10 +104,13 @@ const TokenSelect = (props) => {
                     <div>
                         <label>Top Tokens/NFTS</label>
                         <div className={styles.topTokens}>
-                            {TOP_LIST.map((t) => (
-                                <div 
-                                    key={t.symbol} 
-                                    onClick={() => setSelectedToken(t)}
+                            {TOP_LIST.map((t, i) => (
+                                <div
+                                    className={checkForSelected(t)}
+                                    key={t.symbol}
+                                    onClick={(e) => {
+                                      setSelectedToken(t)
+                                    }}
                                 >
                                     <div className={styles.logo} style={{ backgroundImage: t.logo ? `url(${t.logo})` : undefined }} />
                                     <div className={styles.symbol}>{t.symbol}</div>
@@ -119,10 +133,10 @@ const TokenSelect = (props) => {
                         />
                     </div>
 
-                    <Button 
-                        className={styles.button} 
+                    <Button
+                        className={styles.button}
                         label="Select"
-                        size="l" 
+                        size="l"
                         disabled={!selectedToken}
                         onClick={handleSelect}
                     />

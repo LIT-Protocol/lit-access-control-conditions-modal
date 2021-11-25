@@ -17,6 +17,10 @@ var _ethers = require("ethers");
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
+var _IconClose = require("@consta/uikit/IconClose");
+
+var _Button = require("@consta/uikit/Button");
+
 var _selectTokensModule = _interopRequireDefault(require("./select-tokens.module.scss"));
 
 var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
@@ -34,6 +38,8 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 const SelectTokens = _ref => {
+  var _ref2;
+
   let {
     setActiveStep,
     onAccessControlConditionsSelected,
@@ -43,11 +49,27 @@ const SelectTokens = _ref => {
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
+  (0, _react.useEffect)(() => {
+    console.log('CHECK SELECTED', selectedToken);
+  }, [selectedToken]);
 
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken.value === "ethereum") {
+    if (contractAddress && contractAddress.length) {
+      const accessControlConditions = [{
+        contractAddress: "",
+        standardContractType: "",
+        chain: chain.value,
+        method: "balanceOf",
+        parameters: [":userAddress"],
+        returnValueTest: {
+          comparator: ">=",
+          value: amount.toString()
+        }
+      }];
+      onAccessControlConditionsSelected(accessControlConditions);
+    } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = _ethers.ethers.utils.parseEther(amount);
 
@@ -69,9 +91,9 @@ const SelectTokens = _ref => {
       console.log("selectedToken", selectedToken);
       let tokenType;
 
-      if (((_selectedToken$standa = selectedToken.standard) === null || _selectedToken$standa === void 0 ? void 0 : _selectedToken$standa.toLowerCase()) === "erc721") {
+      if (selectedToken && ((_selectedToken$standa = selectedToken.standard) === null || _selectedToken$standa === void 0 ? void 0 : _selectedToken$standa.toLowerCase()) === "erc721") {
         tokenType = "erc721";
-      } else if (selectedToken.decimals) {
+      } else if (selectedToken && selectedToken.decimals) {
         tokenType = "erc20";
       } else {
         // if we don't already know the type, try and get decimal places.  if we get back 0 or the request fails then it's probably erc721.
@@ -185,12 +207,13 @@ const SelectTokens = _ref => {
     className: _selectTokensModule.default.select
   }, /*#__PURE__*/_react.default.createElement("label", null, "Select token/NFT or enter contract address: "), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.tokenOrContractAddress
-  }, /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
+  }, (!contractAddress || !contractAddress.length) && /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
+    className: _selectTokensModule.default.tokenSelect,
     tokenList: tokenList,
     onSelect: setSelectedToken
-  }), /*#__PURE__*/_react.default.createElement("div", {
+  }), (!contractAddress || !contractAddress.length) && !selectedToken && /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.separator
-  }, "OR"), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+  }, "OR"), !selectedToken && /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     placeholder: "ERC20 or ERC721 address",
     value: contractAddress,
     className: _selectTokensModule.default.input,
@@ -198,7 +221,28 @@ const SelectTokens = _ref => {
     autoFocus: true,
     size: "m",
     handleChange: setContractAddress
-  }))), /*#__PURE__*/_react.default.createElement("div", {
+  }), !selectedToken && contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement(_Button.Button, {
+    className: _selectTokensModule.default.clearButton,
+    iconRight: _IconClose.IconClose,
+    onlyIcon: true,
+    size: 's',
+    onClick: () => setContractAddress('')
+  }), !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.selectedTokenContainer
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.logo,
+    style: {
+      backgroundImage: (_ref2 = "url(".concat(selectedToken.logo, ")")) !== null && _ref2 !== void 0 ? _ref2 : undefined
+    }
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.symbol
+  }, selectedToken.symbol), /*#__PURE__*/_react.default.createElement(_Button.Button, {
+    className: _selectTokensModule.default.clearButton,
+    iconRight: _IconClose.IconClose,
+    onlyIcon: true,
+    size: 'xs',
+    onClick: () => setSelectedToken(null)
+  })))), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,
@@ -213,7 +257,7 @@ const SelectTokens = _ref => {
       onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: "Create Requirment",
+      label: "Create Requirement",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !amount || !(selectedToken || contractAddress) || !chain

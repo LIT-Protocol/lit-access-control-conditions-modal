@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LitJsSdk from "lit-js-sdk";
-import styles from "./which-wallet.module.scss";
+// import styles from "./which-wallet.module.scss";
+import styles from "../../share-modal.module.scss";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
@@ -14,7 +15,6 @@ const WhichWallet = ({
 }) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [chain, setChain] = useState(null);
-  const [nftOwnership, setNftOwnership] = useState(null);
 
   const handleSubmit = async () => {
     let resolvedAddress = walletAddress;
@@ -52,12 +52,12 @@ const WhichWallet = ({
 
   return (
     <div>
-      <div className={styles.title}>
-        Which wallet should be able to access this?
+      <div className={styles.titles}>
+        <h4>Which wallet should be able to access this?</h4>
+        <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
+          Grant Access on NFT Ownership
+        </a>
       </div>
-      <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
-        Grant Access on NFT Ownership Instead
-      </a>
       <div className={styles.form}>
         <div className={styles.select}>
           <label>Select blockchain</label>
@@ -77,7 +77,7 @@ const WhichWallet = ({
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}
         forward={{
-          label: "Create Requirment",
+          label: "Create Requirement",
           onClick: handleSubmit,
           withoutIcon: true,
           disabled: !walletAddress || !chain,

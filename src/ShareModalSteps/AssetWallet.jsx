@@ -3,10 +3,10 @@ import { Creatable } from "react-select-virtualized";
 import styles from "../share-modal.module.scss";
 
 import { Button } from "@consta/uikit/Button";
-import { IconBackward } from "@consta/uikit/IconBackward";
 
 import InputWrapper from "../InputWrapper/InputWrapper";
 import ChainSelector from "../ChainSelector/ChainSelector";
+import Navigation from "../Navigation";
 
 const AssetWallet = ({
   setActiveStep,
@@ -46,11 +46,11 @@ const AssetWallet = ({
 
   return (
     <div>
-      <div className={styles.back} onClick={() => setActiveStep("whichWallet")}>
-        <IconBackward view="link" className={styles.icon} /> Back
-      </div>
       <div className={styles.titles}>
-        <h3>Which asset does a wallet need to own to access this?</h3>
+        <h4>Which asset does a wallet need to own to access this?</h4>
+        <a className={styles.link} onClick={() => setActiveStep("whichWallet")}>
+          Grant Access to Wallet or Blockchain Domain
+        </a>
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
@@ -77,14 +77,23 @@ const AssetWallet = ({
           size="m"
           handleChange={(value) => setTokenId(value)}
         />
-        <Button
-          label="Create Requirement"
-          className={styles.btn}
-          onClick={handleSubmit}
-          size="l"
-          disabled={!selectedToken || !tokenId || !chain}
-        />
+        {/*<Button*/}
+        {/*  label="Create Requirement"*/}
+        {/*  className={styles.btn}*/}
+        {/*  onClick={handleSubmit}*/}
+        {/*  size="l"*/}
+        {/*  disabled={!selectedToken || !tokenId || !chain}*/}
+        {/*/>*/}
       </div>
+      <Navigation
+        backward={{ onClick: () => setActiveStep("ableToAccess") }}
+        forward={{
+          label: "Create Requirement",
+          onClick: handleSubmit,
+          withoutIcon: true,
+          disabled: !tokenId || !chain,
+        }}
+      />
     </div>
   );
 };
