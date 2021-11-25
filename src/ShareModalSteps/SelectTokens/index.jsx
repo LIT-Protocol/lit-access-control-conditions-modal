@@ -28,7 +28,22 @@ const SelectTokens = ({
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken && selectedToken.value === "ethereum") {
+    if (contractAddress && contractAddress.length) {
+      const accessControlConditions = [
+        {
+          contractAddress: "",
+          standardContractType: "",
+          chain: chain.value,
+          method: "balanceOf",
+          parameters: [":userAddress"],
+          returnValueTest: {
+            comparator: ">=",
+            value: amount.toString(),
+          },
+        },
+      ];
+      onAccessControlConditionsSelected(accessControlConditions);
+    } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = ethers.utils.parseEther(amount);
       const accessControlConditions = [

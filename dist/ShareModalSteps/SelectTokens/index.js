@@ -56,7 +56,20 @@ const SelectTokens = _ref => {
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
-    if (selectedToken && selectedToken.value === "ethereum") {
+    if (contractAddress && contractAddress.length) {
+      const accessControlConditions = [{
+        contractAddress: "",
+        standardContractType: "",
+        chain: chain.value,
+        method: "balanceOf",
+        parameters: [":userAddress"],
+        returnValueTest: {
+          comparator: ">=",
+          value: amount.toString()
+        }
+      }];
+      onAccessControlConditionsSelected(accessControlConditions);
+    } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
       const amountInWei = _ethers.ethers.utils.parseEther(amount);
 
