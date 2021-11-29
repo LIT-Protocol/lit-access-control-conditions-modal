@@ -62,7 +62,7 @@ const AccessCreated = _ref => {
     className: _shareModalModule.default.btnBock
   }, /*#__PURE__*/_react.default.createElement("h5", null, /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link
-  }, "Click to copy link."), " ", /*#__PURE__*/_react.default.createElement("br", null), " ", copyLinkText || "Access will only be granted to authorized users")))));
+  }, "Click to copy link"), " ", /*#__PURE__*/_react.default.createElement("br", null), " ", copyLinkText || "Only authorized users will be granted access.")))));
 };
 
 var _default = AccessCreated;

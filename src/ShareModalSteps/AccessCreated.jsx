@@ -30,8 +30,8 @@ const AccessCreated = ({
         <div className={styles.type} onClick={copyToClipboard}>
           <div className={styles.btnBock}>
             <h5>
-              <a className={styles.link}>Click to copy link.</a> <br />{" "}
-              {copyLinkText || "Only authorized users will be granted access"}
+              <a className={styles.link}>Click to copy link</a> <br />{" "}
+              {copyLinkText || "Only authorized users will be granted access."}
             </h5>
           </div>
         </div>
