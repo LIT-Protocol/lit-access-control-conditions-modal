@@ -194,7 +194,7 @@ const SelectTokens = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.title
-  }, "Which wallet should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which wallet should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
@@ -207,13 +207,15 @@ const SelectTokens = _ref => {
     className: _selectTokensModule.default.select
   }, /*#__PURE__*/_react.default.createElement("label", null, "Select token/NFT or enter contract address: "), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.tokenOrContractAddress
-  }, (!contractAddress || !contractAddress.length) && /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
+  }, (!contractAddress || !contractAddress.length) && !selectedToken && /*#__PURE__*/_react.default.createElement("span", {
+    className: _selectTokensModule.default.leftSelect
+  }, /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
     className: _selectTokensModule.default.tokenSelect,
     tokenList: tokenList,
     onSelect: setSelectedToken
-  }), (!contractAddress || !contractAddress.length) && !selectedToken && /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.separator
-  }, "OR"), !selectedToken && /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+  }, "OR")), !selectedToken && /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     placeholder: "ERC20 or ERC721 address",
     value: contractAddress,
     className: _selectTokensModule.default.input,

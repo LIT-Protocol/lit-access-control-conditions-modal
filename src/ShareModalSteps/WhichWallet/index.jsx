@@ -53,7 +53,7 @@ const WhichWallet = ({
   return (
     <div>
       <div className={styles.titles}>
-        <h4>Which wallet should be able to access this?</h4>
+        <h4>Which wallet should be able to access this asset?</h4>
         <a className={styles.link} onClick={() => setActiveStep("assetWallet")}>
           Grant Access on NFT Ownership
         </a>

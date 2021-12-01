@@ -70,7 +70,7 @@ const DAOMembers = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _choosePoapModule.default.title
-  }, "Which POAP should be able to access this?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which POAP should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _choosePoapModule.default.form
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: POAPName,

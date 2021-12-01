@@ -31,10 +31,15 @@ label {
     }
 }
 
+
 :global(.react-select__control--is-focused) {
     box-shadow: none !important;
     border-color: var(--color-control-bg-border-focus) !important;
     outline: none !important;
+}
+
+:global(.react-select__menu-portal) {
+    z-index:100 !important;
 }
 
 :global(.react-select__menu) {

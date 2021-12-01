@@ -173,7 +173,7 @@ const SelectTokens = ({
   return (
     <div>
       <div className={styles.title}>
-        Which wallet should be able to access this file?
+        Which wallet should be able to access this asset?
       </div>
       <div className={styles.form}>
         <div className={styles.inputMaxWidth}>
@@ -185,11 +185,11 @@ const SelectTokens = ({
         <div className={styles.select}>
           <label>Select token/NFT or enter contract address: </label>
           <div className={styles.tokenOrContractAddress}>
-            {(!contractAddress || !contractAddress.length) && (
-              <TokenSelect className={styles.tokenSelect} tokenList={tokenList} onSelect={setSelectedToken} />
-            )}
             {(!contractAddress || !contractAddress.length) && (!selectedToken) && (
+            <span className={styles.leftSelect}>
+              <TokenSelect className={styles.tokenSelect} tokenList={tokenList} onSelect={setSelectedToken} />
               <div className={styles.separator}>OR</div>
+            </span>
             )}
             {!selectedToken && (
               <InputWrapper

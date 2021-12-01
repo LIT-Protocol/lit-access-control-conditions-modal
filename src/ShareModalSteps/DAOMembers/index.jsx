@@ -31,7 +31,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   return (
     <div>
       <div className={styles.title}>
-        Which DAO’s members should be able to access this file?
+        Which DAO’s members should be able to access this asset?
       </div>
       <div className={styles.form}>
         <div className={styles.select}>

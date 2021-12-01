@@ -15,7 +15,7 @@ const Option = ({ children, data: { label, logo, symbol }, ...props }) => {
     return (
       <components.Option
         {...newProps}
-        style={{ padding: 0 }}
+        style={{ padding: 0, zIndex: 105 }}
       >
         <div className={styles.option}>
             <div className={styles.logo} style={{ backgroundImage: logo ? `url(${logo})` : undefined }} />

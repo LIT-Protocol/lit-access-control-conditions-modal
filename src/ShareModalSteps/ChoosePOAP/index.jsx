@@ -57,7 +57,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   return (
     <div>
       <div className={styles.title}>
-        Which POAP should be able to access this?
+        Which POAP should be able to access this asset?
       </div>
       <div className={styles.form}>
         <InputWrapper
