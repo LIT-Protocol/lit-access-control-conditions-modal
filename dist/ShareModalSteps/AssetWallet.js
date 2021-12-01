@@ -15,11 +15,11 @@ var _shareModalModule = _interopRequireDefault(require("../share-modal.module.sc
 
 var _Button = require("@consta/uikit/Button");
 
-var _IconBackward = require("@consta/uikit/IconBackward");
-
 var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
 
 var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
+
+var _Navigation = _interopRequireDefault(require("../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,14 +33,14 @@ const AssetWallet = _ref => {
     onAccessControlConditionsSelected,
     tokenList
   } = _ref;
-  const [tokenId, setTokenId] = (0, _react.useState)('');
+  const [tokenId, setTokenId] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const tokenSelectBoxRows = (0, _react.useMemo)(() => {
     return tokenList.filter(t => {
       var _t$standard;
 
-      return ((_t$standard = t.standard) === null || _t$standard === void 0 ? void 0 : _t$standard.toLowerCase()) === 'erc721';
+      return ((_t$standard = t.standard) === null || _t$standard === void 0 ? void 0 : _t$standard.toLowerCase()) === "erc721";
     }).map(t => ({
       label: t.name,
       value: t.address
@@ -50,28 +50,25 @@ const AssetWallet = _ref => {
   const handleSubmit = () => {
     const accessControlConditions = [{
       contractAddress: selectedToken.value,
-      standardContractType: 'ERC721',
+      standardContractType: "ERC721",
       chain: chain.value,
-      method: 'ownerOf',
+      method: "ownerOf",
       parameters: [tokenId],
       returnValueTest: {
-        comparator: '=',
-        value: ':userAddress'
+        comparator: "=",
+        value: ":userAddress"
       }
     }];
     onAccessControlConditionsSelected(accessControlConditions);
-    setActiveStep('accessCreated');
+    setActiveStep("accessCreated");
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('whichWallet')
-  }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
-    view: "link",
-    className: _shareModalModule.default.icon
-  }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Which asset does a wallet need to own to access this file?")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h4", null, "Which asset does a wallet need to own to access this?"), /*#__PURE__*/_react.default.createElement("a", {
+    className: _shareModalModule.default.link,
+    onClick: () => setActiveStep("whichWallet")
+  }, "Grant Access to Wallet or Blockchain Domain")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.select
@@ -87,7 +84,7 @@ const AssetWallet = _ref => {
   }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
     isClearable: true,
     isSearchable: true,
-    defaultValue: '',
+    defaultValue: "",
     options: tokenSelectBoxRows,
     onChange: value => setSelectedToken(value)
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
@@ -97,13 +94,17 @@ const AssetWallet = _ref => {
     id: "tokenId",
     size: "m",
     handleChange: value => setTokenId(value)
-  }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: "Create Requirement",
-    className: _shareModalModule.default.btn,
-    onClick: handleSubmit,
-    size: "l",
-    disabled: !selectedToken || !tokenId || !chain
-  })));
+  })), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
+    backward: {
+      onClick: () => setActiveStep("ableToAccess")
+    },
+    forward: {
+      label: "Create Requirement",
+      onClick: handleSubmit,
+      withoutIcon: true,
+      disabled: !tokenId || !chain
+    }
+  }));
 };
 
 var _default = AssetWallet;

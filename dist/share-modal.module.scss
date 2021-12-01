@@ -83,7 +83,7 @@
 
 .body {
   //padding: $space-2xl 0;
-  
+
   .back {
     margin: 0 0 $space-xl;
     display: flex;
@@ -115,6 +115,20 @@
       margin: 0 0 10px;
     }
   }
+  .titles p {
+    color: $primary-text;
+    margin: 0 auto;
+    text-align: center;
+    width: 60%;
+  }
+
+  .confirmationLogo {
+    margin-left: calc(50% - 32px);
+    height: 78px;
+    width: 65px;
+    text-align: center;
+  }
+
   .link {
     color: $link;
     margin-top: 15px;
@@ -129,13 +143,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
     @media (max-width: 400px) {
       flex-direction: column;
     }
   }
   .type {
-    flex: 0 1 200px;
+    //flex: 0 1 200px;
     margin: $space-s;
+    width: 100%;
     @media (max-width: 600px) {
       flex: 0 1 150px;
       margin: 10px;
@@ -157,7 +173,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      height: 250px;
+      //height: 250px;
       box-sizing: border-box;
       cursor: pointer;
       transition: all 0.3s;

@@ -49,7 +49,7 @@ const DAOMembers = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _daoMembersModule.default.title
-  }, "Which DAO\u2019s members should be able to access this file?"), /*#__PURE__*/_react.default.createElement("div", {
+  }, "Which DAO\u2019s members should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _daoMembersModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _daoMembersModule.default.select
@@ -73,7 +73,7 @@ const DAOMembers = _ref => {
       onClick: () => setActiveStep("ableToAccess")
     },
     forward: {
-      label: "Create Requirment",
+      label: "Create Requirement",
       onClick: handleSubmit,
       withoutIcon: true,
       disabled: !DAOAddress || !chain

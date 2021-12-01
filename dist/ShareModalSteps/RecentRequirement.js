@@ -26,32 +26,32 @@ const RecentRequirement = _ref => {
     setActiveStep
   } = _ref;
   const columns = [{
-    title: 'Requirement',
-    accessor: 'requiment',
+    title: "Requirement",
+    accessor: "requiment",
     width: 600
   }, {
-    title: 'Date Added',
-    accessor: 'date'
+    title: "Date Added",
+    accessor: "date"
   }];
   const rows = [{
-    date: '01/01/2021',
-    requiment: 'Owns at least 2 CrpytoPunk'
+    date: "01/01/2021",
+    requiment: "Owns at least 2 CrpytoPunk"
   }, {
-    date: '01/01/2021',
-    requiment: 'Owners Sneider.eth'
+    date: "01/01/2021",
+    requiment: "Owners Sneider.eth"
   }, {
-    date: '01/01/2021',
-    requiment: 'Is a Member of CityDAO'
+    date: "01/01/2021",
+    requiment: "Is a Member of CityDAO"
   }];
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.back,
-    onClick: () => setActiveStep('ableToAccess')
+    onClick: () => setActiveStep("ableToAccess")
   }, /*#__PURE__*/_react.default.createElement(_IconBackward.IconBackward, {
     view: "link",
     className: _shareModalModule.default.icon
   }), " Back"), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Wallets that Meet One of These  Requiments can Access this file")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Wallets that Meet One of These Requiments can Access this")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.table
   }, /*#__PURE__*/_react.default.createElement(_Table.Table, {
     borderBetweenRows: true,

@@ -49,7 +49,7 @@ const ModalComponents = {
 };
 
 const ShareModal = props => {
-  var _sharingItems$0$name, _sharingItems$;
+  var _ref;
 
   const {
     onClose = () => false,
@@ -111,9 +111,10 @@ const ShareModal = props => {
       setError: setError,
       myWalletAddress: myWalletAddress
     }));
-  };
+  }; // const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : sharingItems?.[0]?.name ?? '';
 
-  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " Files") : (_sharingItems$0$name = sharingItems === null || sharingItems === void 0 ? void 0 : (_sharingItems$ = sharingItems[0]) === null || _sharingItems$ === void 0 ? void 0 : _sharingItems$.name) !== null && _sharingItems$0$name !== void 0 ? _sharingItems$0$name : '';
+
+  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " Files") : (_ref = "".concat(sharingItems.length, " File")) !== null && _ref !== void 0 ? _ref : '';
   return /*#__PURE__*/_react.default.createElement(_Modal.default, {
     className: _shareModalModule.default.modal,
     isOpen: true,

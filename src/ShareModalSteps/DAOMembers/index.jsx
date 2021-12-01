@@ -31,7 +31,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   return (
     <div>
       <div className={styles.title}>
-        Which DAO’s members should be able to access this file?
+        Which DAO’s members should be able to access this asset?
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
@@ -59,7 +59,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
       <Navigation
         backward={{ onClick: () => setActiveStep("ableToAccess") }}
         forward={{
-          label: "Create Requirment",
+          label: "Create Requirement",
           onClick: handleSubmit,
           withoutIcon: true,
           disabled: !DAOAddress || !chain,

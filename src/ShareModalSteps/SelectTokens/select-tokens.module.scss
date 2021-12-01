@@ -1,8 +1,17 @@
 @import "../../style/common.scss";
 
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .form {
     margin-top: 38px;
-    
+
     .inputMaxWidth {
         max-width: 396px;
     }
@@ -18,6 +27,17 @@
     .tokenOrContractAddress {
         display: flex;
         align-items: center;
+        transition-duration: 0.2s;
+
+        .leftSelect {
+            display: flex;
+            align-items: center;
+        }
+
+        .tokenSelect {
+            animation-name: fadein;
+            animation-duration: 0.25s;
+        }
 
         .separator {
             margin: 0 14px;
@@ -28,6 +48,47 @@
         .input {
             margin-top: 0;
             width: 250px;
+            animation-name: fadein;
+            animation-duration: 0.25s;
+        }
+
+        .clearButton {
+            transition-duration: 0.2s;
+            margin-left: 1rem;
+            border-radius: 100%;
+            animation-name: fadein;
+            animation-duration: 0.25s;
+        }
+
+        .selectedTokenContainer {
+            padding: 0 5px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            border: 1.25px solid #2C0C72;
+            border-radius: 5px;
+            margin-right: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            animation-name: fadein;
+            animation-duration: 0.25s;
+
+            .logo {
+                width: 22px;
+                height: 22px;
+                border-radius: 100%;
+                background-color: #ccc;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                margin-right: 3px;
+            }
+
+            .symbol {
+                font-size: 18px;
+                line-height: 150%;
+                color: #2C0C72;
+            }
         }
     }
 }

@@ -90,9 +90,7 @@ const CurrentRequirements = ({
       ) : null}
 
       <div className={styles.titles}>
-        <h3>
-          Wallets that meet one of these requirements can access this file
-        </h3>
+        <h3>Wallets that meet one of these requirements can access this</h3>
       </div>
       <div className={styles.table}>
         <Table

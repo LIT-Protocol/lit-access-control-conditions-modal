@@ -5,7 +5,7 @@ import styles from "./choose-poap.module.scss";
 import Select from "react-select";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
-import Navigation from '../../Navigation';
+import Navigation from "../../Navigation";
 
 const matchConditionOptions = [
   {
@@ -57,7 +57,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
   return (
     <div>
       <div className={styles.title}>
-        Which POAP should be able to access this file?
+        Which POAP should be able to access this asset?
       </div>
       <div className={styles.form}>
         <InputWrapper
@@ -83,13 +83,13 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
         </div>
       </div>
 
-      <Navigation 
-        backward={{ onClick: () => setActiveStep('ableToAccess') }}
-        forward={{ 
-          label: 'Create Requirment', 
-          onClick: handleSubmit, 
+      <Navigation
+        backward={{ onClick: () => setActiveStep("ableToAccess") }}
+        forward={{
+          label: "Create Requirement",
+          onClick: handleSubmit,
           withoutIcon: true,
-          disabled: !POAPName || !matchCondition
+          disabled: !POAPName || !matchCondition,
         }}
       />
     </div>

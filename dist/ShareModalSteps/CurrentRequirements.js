@@ -94,7 +94,7 @@ const CurrentRequirements = _ref => {
     className: _shareModalModule.default.icon
   }), " Back") : null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h3", null, "Wallets that meet one of these requirements can access this file")), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Wallets that meet one of these requirements can access this")), /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.table
   }, /*#__PURE__*/_react.default.createElement(_Table.Table, {
     borderBetweenRows: true,
