@@ -63,7 +63,8 @@ const Option = _ref => {
   });
   return /*#__PURE__*/_react.default.createElement(_reactWindowedSelect.components.Option, _extends({}, newProps, {
     style: {
-      padding: 0
+      padding: 0,
+      zIndex: 105
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: _tokenSelectModule.default.option
