@@ -120,7 +120,7 @@ const ShareModal = props => {
     isOpen: true,
     hasOverlay: true,
     title: title,
-    unsavedPopup: true,
+    unsavedPopup: activeStep !== 'accessCreated',
     onClose: onClose
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.fileModal
