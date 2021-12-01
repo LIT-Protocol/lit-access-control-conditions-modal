@@ -29,6 +29,11 @@
         align-items: center;
         transition-duration: 0.2s;
 
+        .leftSelect {
+            display: flex;
+            align-items: center;
+        }
+
         .tokenSelect {
             animation-name: fadein;
             animation-duration: 0.25s;
@@ -63,8 +68,8 @@
             border: 1.25px solid #2C0C72;
             border-radius: 5px;
             margin-right: 8px;
+            margin-top: 10px;
             cursor: pointer;
-            margin-left: 1rem;
             animation-name: fadein;
             animation-duration: 0.25s;
 

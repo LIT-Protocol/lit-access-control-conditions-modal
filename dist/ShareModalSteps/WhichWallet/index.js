@@ -78,7 +78,7 @@ const WhichWallet = _ref => {
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.titles
-  }, /*#__PURE__*/_react.default.createElement("h4", null, "Which wallet should be able to access this?"), /*#__PURE__*/_react.default.createElement("a", {
+  }, /*#__PURE__*/_react.default.createElement("h4", null, "Which wallet should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("a", {
     className: _shareModalModule.default.link,
     onClick: () => setActiveStep("assetWallet")
   }, "Grant Access on NFT Ownership")), /*#__PURE__*/_react.default.createElement("div", {
