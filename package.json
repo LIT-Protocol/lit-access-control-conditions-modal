@@ -7,7 +7,7 @@
   "scripts": {
     "start": "babel src --out-dir dist --copy-files --watch",
     "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",
-    "build-vanilla": "rm -rf dist-vanilla && NODE_ENV=production babel vanilla.js --out-dir dist-vanilla --copy-files"
+    "build-vanilla": "rm -rf dist-vanilla && NODE_ENV=production webpack --config webpack.config.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -16,6 +16,8 @@
     "core-js": "^3.19.1",
     "ethers": "^5.4.7",
     "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-select": "^5.2.1",
     "react-select-virtualized": "^4.2.0",
     "react-virtualized": "^9.22.3",
@@ -26,7 +28,13 @@
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
-    "react-scripts": "^4.0.3"
+    "css-loader": "^6.5.1",
+    "react-scripts": "^4.0.3",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
   },
   "peerDependencies": {
     "lit-js-sdk": "^1.1.81",

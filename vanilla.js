@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ShareModal from "./src/index.js";
+import { ShareModal } from "./dist/index.js";
 exports.ShareModal = ShareModal;
 // exports.gooddata = require("@gooddata/gooddata-js");
 
