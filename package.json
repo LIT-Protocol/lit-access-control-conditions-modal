@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "babel src --out-dir dist --copy-files --watch",
-    "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files"
+    "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",
+    "build-vanilla": "rm -rf dist-vanilla && NODE_ENV=production babel vanilla.js --out-dir dist-vanilla --copy-files"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
