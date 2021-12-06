@@ -6,7 +6,7 @@ import { IconDocFilled } from "@consta/uikit/IconDocFilled";
 import { SnackBar } from "@consta/uikit/SnackBar";
 import { Informer } from "@consta/uikit/Informer";
 
-import Modal from './Modal'
+import Modal from "./Modal";
 
 import LitJsSdk from "lit-js-sdk";
 
@@ -107,7 +107,13 @@ const ShareModal = (props) => {
   };
 
   // const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : sharingItems?.[0]?.name ?? '';
-  const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : `${sharingItems.length} File` ?? '';
+  let title = "";
+  if (sharingItems.length > 0) {
+    title =
+      sharingItems.length > 1
+        ? `${sharingItems.length} Files`
+        : `${sharingItems.length} File` ?? "";
+  }
 
   return (
     <Modal
@@ -115,7 +121,7 @@ const ShareModal = (props) => {
       isOpen={true}
       hasOverlay
       title={title}
-      unsavedPopup={activeStep !== 'accessCreated'}
+      unsavedPopup={activeStep !== "accessCreated"}
       onClose={onClose}
     >
       <div className={styles.fileModal}>
