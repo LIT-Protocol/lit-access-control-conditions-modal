@@ -5,18 +5,19 @@
   max-width: none !important;
 }
 
-//.shareModal {
-//  border-radius: 10px;
-//  border: 1px solid #333;
-//  position: fixed;
-//  width: 668px;
-//  left: calc(50% - 334px);
-//  top: 10rem;
-//  background-color: #fff;
-//  z-index: 10;
-//  padding: 28px 32px 30px 32px;
-//  height: min-content;
-//}
+.shareModalTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  //padding: 0;
+  align-items: center;
+
+  h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+  }
+}
 
 .fileModal {
   // width: 900px;
@@ -36,12 +37,6 @@
     //width: 100%;
     //min-height: 98vh;
   }
-}
-
-#shareModalContainer {
-  //width: 800px;
-  //padding: 0 4rem 2.5rem;
-  //margin: 0 4rem 2.5rem;
 }
 
 .top {
@@ -109,7 +104,6 @@
   //padding: $space-2xl 0;
   max-width: 654px;
   width: 654px;
-  padding: 0 4rem 2.5rem;
 
   .back {
     margin: 0 0 $space-xl;

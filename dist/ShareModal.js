@@ -143,10 +143,12 @@ const ShareModal = props => {
     onClose: onClose,
     class: _shareModalModule.default.shareModalAnchor,
     maxWidth: 'l'
-  }, /*#__PURE__*/_react.default.createElement(_material.DialogTitle, null, /*#__PURE__*/_react.default.createElement("span", null, title, /*#__PURE__*/_react.default.createElement(_material.IconButton, {
+  }, /*#__PURE__*/_react.default.createElement(_material.DialogTitle, {
+    className: _shareModalModule.default.shareModalTitle
+  }, /*#__PURE__*/_react.default.createElement("h4", null, title), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _shareModalModule.default.icon,
     onClick: handleClose
-  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null)))), /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))), /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
     id: _shareModalModule.default.shareModalContainer
   }, error ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.error
@@ -175,53 +177,5 @@ const ShareModal = props => {
   }))));
 };
 
-var _default = ShareModal; // {/*  <Modal*/}
-// {/*  id={styles.shareModalContainer}*/}
-// {/*  open={true}*/}
-// {/*  onClose={onClose}>*/}
-// {/*    <div>*/}
-// {/*      MODAL YO*/}
-// {/*    </div>*/}
-// {/*  </Modal>*/}
-// {/*</div>*/}
-//
-// {/*// <Modal*/}
-// {/*//   className={styles.modal}*/}
-// {/*//   isOpen={true}*/}
-// {/*//   title={title}*/}
-// {/*//   unsavedPopup={activeStep !== "accessCreated"}*/}
-// {/*//   onClose={onClose}*/}
-// {/*// >*/}
-// {/*<div className={styles.shareModalContainer}>*/}
-// {/*  <div className={styles.shareModal}>*/}
-// {/*  <div className={styles.fileModal}>*/}
-//     {/*<UnsavedPopup*/}
-//     {/*  open={showUnsavedPopup}*/}
-//     {/*  onClose={() => setShowUnsavedPopup(false)}*/}
-//     {/*  onCancel={() => setShowUnsavedPopup(false)}*/}
-//     {/*/>*/}
-//     {/* <div className={styles.top}>
-//       <div>
-//         <IconDocFilled className={styles.icon} view="brand" />
-//         <div className={styles.fileName}>
-//           <h3>
-//             {sharingItems.length > 1
-//               ? `${sharingItems.length} files`
-//               : sharingItems[0].name}
-//           </h3>
-//           {sharingItems.length === 1 &&
-//           sharingItems[0].accessControlConditions ? (
-//             <a
-//               className={styles.link}
-//               onClick={() => setActiveStep("currentRequirements")}
-//             >
-//               {totalAccessControlConditions} access requirement
-//               {totalAccessControlConditions > 1 ? "s" : ""}
-//             </a>
-//           ) : null}
-//         </div>
-//       </div>
-//       <IconClose className={styles.close} onClick={onClose} />
-//     </div> */}
-
+var _default = ShareModal;
 exports.default = _default;

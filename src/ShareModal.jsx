@@ -143,12 +143,11 @@ const ShareModal = (props) => {
               class={styles.shareModalAnchor}
               maxWidth={'l'}
       >
-        <DialogTitle>
-          <span>{title}
-            <IconButton className={styles.icon} onClick={handleClose} >
-              <Close/>
-            </IconButton>
-          </span>
+        <DialogTitle className={styles.shareModalTitle}>
+          <h4>{title}</h4>
+          <IconButton className={styles.icon} onClick={handleClose} >
+            <Close/>
+          </IconButton>
         </DialogTitle>
         <DialogContent id={styles.shareModalContainer}>
           {error ? (
@@ -183,52 +182,3 @@ const ShareModal = (props) => {
 };
 
 export default ShareModal;
-
-// {/*  <Modal*/}
-// {/*  id={styles.shareModalContainer}*/}
-// {/*  open={true}*/}
-// {/*  onClose={onClose}>*/}
-// {/*    <div>*/}
-// {/*      MODAL YO*/}
-// {/*    </div>*/}
-// {/*  </Modal>*/}
-// {/*</div>*/}
-//
-// {/*// <Modal*/}
-// {/*//   className={styles.modal}*/}
-// {/*//   isOpen={true}*/}
-// {/*//   title={title}*/}
-// {/*//   unsavedPopup={activeStep !== "accessCreated"}*/}
-// {/*//   onClose={onClose}*/}
-// {/*// >*/}
-// {/*<div className={styles.shareModalContainer}>*/}
-// {/*  <div className={styles.shareModal}>*/}
-// {/*  <div className={styles.fileModal}>*/}
-//     {/*<UnsavedPopup*/}
-//     {/*  open={showUnsavedPopup}*/}
-//     {/*  onClose={() => setShowUnsavedPopup(false)}*/}
-//     {/*  onCancel={() => setShowUnsavedPopup(false)}*/}
-//     {/*/>*/}
-//     {/* <div className={styles.top}>
-//       <div>
-//         <IconDocFilled className={styles.icon} view="brand" />
-//         <div className={styles.fileName}>
-//           <h3>
-//             {sharingItems.length > 1
-//               ? `${sharingItems.length} files`
-//               : sharingItems[0].name}
-//           </h3>
-//           {sharingItems.length === 1 &&
-//           sharingItems[0].accessControlConditions ? (
-//             <a
-//               className={styles.link}
-//               onClick={() => setActiveStep("currentRequirements")}
-//             >
-//               {totalAccessControlConditions} access requirement
-//               {totalAccessControlConditions > 1 ? "s" : ""}
-//             </a>
-//           ) : null}
-//         </div>
-//       </div>
-//       <IconClose className={styles.close} onClick={onClose} />
-//     </div> */}

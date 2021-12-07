@@ -51,9 +51,8 @@ const ModalComponent = (props) => {
       />
       <Modal open={isOpen}
         {...passedProps}
-        className={cx(passedProps.className, styles.modal, darkMode && styles.dark)}
+        className={cx(passedProps.className, styles.modal && styles.dark)}
         hideBackdrop={true}
-        // className={styles.modal}
       >
         <Box className={styles.modal}>
           {withCloseButton ? (

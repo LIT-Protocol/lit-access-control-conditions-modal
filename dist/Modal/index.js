@@ -77,9 +77,8 @@ const ModalComponent = props => {
   }), /*#__PURE__*/_react.default.createElement(_material.Modal, _extends({
     open: isOpen
   }, passedProps, {
-    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal, darkMode && _modalModule.default.dark),
-    hideBackdrop: true // className={styles.modal}
-
+    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal && _modalModule.default.dark),
+    hideBackdrop: true
   }), /*#__PURE__*/_react.default.createElement(_material.Box, {
     className: _modalModule.default.modal
   }, withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
