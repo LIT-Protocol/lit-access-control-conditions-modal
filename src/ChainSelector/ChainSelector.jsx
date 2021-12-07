@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import Select from 'react-select'
 import LitJsSdk from 'lit-js-sdk'
 
