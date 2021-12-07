@@ -65,7 +65,9 @@ const AbleToAccess = props => {
     className: _ableToAccessModule.default.title
   }, "Who should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
     className: _ableToAccessModule.default.types
-  }, ITEMS.map(item => /*#__PURE__*/_react.default.createElement(TypeButton, _extends({}, item, {
+  }, ITEMS.map((item, i) => /*#__PURE__*/_react.default.createElement(TypeButton, _extends({
+    key: i
+  }, item, {
     onClick: setActiveStep
   })))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {

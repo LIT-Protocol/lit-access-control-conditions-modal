@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import LitJsSdk from "lit-js-sdk";
-import { IconClose } from '@consta/uikit/IconClose';
-import { Button } from '@consta/uikit/Button'
 
 import styles from "./select-tokens.module.scss";
 
@@ -10,6 +8,8 @@ import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
 import Navigation from "../../Navigation";
 import TokenSelect from "../../TokenSelect";
+import { Close } from "@mui/icons-material";
+import { IconButton } from '@mui/material';
 
 const SelectTokens = ({
   setActiveStep,
@@ -21,9 +21,10 @@ const SelectTokens = ({
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
 
-  useEffect(() => {
-    console.log('CHECK SELECTED', selectedToken)
-  }, [selectedToken])
+  // useEffect(() => {
+  //   console.log('CHECK SELECTED', selectedToken)
+  //   console.log('CONTRACT ADDRESS', contractAddress)
+  // }, [selectedToken, contractAddress])
 
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
@@ -144,32 +145,6 @@ const SelectTokens = ({
     setActiveStep("accessCreated");
   };
 
-  // const formatOptionLabel = (option, extra) => {
-  //   const { name, logoURI, value } = option
-  //   const { inputValue } = extra
-
-  //   // console.log('option', option)
-  //   // console.log('extra', extra)
-
-  //   if (inputValue) {
-  //     return inputValue
-  //   }
-
-  //   if (value) {
-  //     return value
-  //   }
-
-  //   return (
-  //     <div style={{ display: "flex" }}>
-  //       {logoURI ?
-  //         <img className={styles.selectIcon} src={logoURI} alt="img" />
-  //         : null
-  //       }
-  //       <div>{name}</div>
-  //     </div>
-  //   )
-  // };
-
   return (
     <div>
       <div className={styles.title}>
@@ -199,26 +174,32 @@ const SelectTokens = ({
                 id="amount"
                 autoFocus
                 size="m"
-                handleChange={setContractAddress}
+                handleChange={(v) => setContractAddress(v)}
               />
             )}
-            {!selectedToken && contractAddress && contractAddress.length && (
-              <Button className={styles.clearButton}
-                      iconRight={IconClose}
-                      onlyIcon
-                      size={'s'}
-                      onClick={() => setContractAddress('')}/>
+            {(!selectedToken && !!contractAddress && contractAddress.length) && (
+              <IconButton className={styles.clearButton}
+                          size={'small'}
+                          onClick={() => setContractAddress('')}
+              >
+                <Close/>
+              </IconButton>
+              // <Button className={styles.clearButton}
+              //         iconRight={IconClose}
+              //         onlyIcon
+              //         size={'s'}
+              //         onClick={() => setContractAddress('')}/>
             )}
             {!!selectedToken && !contractAddress && !contractAddress.length && (
               <div className={styles.selectedTokenContainer}>
                 <div className={styles.logo} style={{ backgroundImage: `url(${selectedToken.logo})` ?? undefined }} />
                 <div className={styles.symbol}>{selectedToken.symbol}</div>
-                <Button className={styles.clearButton}
-                        iconRight={IconClose}
-                        onlyIcon
-                        size={'xs'}
-                        onClick={() => setSelectedToken(null)}/>
-
+                <IconButton className={styles.clearButton}
+                            size={'small'}
+                            onClick={() => setSelectedToken(null)}
+                >
+                  <Close/>
+                </IconButton>
               </div>
             )}
           </div>

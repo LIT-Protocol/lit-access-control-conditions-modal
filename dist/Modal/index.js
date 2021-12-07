@@ -15,11 +15,11 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 var _modalModule = _interopRequireDefault(require("./modal.module.scss"));
 
-var _Modal = require("@consta/uikit/Modal");
-
-var _IconClose = require("@consta/uikit/IconClose");
+var _material = require("@mui/material");
 
 var _UnsavedPopup = _interopRequireDefault(require("./UnsavedPopup"));
+
+var _iconsMaterial = require("@mui/icons-material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50,6 +50,7 @@ const ModalComponent = props => {
   const passedProps = _objectSpread({}, props);
 
   delete passedProps.children;
+  delete passedProps.isOpen;
   delete passedProps.withCloseButton;
   delete passedProps.onClose;
   delete passedProps.unsavedPopup;
@@ -67,22 +68,30 @@ const ModalComponent = props => {
     return null;
   }
 
-  return /*#__PURE__*/_react.default.createElement(_Modal.Modal, _extends({}, passedProps, {
-    onOverlayClick: handleClose,
-    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal, darkMode && _modalModule.default.dark)
-  }), showUnsavedPopup ? /*#__PURE__*/_react.default.createElement(_UnsavedPopup.default, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: _modalModule.default.modalContainer
+  }, /*#__PURE__*/_react.default.createElement(_UnsavedPopup.default, {
+    open: showUnsavedPopup,
     onClose: onClose,
     onCancel: () => setShowUnsavedPopup(false)
-  }) : null, withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement(_material.Modal, _extends({
+    open: isOpen
+  }, passedProps, {
+    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal, darkMode && _modalModule.default.dark),
+    hideBackdrop: true // className={styles.modal}
+
+  }), /*#__PURE__*/_react.default.createElement(_material.Box, {
+    className: _modalModule.default.modal
+  }, withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.closeButton
-  }, /*#__PURE__*/_react.default.createElement(_IconClose.IconClose, {
+  }, /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _modalModule.default.icon,
     onClick: handleClose
-  })) : null, /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))) : null, /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.inner
   }, title ? /*#__PURE__*/_react.default.createElement("div", {
     className: _modalModule.default.title
-  }, title) : null, children));
+  }, title) : null, children))));
 };
 
 var _default = ModalComponent;

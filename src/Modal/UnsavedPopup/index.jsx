@@ -1,22 +1,21 @@
 import React from 'react'
 
 import styles from './unsaved-popup.module.scss'
-
-import { Button } from '@consta/uikit/Button'
+import { Button, Modal, Box } from "@mui/material";
 
 const UnsavedPopup = (props) => {
-  const { onClose, onCancel } = props
+  const { onClose, onCancel, open } = props
 
   return (
-    <div className={styles.unsavedPopupWrapper}>
-      <div className={styles.unsavedPopup}>
+    <Modal open={open} className={styles.unsavedPopupWrapper} hideBackdrop={true}>
+      <Box className={styles.unsavedPopup}>
         You have unsaved changes. Are you sure you want to exit?
         <div className={styles.buttons}>
-          <Button size="m" label="No, keep editing" onClick={onCancel} />
-          <Button size="m" label="Yes, exit." view="ghost" onClick={onClose} />
+          <Button variant={'contained'} onClick={onCancel}>No, keep editing</Button>
+          <Button variant={'contained'} color={'grey'} onClick={onClose}>Yes, exit</Button>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Modal>
   )
 }
 

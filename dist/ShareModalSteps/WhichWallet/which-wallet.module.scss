@@ -1,31 +1,31 @@
-//@import "../../style/common.scss";
-//
-//.link {
-//    color: $link;
-//    margin-top: 15px;
-//    cursor: pointer;
-//    transition: all 0.3s;
-//    font-size: 1.1em;
-//    &:hover {
-//        color: $link-hover;
-//    }
-//}
-//
-//.form {
-//    margin-top: 38px;
-//    max-width: 396px;
-//
-//
-//    .select {
-//        margin-top: 27px;
-//    }
-//
-//    .input {
-//        margin-top: 27px;
-//    }
-//
-//    .filedropper {
-//        margin-top: 32px;
-//        width: 203px;
-//    }
-//}
+@import "../../style/common.scss";
+
+.link {
+    color: $link;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1em;
+    &:hover {
+        color: $link-hover;
+    }
+}
+
+.form {
+    margin-top: 38px;
+    max-width: 396px;
+
+
+    .select {
+        //margin-top: 27px;
+    }
+
+    .input {
+        margin-top: 27px;
+    }
+
+    .filedropper {
+        margin-top: 32px;
+        width: 203px;
+    }
+}

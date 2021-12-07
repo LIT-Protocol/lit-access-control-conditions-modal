@@ -22,31 +22,31 @@ label {
     }
 }
 
-:global(.react-select__control){
-    height: 40px;
-    border-color:rgba(0, 66, 105, 0.28);
-
-    &:hover {
-        border-color: var(--color-control-bg-border-default-hover) !important;
-    }
-}
-
-
-:global(.react-select__control--is-focused) {
-    box-shadow: none !important;
-    border-color: var(--color-control-bg-border-focus) !important;
-    outline: none !important;
-}
-
-:global(.react-select__menu-portal) {
-    z-index:100 !important;
-}
-
-:global(.react-select__menu) {
-    color: $primary !important;
-    z-index:9999;
-}
-
-:global(.react-select__single-value) {
-    color: $primary !important;
-}
+//:global(.react-select__control){
+//    height: 40px;
+//    border-color:rgba(0, 66, 105, 0.28);
+//
+//    &:hover {
+//        border-color: var(--color-control-bg-border-default-hover) !important;
+//    }
+//}
+//
+//
+//:global(.react-select__control--is-focused) {
+//    box-shadow: none !important;
+//    border-color: var(--color-control-bg-border-focus) !important;
+//    outline: none !important;
+//}
+//
+//:global(.react-select__menu-portal) {
+//    z-index:100 !important;
+//}
+//
+//:global(.react-select__menu) {
+//    color: $primary !important;
+//    z-index:9999;
+//}
+//
+//:global(.react-select__single-value) {
+//    color: $primary !important;
+//}

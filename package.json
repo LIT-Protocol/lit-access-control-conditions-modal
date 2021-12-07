@@ -1,5 +1,5 @@
 {
-  "name": "lit-access-control-conditions-modal",
+  "name": "lit-access-control-conditions-modal-material-ui",
   "version": "1.1.22",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@consta/uikit": "^3.0.0",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.1",
+    "@mui/material": "^5.2.3",
+    "@mui/styled-engine-sc": "^5.1.0",
     "classnames": "^2.3.1",
     "core-js": "^3.19.1",
     "ethers": "^5.4.7",
@@ -19,7 +23,8 @@
     "react-select-virtualized": "^4.2.0",
     "react-virtualized": "^9.22.3",
     "react-windowed-select": "^3.1.2",
-    "sass": "^1.42.0"
+    "sass": "^1.42.0",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",

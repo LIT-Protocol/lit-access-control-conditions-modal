@@ -13,8 +13,6 @@ var _reactSelectVirtualized = require("react-select-virtualized");
 
 var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
-
 var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
 
 var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));

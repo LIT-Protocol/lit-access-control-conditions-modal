@@ -2,8 +2,6 @@ import React, { useState, useMemo } from "react";
 import { Creatable } from "react-select-virtualized";
 import styles from "../share-modal.module.scss";
 
-import { Button } from "@consta/uikit/Button";
-
 import InputWrapper from "../InputWrapper/InputWrapper";
 import ChainSelector from "../ChainSelector/ChainSelector";
 import Navigation from "../Navigation";

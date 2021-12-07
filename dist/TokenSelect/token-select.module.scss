@@ -1,8 +1,13 @@
-.modal {
-    max-width: 515px !important;
+.topButton {
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
 
+}
+
+.modal {
     .modalInner {
         padding: 25px 38px;
+        width: 400px;
 
         label {
             color: #2C0C72;
