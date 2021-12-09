@@ -140,11 +140,10 @@ const ShareModal = (props) => {
     <div>
       <Dialog open={true}
               onClose={onClose}
-              class={styles.shareModalAnchor}
               maxWidth={'l'}
       >
         <DialogTitle className={styles.shareModalTitle}>
-          <h4>{title}</h4>
+          <span>{title}</span>
           <IconButton className={styles.icon} onClick={handleClose} >
             <Close/>
           </IconButton>

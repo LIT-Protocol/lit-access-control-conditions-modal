@@ -32,7 +32,7 @@ const SelectTokens = ({
     if (contractAddress && contractAddress.length) {
       const accessControlConditions = [
         {
-          contractAddress: "",
+          contractAddress: contractAddress,
           standardContractType: "",
           chain: chain.value,
           method: "balanceOf",
@@ -43,6 +43,7 @@ const SelectTokens = ({
           },
         },
       ];
+      console.log('accessControlConditions contract', accessControlConditions)
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
@@ -60,6 +61,7 @@ const SelectTokens = ({
           },
         },
       ];
+      console.log('accessControlConditions token', accessControlConditions)
       onAccessControlConditionsSelected(accessControlConditions);
     } else {
       console.log("selectedToken", selectedToken);
@@ -103,6 +105,7 @@ const SelectTokens = ({
             },
           },
         ];
+        console.log('accessControlConditions typeerc721', accessControlConditions)
         onAccessControlConditionsSelected(accessControlConditions);
       } else {
         // erc20 token
@@ -139,6 +142,7 @@ const SelectTokens = ({
             },
           },
         ];
+        console.log('accessControlConditions else', accessControlConditions)
         onAccessControlConditionsSelected(accessControlConditions);
       }
     }

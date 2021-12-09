@@ -141,11 +141,10 @@ const ShareModal = props => {
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_material.Dialog, {
     open: true,
     onClose: onClose,
-    class: _shareModalModule.default.shareModalAnchor,
     maxWidth: 'l'
   }, /*#__PURE__*/_react.default.createElement(_material.DialogTitle, {
     className: _shareModalModule.default.shareModalTitle
-  }, /*#__PURE__*/_react.default.createElement("h4", null, title), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
+  }, /*#__PURE__*/_react.default.createElement("span", null, title), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _shareModalModule.default.icon,
     onClick: handleClose
   }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))), /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
