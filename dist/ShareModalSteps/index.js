@@ -70,7 +70,7 @@ var _AbleToAccess = _interopRequireDefault(require("./AbleToAccess"));
 
 var _WhichWallet = _interopRequireDefault(require("./WhichWallet"));
 
-var _AssetWallet = _interopRequireDefault(require("./AssetWallet"));
+var _AssetWallet = _interopRequireDefault(require("./AssetWallet/AssetWallet"));
 
 var _DAOMembers = _interopRequireDefault(require("./DAOMembers"));
 

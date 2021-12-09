@@ -1,0 +1,30 @@
+@import "style/common";
+
+.link {
+  color: $link;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.1em;
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+.form {
+  margin-top: 1rem;
+
+
+  .select {
+    //margin-bottom: 1rem;
+  }
+
+  .input {
+    margin-top: 1rem;
+  }
+
+  .filedropper {
+    margin-top: 1rem;
+    width: 203px;
+  }
+}

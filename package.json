@@ -1,5 +1,5 @@
 {
-  "name": "lit-access-control-conditions-modal-material-ui",
+  "name": "lit-access-control-conditions-modal",
   "version": "1.1.22",
   "main": "dist/index.js",
   "module": "dist/index.js",
