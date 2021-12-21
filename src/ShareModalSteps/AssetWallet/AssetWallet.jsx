@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { Creatable } from "react-select-virtualized";
-import styles from "../share-modal.module.scss";
+// import styles from "../../share-modal.module.scss";
+import styles from './asset-wallet.module.scss';
 
-import { Button } from "@consta/uikit/Button";
-
-import InputWrapper from "../InputWrapper/InputWrapper";
-import ChainSelector from "../ChainSelector/ChainSelector";
-import Navigation from "../Navigation";
+import InputWrapper from "../../InputWrapper/InputWrapper";
+import ChainSelector from "../../ChainSelector/ChainSelector";
+import Navigation from "../../Navigation";
 
 const AssetWallet = ({
   setActiveStep,
@@ -54,13 +53,13 @@ const AssetWallet = ({
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
-          <span className={styles.label}>Select blockchain</span>
+          <label className={styles.label}>Select blockchain</label>
           <ChainSelector chain={chain} setChain={setChain} />
         </div>
         <div className={styles.select}>
-          <span className={styles.label}>
+          <label className={styles.label}>
             Select token or enter contract address
-          </span>
+          </label>
           <Creatable
             isClearable
             isSearchable

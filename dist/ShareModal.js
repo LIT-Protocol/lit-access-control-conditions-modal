@@ -15,17 +15,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _shareModalModule = _interopRequireDefault(require("./share-modal.module.scss"));
 
-var _IconDocFilled = require("@consta/uikit/IconDocFilled");
-
-var _SnackBar = require("@consta/uikit/SnackBar");
-
-var _Informer = require("@consta/uikit/Informer");
-
-var _Modal = _interopRequireDefault(require("./Modal"));
+var _material = require("@mui/material");
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
 var _ShareModalSteps = require("./ShareModalSteps");
+
+var _UnsavedPopup = _interopRequireDefault(require("./Modal/UnsavedPopup"));
+
+var _iconsMaterial = require("@mui/icons-material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49,8 +47,6 @@ const ModalComponents = {
 };
 
 const ShareModal = props => {
-  var _ref;
-
   const {
     onClose = () => false,
     onBack = () => false,
@@ -68,6 +64,8 @@ const ShareModal = props => {
   const [tokenList, setTokenList] = (0, _react.useState)([]);
   const [requirementCreated, setRequirementCreated] = (0, _react.useState)(false);
   const [error, setError] = (0, _react.useState)(null);
+  const [openErrorSnackbar, setOpenErrorSnackbar] = (0, _react.useState)(null);
+  const [showUnsavedPopup, setShowUnsavedPopup] = (0, _react.useState)(false);
   (0, _react.useEffect)(() => {
     const go = async () => {
       // get token list and cache it
@@ -76,7 +74,15 @@ const ShareModal = props => {
     };
 
     go();
-  }, []); // console.log('accessControlConditions', accessControlConditions)
+  }, []); // useEffect(() => {
+  //   if (activeStep !== "accessCreated") {
+  //     setShowUnsavedPopup(true);
+  //   }
+  // }, [activeStep])
+
+  (0, _react.useEffect)(() => {
+    setOpenErrorSnackbar(true);
+  }, [error]); // console.log('accessControlConditions', accessControlConditions)
 
   const copyToClipboard = async () => {
     const fileUrl = getSharingLink(sharingItems[0]);
@@ -114,39 +120,60 @@ const ShareModal = props => {
   }; // const title = sharingItems.length > 1 ? `${sharingItems.length} Files` : sharingItems?.[0]?.name ?? '';
 
 
-  const title = sharingItems.length > 1 ? "".concat(sharingItems.length, " Files") : (_ref = "".concat(sharingItems.length, " File")) !== null && _ref !== void 0 ? _ref : '';
-  return /*#__PURE__*/_react.default.createElement(_Modal.default, {
-    className: _shareModalModule.default.modal,
-    isOpen: true,
-    hasOverlay: true,
-    title: title,
-    unsavedPopup: activeStep !== 'accessCreated',
-    onClose: onClose
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.fileModal
+  let title = "";
+
+  if (sharingItems.length > 0) {
+    var _ref;
+
+    title = sharingItems.length > 1 ? "".concat(sharingItems.length, " Files") : (_ref = "".concat(sharingItems.length, " File")) !== null && _ref !== void 0 ? _ref : "";
+  }
+
+  const handleClose = () => {
+    console.log('HANDLE CLOSE', activeStep);
+
+    if (activeStep !== "accessCreated") {
+      setShowUnsavedPopup(true);
+    } else {
+      onClose();
+    }
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_material.Dialog, {
+    open: true,
+    onClose: onClose,
+    maxWidth: 'l'
+  }, /*#__PURE__*/_react.default.createElement(_material.DialogTitle, {
+    className: _shareModalModule.default.shareModalTitle
+  }, /*#__PURE__*/_react.default.createElement("span", null, title), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
+    className: _shareModalModule.default.icon,
+    onClick: handleClose
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))), /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
+    id: _shareModalModule.default.shareModalContainer
   }, error ? /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.error
   }, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       height: 24
     }
-  }), /*#__PURE__*/_react.default.createElement(_Informer.Informer, {
-    status: "alert",
-    view: "filled",
-    title: error.title,
-    label: error.details
-  })) : null, /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement(_material.Snackbar, {
+    open: openErrorSnackbar,
+    autoHideDuration: 5000
+  }, /*#__PURE__*/_react.default.createElement(_material.Alert, {
+    severity: 'error'
+  }, error.title, " - ", error.details))) : null, /*#__PURE__*/_react.default.createElement("div", {
     className: _shareModalModule.default.body
   }, /*#__PURE__*/_react.default.createElement(ModalComponent, {
     type: activeStep,
     setActiveStep: setActiveStep
-  }), showingSnackbar ? /*#__PURE__*/_react.default.createElement(_SnackBar.SnackBar, {
-    styles: _shareModalModule.default.snackbar,
-    items: [{
-      key: 1,
-      message: "Copied!"
-    }]
-  }) : null)));
+  }), /*#__PURE__*/_react.default.createElement(_material.Snackbar, {
+    open: showingSnackbar,
+    autoHideDuration: 3000,
+    message: 'Copied!'
+  })), /*#__PURE__*/_react.default.createElement(_UnsavedPopup.default, {
+    open: showUnsavedPopup,
+    onClose: onClose,
+    onCancel: () => setShowUnsavedPopup(false)
+  }))));
 };
 
 var _default = ShareModal;

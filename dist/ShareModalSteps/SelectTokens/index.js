@@ -17,10 +17,6 @@ var _ethers = require("ethers");
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
-var _IconClose = require("@consta/uikit/IconClose");
-
-var _Button = require("@consta/uikit/Button");
-
 var _selectTokensModule = _interopRequireDefault(require("./select-tokens.module.scss"));
 
 var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
@@ -30,6 +26,10 @@ var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSe
 var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 var _TokenSelect = _interopRequireDefault(require("../../TokenSelect"));
+
+var _iconsMaterial = require("@mui/icons-material");
+
+var _material = require("@mui/material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48,17 +48,17 @@ const SelectTokens = _ref => {
   const [amount, setAmount] = (0, _react.useState)("");
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
-  const [chain, setChain] = (0, _react.useState)(null);
-  (0, _react.useEffect)(() => {
-    console.log('CHECK SELECTED', selectedToken);
-  }, [selectedToken]);
+  const [chain, setChain] = (0, _react.useState)(null); // useEffect(() => {
+  //   console.log('CHECK SELECTED', selectedToken)
+  //   console.log('CONTRACT ADDRESS', contractAddress)
+  // }, [selectedToken, contractAddress])
 
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
     if (contractAddress && contractAddress.length) {
       const accessControlConditions = [{
-        contractAddress: "",
+        contractAddress: contractAddress,
         standardContractType: "",
         chain: chain.value,
         method: "balanceOf",
@@ -68,6 +68,7 @@ const SelectTokens = _ref => {
           value: amount.toString()
         }
       }];
+      console.log('accessControlConditions contract', accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
@@ -84,6 +85,7 @@ const SelectTokens = _ref => {
           value: amountInWei.toString()
         }
       }];
+      console.log('accessControlConditions token', accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else {
       var _selectedToken$standa;
@@ -129,6 +131,7 @@ const SelectTokens = _ref => {
             value: amount.toString()
           }
         }];
+        console.log('accessControlConditions typeerc721', accessControlConditions);
         onAccessControlConditionsSelected(accessControlConditions);
       } else {
         // erc20 token
@@ -164,33 +167,13 @@ const SelectTokens = _ref => {
             value: amountInBaseUnit.toString()
           }
         }];
+        console.log('accessControlConditions else', accessControlConditions);
         onAccessControlConditionsSelected(accessControlConditions);
       }
     }
 
     setActiveStep("accessCreated");
-  }; // const formatOptionLabel = (option, extra) => {
-  //   const { name, logoURI, value } = option
-  //   const { inputValue } = extra
-  //   // console.log('option', option)
-  //   // console.log('extra', extra)
-  //   if (inputValue) {
-  //     return inputValue
-  //   }
-  //   if (value) {
-  //     return value
-  //   }
-  //   return (
-  //     <div style={{ display: "flex" }}>
-  //       {logoURI ?
-  //         <img className={styles.selectIcon} src={logoURI} alt="img" />
-  //         : null
-  //       }
-  //       <div>{name}</div>
-  //     </div>
-  //   )
-  // };
-
+  };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.title
@@ -222,14 +205,17 @@ const SelectTokens = _ref => {
     id: "amount",
     autoFocus: true,
     size: "m",
-    handleChange: setContractAddress
-  }), !selectedToken && contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement(_Button.Button, {
+    handleChange: v => setContractAddress(v)
+  }), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _selectTokensModule.default.clearButton,
-    iconRight: _IconClose.IconClose,
-    onlyIcon: true,
-    size: 's',
+    size: 'small',
     onClick: () => setContractAddress('')
-  }), !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null)) // <Button className={styles.clearButton}
+  //         iconRight={IconClose}
+  //         onlyIcon
+  //         size={'s'}
+  //         onClick={() => setContractAddress('')}/>
+  , !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.selectedTokenContainer
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.logo,
@@ -238,13 +224,11 @@ const SelectTokens = _ref => {
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.symbol
-  }, selectedToken.symbol), /*#__PURE__*/_react.default.createElement(_Button.Button, {
+  }, selectedToken.symbol), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _selectTokensModule.default.clearButton,
-    iconRight: _IconClose.IconClose,
-    onlyIcon: true,
-    size: 'xs',
+    size: 'small',
     onClick: () => setSelectedToken(null)
-  })))), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))))), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,

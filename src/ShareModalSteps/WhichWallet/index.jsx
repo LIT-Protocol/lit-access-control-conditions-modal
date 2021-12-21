@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LitJsSdk from "lit-js-sdk";
-// import styles from "./which-wallet.module.scss";
-import styles from "../../share-modal.module.scss";
+import styles from "./which-wallet.module.scss";
+// import styles from "../../share-modal.module.scss";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
@@ -60,7 +60,7 @@ const WhichWallet = ({
       </div>
       <div className={styles.form}>
         <div className={styles.select}>
-          <label>Select blockchain</label>
+          <label className={styles.label}>Select blockchain</label>
           <ChainSelector chain={chain} setChain={setChain} />
         </div>
         <InputWrapper

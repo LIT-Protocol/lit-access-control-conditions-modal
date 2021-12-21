@@ -1,20 +1,20 @@
 @import "../../style/common.scss";
 
 .form {
-    margin-top: 38px;
-    max-width: 396px;
+    margin-top: 1rem;
 
     .select {
-        margin-top: 27px;
+        margin-top: 1rem;
     }
 
     .input {
-        margin-top: 34px;
+        margin-top: 1rem;
     }
 }
 
 .info {
-    margin-top: 48px;
+    margin-top: 1.7rem;
+    margin-bottom: 0;
     font-size: 14px;
     line-height: 150%;
     color: $primary;

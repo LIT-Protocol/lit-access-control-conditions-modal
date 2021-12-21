@@ -11,15 +11,13 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactSelectVirtualized = require("react-select-virtualized");
 
-var _shareModalModule = _interopRequireDefault(require("../share-modal.module.scss"));
+var _assetWalletModule = _interopRequireDefault(require("./asset-wallet.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
 
-var _InputWrapper = _interopRequireDefault(require("../InputWrapper/InputWrapper"));
+var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
 
-var _ChainSelector = _interopRequireDefault(require("../ChainSelector/ChainSelector"));
-
-var _Navigation = _interopRequireDefault(require("../Navigation"));
+var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,6 +25,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+// import styles from "../../share-modal.module.scss";
 const AssetWallet = _ref => {
   let {
     setActiveStep,
@@ -64,23 +63,23 @@ const AssetWallet = _ref => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.titles
+    className: _assetWalletModule.default.titles
   }, /*#__PURE__*/_react.default.createElement("h4", null, "Which asset does a wallet need to own to access this?"), /*#__PURE__*/_react.default.createElement("a", {
-    className: _shareModalModule.default.link,
+    className: _assetWalletModule.default.link,
     onClick: () => setActiveStep("whichWallet")
   }, "Grant Access to Wallet or Blockchain Domain")), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.form
+    className: _assetWalletModule.default.form
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
+    className: _assetWalletModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    className: _assetWalletModule.default.label
   }, "Select blockchain"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
   })), /*#__PURE__*/_react.default.createElement("div", {
-    className: _shareModalModule.default.select
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: _shareModalModule.default.label
+    className: _assetWalletModule.default.select
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    className: _assetWalletModule.default.label
   }, "Select token or enter contract address"), /*#__PURE__*/_react.default.createElement(_reactSelectVirtualized.Creatable, {
     isClearable: true,
     isSearchable: true,
@@ -89,7 +88,7 @@ const AssetWallet = _ref => {
     onChange: value => setSelectedToken(value)
   })), /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: tokenId,
-    className: _shareModalModule.default.input,
+    className: _assetWalletModule.default.input,
     label: "Add Token ID",
     id: "tokenId",
     size: "m",

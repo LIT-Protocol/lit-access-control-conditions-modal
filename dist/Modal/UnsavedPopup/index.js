@@ -9,31 +9,32 @@ var _react = _interopRequireDefault(require("react"));
 
 var _unsavedPopupModule = _interopRequireDefault(require("./unsaved-popup.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _material = require("@mui/material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const UnsavedPopup = props => {
   const {
     onClose,
-    onCancel
+    onCancel,
+    open
   } = props;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: _unsavedPopupModule.default.unsavedPopupWrapper
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_material.Modal, {
+    open: open,
+    className: _unsavedPopupModule.default.unsavedPopupWrapper,
+    hideBackdrop: true
+  }, /*#__PURE__*/_react.default.createElement(_material.Box, {
     className: _unsavedPopupModule.default.unsavedPopup
   }, "You have unsaved changes. Are you sure you want to exit?", /*#__PURE__*/_react.default.createElement("div", {
     className: _unsavedPopupModule.default.buttons
-  }, /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    size: "m",
-    label: "No, keep editing",
+  }, /*#__PURE__*/_react.default.createElement(_material.Button, {
+    variant: 'contained',
     onClick: onCancel
-  }), /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    size: "m",
-    label: "Yes, exit.",
-    view: "ghost",
+  }, "No, keep editing"), /*#__PURE__*/_react.default.createElement(_material.Button, {
+    variant: 'contained',
+    color: 'grey',
     onClick: onClose
-  }))));
+  }, "Yes, exit"))));
 };
 
 var _default = UnsavedPopup;
