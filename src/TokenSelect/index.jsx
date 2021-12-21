@@ -4,9 +4,9 @@ import Creatable from 'react-select/creatable'
 
 import styles from './token-select.module.scss'
 
-import { Button } from "@consta/uikit/Button"
+import { Button, Dialog, DialogContent, Modal } from "@mui/material"
 
-import Modal from '../Modal'
+// import Modal from '../Modal'
 
 const Option = ({ children, data: { label, logo, symbol }, ...props }) => {
     const { onMouseMove, onMouseOver, ...rest } = props.innerProps;
@@ -73,6 +73,8 @@ const TokenSelect = (props) => {
         setModalIsOpen(false)
     }
 
+    console.log('DOCU', document.body)
+
     const checkForSelected = (token) => {
       if (token
         && token['symbol']
@@ -85,22 +87,22 @@ const TokenSelect = (props) => {
     }
 
     return (
-        <>
-            <Button
-                view="clear"
-                label="Search for a token/NFT"
-                onClick={() => setModalIsOpen(true)}
-            />
+        <div>
+          <Button size={'large'}
+                  className={styles.topButton}
+                  variant={'outlined'}
+                  onClick={() => setModalIsOpen(true)}>
+            Search for a token/NFT
+          </Button>
 
-            <Modal
+            <Dialog
                 className={styles.modal}
-                darkMode
-                isOpen={modalIsOpen}
-                hasOverlay
+                open={modalIsOpen}
                 title="Select a token"
                 onClose={() => setModalIsOpen(false)}
+                maxWidth={'lg'}
             >
-                <div className={styles.modalInner}>
+                <DialogContent className={styles.modalInner}>
                     <div>
                         <label>Top Tokens/NFTS</label>
                         <div className={styles.topTokens}>
@@ -128,21 +130,23 @@ const TokenSelect = (props) => {
                             isSearchable
                             defaultValue={''}
                             options={tokenSelectBoxRows}
+                            styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999})}}
                             menuPortalTarget={document.body}
                             onChange={setSelectedToken}
                         />
                     </div>
 
-                    <Button
-                        className={styles.button}
-                        label="Select"
-                        size="l"
-                        disabled={!selectedToken}
-                        onClick={handleSelect}
-                    />
-                </div>
-            </Modal>
-        </>
+                  <Button variation={'contained'}
+                          className={styles.button}
+                          size={'large'}
+                          disabled={!selectedToken}
+                          onClick={handleSelect}
+                  >
+                    Select
+                  </Button>
+                </DialogContent>
+            </Dialog>
+        </div>
     )
 }
 

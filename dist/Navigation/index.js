@@ -9,11 +9,9 @@ var _react = _interopRequireDefault(require("react"));
 
 var _navigationModule = _interopRequireDefault(require("./navigation.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
+var _material = require("@mui/material");
 
-var _IconBackward = require("@consta/uikit/IconBackward");
-
-var _IconForward = require("@consta/uikit/IconForward");
+var _iconsMaterial = require("@mui/icons-material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,19 +24,18 @@ const Navigation = props => {
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", {
     className: _navigationModule.default.navigation
-  }, backward ? /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: (_backward$label = backward === null || backward === void 0 ? void 0 : backward.label) !== null && _backward$label !== void 0 ? _backward$label : 'Back',
-    size: "l",
-    view: "secondary",
-    iconLeft: _IconBackward.IconBackward,
-    onClick: backward.onClick
-  }) : null, forward ? /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    label: (_forward$label = forward.label) !== null && _forward$label !== void 0 ? _forward$label : 'Next',
-    size: "l",
+  }, backward ? /*#__PURE__*/_react.default.createElement(_material.Button, {
+    variant: 'outlined',
+    onClick: backward.onClick,
+    size: 'large',
+    startIcon: /*#__PURE__*/_react.default.createElement(_iconsMaterial.ArrowBack, null)
+  }, (_backward$label = backward === null || backward === void 0 ? void 0 : backward.label) !== null && _backward$label !== void 0 ? _backward$label : 'Back') : null, forward ? /*#__PURE__*/_react.default.createElement(_material.Button, {
+    onClick: forward.onClick,
+    variant: 'contained',
+    size: 'large',
     disabled: forward.disabled,
-    iconRight: !forward.withoutIcon ? _IconForward.IconForward : undefined,
-    onClick: forward.onClick
-  }) : null);
+    endIcon: /*#__PURE__*/_react.default.createElement(_iconsMaterial.ArrowForward, null)
+  }, (_forward$label = forward.label) !== null && _forward$label !== void 0 ? _forward$label : 'Next') : null);
 };
 
 var _default = Navigation;

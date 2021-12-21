@@ -3,8 +3,8 @@ import cx from 'classnames'
 
 import styles from './input-wrapper.module.scss'
 
-import { TextField } from '@consta/uikit/TextField'
-import { IconClose } from '@consta/uikit/IconClose'
+import { IconButton, TextField } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const InputWrapper = ({
   type = 'text',
@@ -35,7 +35,9 @@ const InputWrapper = ({
       {label && <label htmlFor={id}>{label}</label>}
       <div>
         {clearable && (
-          <IconClose size="s" className={styles.clearable} onClick={onClear} />
+          <IconButton size="s" className={styles.clearable} onClick={onClear} >
+            <Close/>
+          </IconButton>
         )}
         <TextField
           readOnly={readOnly}
@@ -43,12 +45,10 @@ const InputWrapper = ({
           id={id}
           state={getState()}
           value={value}
-          onChange={({ value }) => handleChange(value)}
+          onChange={(event) => handleChange(event.target.value)}
           autoFocus={autoFocus}
           placeholder={placeholder}
-          rightSide={rightSide}
           size={size}
-          leftSide={leftSide}
         />
       </div>
       {error && <span className={styles.error}>{error}</span>}

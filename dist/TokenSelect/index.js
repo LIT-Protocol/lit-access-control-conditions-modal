@@ -21,9 +21,7 @@ var _creatable = _interopRequireDefault(require("react-select/creatable"));
 
 var _tokenSelectModule = _interopRequireDefault(require("./token-select.module.scss"));
 
-var _Button = require("@consta/uikit/Button");
-
-var _Modal = _interopRequireDefault(require("../Modal"));
+var _material = require("@mui/material");
 
 const _excluded = ["children", "data"],
       _excluded2 = ["onMouseMove", "onMouseOver"];
@@ -34,12 +32,19 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+// import Modal from '../Modal'
 const Option = _ref => {
   let {
     children,
@@ -119,6 +124,8 @@ const TokenSelect = props => {
     setModalIsOpen(false);
   };
 
+  console.log('DOCU', document.body);
+
   const checkForSelected = token => {
     if (token && token['symbol'] && selectedToken && token['symbol'] === selectedToken['symbol']) {
       return _tokenSelectModule.default.selected;
@@ -127,18 +134,18 @@ const TokenSelect = props => {
     }
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Button.Button, {
-    view: "clear",
-    label: "Search for a token/NFT",
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_material.Button, {
+    size: 'large',
+    className: _tokenSelectModule.default.topButton,
+    variant: 'outlined',
     onClick: () => setModalIsOpen(true)
-  }), /*#__PURE__*/_react.default.createElement(_Modal.default, {
+  }, "Search for a token/NFT"), /*#__PURE__*/_react.default.createElement(_material.Dialog, {
     className: _tokenSelectModule.default.modal,
-    darkMode: true,
-    isOpen: modalIsOpen,
-    hasOverlay: true,
+    open: modalIsOpen,
     title: "Select a token",
-    onClose: () => setModalIsOpen(false)
-  }, /*#__PURE__*/_react.default.createElement("div", {
+    onClose: () => setModalIsOpen(false),
+    maxWidth: 'lg'
+  }, /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
     className: _tokenSelectModule.default.modalInner
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Top Tokens/NFTS"), /*#__PURE__*/_react.default.createElement("div", {
     className: _tokenSelectModule.default.topTokens
@@ -170,15 +177,20 @@ const TokenSelect = props => {
     isSearchable: true,
     defaultValue: '',
     options: tokenSelectBoxRows,
+    styles: {
+      menuPortal: base => _objectSpread(_objectSpread({}, base), {}, {
+        zIndex: 9999
+      })
+    },
     menuPortalTarget: document.body,
     onChange: setSelectedToken
-  })), /*#__PURE__*/_react.default.createElement(_Button.Button, {
+  })), /*#__PURE__*/_react.default.createElement(_material.Button, {
+    variation: 'contained',
     className: _tokenSelectModule.default.button,
-    label: "Select",
-    size: "l",
+    size: 'large',
     disabled: !selectedToken,
     onClick: handleSelect
-  }))));
+  }, "Select"))));
 };
 
 var _default = TokenSelect;

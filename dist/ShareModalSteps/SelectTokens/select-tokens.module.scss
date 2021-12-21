@@ -10,18 +10,14 @@
 }
 
 .form {
-    margin-top: 38px;
-
-    .inputMaxWidth {
-        max-width: 396px;
-    }
+    margin-top: 1rem;
 
     .select {
-        margin-top: 27px;
+        margin-top: 1rem;
     }
 
     .input {
-        margin-top: 27px;
+        margin-top: 1rem;
     }
 
     .tokenOrContractAddress {
@@ -67,8 +63,7 @@
             align-items: center;
             border: 1.25px solid #2C0C72;
             border-radius: 5px;
-            margin-right: 8px;
-            margin-top: 10px;
+            margin: 0.57rem 8px 0.58rem 0;
             cursor: pointer;
             animation-name: fadein;
             animation-duration: 0.25s;
