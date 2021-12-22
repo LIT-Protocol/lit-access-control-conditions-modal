@@ -26,9 +26,9 @@ const ChainSelector = _ref => {
   } = _ref;
   // default is eth
   (0, _react.useEffect)(() => setChain({
-    label: 'Ethereum',
-    id: 'ethereum',
-    value: 'ethereum'
+    label: "Ethereum",
+    id: "ethereum",
+    value: "ethereum"
   }), []);
   const chainOptions = (0, _react.useMemo)(() => Object.keys(_litJsSdk.default.LIT_CHAINS).map(item => {
     return {
@@ -42,8 +42,8 @@ const ChainSelector = _ref => {
     placeholder: "Select a blockchain",
     isClearable: true,
     options: chainOptions,
-    value: chain,
-    menuPortalTarget: document.body,
+    value: chain // menuPortalTarget={document.body}
+    ,
     onChange: value => setChain(value)
   });
 };

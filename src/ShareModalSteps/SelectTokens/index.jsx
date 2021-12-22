@@ -23,6 +23,7 @@ const SelectTokens = ({
   const [selectedToken, setSelectedToken] = useState(null);
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
+  const [contractType, setContractType] = useState("ERC721");
 
   // useEffect(() => {
   //   console.log('CHECK SELECTED', selectedToken)
@@ -36,7 +37,7 @@ const SelectTokens = ({
       const accessControlConditions = [
         {
           contractAddress: contractAddress,
-          standardContractType: "",
+          standardContractType: contractType,
           chain: chain.value,
           method: "balanceOf",
           parameters: [":userAddress"],
@@ -155,6 +156,12 @@ const SelectTokens = ({
     setActiveStep("accessCreated");
   };
 
+  const handleChangeContractType = (event) => {
+    setContractType(event.target.checked ? "ERC721" : "ERC20");
+  };
+
+  console.log("chain", chain);
+
   return (
     <div>
       <div className={styles.title}>
@@ -227,7 +234,10 @@ const SelectTokens = ({
 
             <Stack direction="row" spacing={1} alignItems="center">
               <Typography>ERC20</Typography>
-              <Switch defaultChecked />
+              <Switch
+                checked={contractType === "ERC721"}
+                onChange={handleChangeContractType}
+              />
               <Typography>ERC721 (NFT)</Typography>
             </Stack>
           </div>

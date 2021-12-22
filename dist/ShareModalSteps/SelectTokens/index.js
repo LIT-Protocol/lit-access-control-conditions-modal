@@ -54,7 +54,8 @@ const SelectTokens = _ref => {
   const [amount, setAmount] = (0, _react.useState)("");
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
-  const [chain, setChain] = (0, _react.useState)(null); // useEffect(() => {
+  const [chain, setChain] = (0, _react.useState)(null);
+  const [contractType, setContractType] = (0, _react.useState)("ERC721"); // useEffect(() => {
   //   console.log('CHECK SELECTED', selectedToken)
   //   console.log('CONTRACT ADDRESS', contractAddress)
   // }, [selectedToken, contractAddress])
@@ -65,7 +66,7 @@ const SelectTokens = _ref => {
     if (contractAddress && contractAddress.length) {
       const accessControlConditions = [{
         contractAddress: contractAddress,
-        standardContractType: "",
+        standardContractType: contractType,
         chain: chain.value,
         method: "balanceOf",
         parameters: [":userAddress"],
@@ -181,6 +182,11 @@ const SelectTokens = _ref => {
     setActiveStep("accessCreated");
   };
 
+  const handleChangeContractType = event => {
+    setContractType(event.target.checked ? "ERC721" : "ERC20");
+  };
+
+  console.log("chain", chain);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.title
   }, "Which wallet should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
@@ -236,7 +242,8 @@ const SelectTokens = _ref => {
     spacing: 1,
     alignItems: "center"
   }, /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC20"), /*#__PURE__*/_react.default.createElement(_Switch.default, {
-    defaultChecked: true
+    checked: contractType === "ERC721",
+    onChange: handleChangeContractType
   }), /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC721 (NFT)"))), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
