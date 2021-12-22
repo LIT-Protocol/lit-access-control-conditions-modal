@@ -86,15 +86,22 @@ const Option = _ref => {
 };
 
 const TOP_LIST = [{
-  label: 'Ethereum',
-  value: 'ethereum',
-  symbol: 'ETH',
-  logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'
+  label: "Ethereum",
+  value: "ethereum",
+  symbol: "ETH",
+  logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg"
 }, {
-  label: 'Art Blocks',
+  label: "Lit Genesis Gate",
+  logo: "https://litgateway.com/favicon.png",
+  address: "0x059edd72cd353df5106d2b9cc5ab83a52287ac3a",
+  symbol: "LITGATE",
+  standard: "ERC721"
+}, {
+  label: "Art Blocks",
   logo: "https://lh3.googleusercontent.com/sdPql8yt3eT5qmQfbCoU8a1I6aMNsqQEj6D1fMTuw101XKILNmzp7QVsdkGff2T39MgcHT-Aha18cWBqjCdhzRWzBw=s120",
   address: "0x059edd72cd353df5106d2b9cc5ab83a52287ac3a",
-  symbol: 'BLOCKS'
+  symbol: "BLOCKS",
+  standard: "ERC721"
 }];
 
 const TokenSelect = props => {
@@ -106,10 +113,10 @@ const TokenSelect = props => {
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const tokenSelectBoxRows = (0, _react.useMemo)(() => {
     return [{
-      label: 'Ethereum',
-      value: 'ethereum',
-      symbol: 'ETH',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'
+      label: "Ethereum",
+      value: "ethereum",
+      symbol: "ETH",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg"
     }, ...tokenList.map(t => ({
       label: t.name,
       value: t.address,
@@ -124,10 +131,10 @@ const TokenSelect = props => {
     setModalIsOpen(false);
   };
 
-  console.log('DOCU', document.body);
+  console.log("DOCU", document.body);
 
   const checkForSelected = token => {
-    if (token && token['symbol'] && selectedToken && token['symbol'] === selectedToken['symbol']) {
+    if (token && token["symbol"] && selectedToken && token["symbol"] === selectedToken["symbol"]) {
       return _tokenSelectModule.default.selected;
     } else {
       return _tokenSelectModule.default.notSelected;
@@ -135,16 +142,16 @@ const TokenSelect = props => {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_material.Button, {
-    size: 'large',
+    size: "large",
     className: _tokenSelectModule.default.topButton,
-    variant: 'outlined',
+    variant: "outlined",
     onClick: () => setModalIsOpen(true)
   }, "Search for a token/NFT"), /*#__PURE__*/_react.default.createElement(_material.Dialog, {
     className: _tokenSelectModule.default.modal,
     open: modalIsOpen,
     title: "Select a token",
     onClose: () => setModalIsOpen(false),
-    maxWidth: 'lg'
+    maxWidth: "lg"
   }, /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
     className: _tokenSelectModule.default.modalInner
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Top Tokens/NFTS"), /*#__PURE__*/_react.default.createElement("div", {
@@ -175,7 +182,7 @@ const TokenSelect = props => {
     },
     isClearable: true,
     isSearchable: true,
-    defaultValue: '',
+    defaultValue: "",
     options: tokenSelectBoxRows,
     styles: {
       menuPortal: base => _objectSpread(_objectSpread({}, base), {}, {
@@ -185,9 +192,9 @@ const TokenSelect = props => {
     menuPortalTarget: document.body,
     onChange: setSelectedToken
   })), /*#__PURE__*/_react.default.createElement(_material.Button, {
-    variation: 'contained',
+    variation: "contained",
     className: _tokenSelectModule.default.button,
-    size: 'large',
+    size: "large",
     disabled: !selectedToken,
     onClick: handleSelect
   }, "Select"))));

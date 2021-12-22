@@ -12,7 +12,7 @@
     "@babel/polyfill": "^7.12.1",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.2.1",
+    "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.3",
     "@mui/styled-engine-sc": "^5.1.0",
     "classnames": "^2.3.1",
