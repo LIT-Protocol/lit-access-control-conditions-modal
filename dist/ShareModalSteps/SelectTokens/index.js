@@ -31,6 +31,12 @@ var _iconsMaterial = require("@mui/icons-material");
 
 var _material = require("@mui/material");
 
+var _Switch = _interopRequireDefault(require("@mui/material/Switch"));
+
+var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
+
+var _Stack = _interopRequireDefault(require("@mui/material/Stack"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -68,7 +74,7 @@ const SelectTokens = _ref => {
           value: amount.toString()
         }
       }];
-      console.log('accessControlConditions contract', accessControlConditions);
+      console.log("accessControlConditions contract", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
@@ -85,7 +91,7 @@ const SelectTokens = _ref => {
           value: amountInWei.toString()
         }
       }];
-      console.log('accessControlConditions token', accessControlConditions);
+      console.log("accessControlConditions token", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else {
       var _selectedToken$standa;
@@ -131,7 +137,7 @@ const SelectTokens = _ref => {
             value: amount.toString()
           }
         }];
-        console.log('accessControlConditions typeerc721', accessControlConditions);
+        console.log("accessControlConditions typeerc721", accessControlConditions);
         onAccessControlConditionsSelected(accessControlConditions);
       } else {
         // erc20 token
@@ -167,7 +173,7 @@ const SelectTokens = _ref => {
             value: amountInBaseUnit.toString()
           }
         }];
-        console.log('accessControlConditions else', accessControlConditions);
+        console.log("accessControlConditions else", accessControlConditions);
         onAccessControlConditionsSelected(accessControlConditions);
       }
     }
@@ -208,14 +214,9 @@ const SelectTokens = _ref => {
     handleChange: v => setContractAddress(v)
   }), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _selectTokensModule.default.clearButton,
-    size: 'small',
-    onClick: () => setContractAddress('')
-  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null)) // <Button className={styles.clearButton}
-  //         iconRight={IconClose}
-  //         onlyIcon
-  //         size={'s'}
-  //         onClick={() => setContractAddress('')}/>
-  , !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
+    size: "small",
+    onClick: () => setContractAddress("")
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null)), !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.selectedTokenContainer
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.logo,
@@ -226,9 +227,17 @@ const SelectTokens = _ref => {
     className: _selectTokensModule.default.symbol
   }, selectedToken.symbol), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
     className: _selectTokensModule.default.clearButton,
-    size: 'small',
+    size: "small",
     onClick: () => setSelectedToken(null)
-  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))))), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))))), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
+    className: _selectTokensModule.default.tokenTypeHolder
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Token contract type"), /*#__PURE__*/_react.default.createElement(_Stack.default, {
+    direction: "row",
+    spacing: 1,
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC20"), /*#__PURE__*/_react.default.createElement(_Switch.default, {
+    defaultChecked: true
+  }), /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC721 (NFT)"))), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,

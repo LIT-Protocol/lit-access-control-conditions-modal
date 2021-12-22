@@ -9,7 +9,10 @@ import ChainSelector from "../../ChainSelector/ChainSelector";
 import Navigation from "../../Navigation";
 import TokenSelect from "../../TokenSelect";
 import { Close } from "@mui/icons-material";
-import { IconButton } from '@mui/material';
+import { IconButton } from "@mui/material";
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 
 const SelectTokens = ({
   setActiveStep,
@@ -43,7 +46,7 @@ const SelectTokens = ({
           },
         },
       ];
-      console.log('accessControlConditions contract', accessControlConditions)
+      console.log("accessControlConditions contract", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
       // ethereum
@@ -61,7 +64,7 @@ const SelectTokens = ({
           },
         },
       ];
-      console.log('accessControlConditions token', accessControlConditions)
+      console.log("accessControlConditions token", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else {
       console.log("selectedToken", selectedToken);
@@ -105,7 +108,10 @@ const SelectTokens = ({
             },
           },
         ];
-        console.log('accessControlConditions typeerc721', accessControlConditions)
+        console.log(
+          "accessControlConditions typeerc721",
+          accessControlConditions
+        );
         onAccessControlConditionsSelected(accessControlConditions);
       } else {
         // erc20 token
@@ -142,7 +148,7 @@ const SelectTokens = ({
             },
           },
         ];
-        console.log('accessControlConditions else', accessControlConditions)
+        console.log("accessControlConditions else", accessControlConditions);
         onAccessControlConditionsSelected(accessControlConditions);
       }
     }
@@ -164,11 +170,15 @@ const SelectTokens = ({
         <div className={styles.select}>
           <label>Select token/NFT or enter contract address: </label>
           <div className={styles.tokenOrContractAddress}>
-            {(!contractAddress || !contractAddress.length) && (!selectedToken) && (
-            <span className={styles.leftSelect}>
-              <TokenSelect className={styles.tokenSelect} tokenList={tokenList} onSelect={setSelectedToken} />
-              <div className={styles.separator}>OR</div>
-            </span>
+            {(!contractAddress || !contractAddress.length) && !selectedToken && (
+              <span className={styles.leftSelect}>
+                <TokenSelect
+                  className={styles.tokenSelect}
+                  tokenList={tokenList}
+                  onSelect={setSelectedToken}
+                />
+                <div className={styles.separator}>OR</div>
+              </span>
             )}
             {!selectedToken && (
               <InputWrapper
@@ -181,33 +191,48 @@ const SelectTokens = ({
                 handleChange={(v) => setContractAddress(v)}
               />
             )}
-            {(!selectedToken && !!contractAddress && contractAddress.length) && (
-              <IconButton className={styles.clearButton}
-                          size={'small'}
-                          onClick={() => setContractAddress('')}
+            {!selectedToken && !!contractAddress && contractAddress.length && (
+              <IconButton
+                className={styles.clearButton}
+                size={"small"}
+                onClick={() => setContractAddress("")}
               >
-                <Close/>
+                <Close />
               </IconButton>
-              // <Button className={styles.clearButton}
-              //         iconRight={IconClose}
-              //         onlyIcon
-              //         size={'s'}
-              //         onClick={() => setContractAddress('')}/>
             )}
             {!!selectedToken && !contractAddress && !contractAddress.length && (
               <div className={styles.selectedTokenContainer}>
-                <div className={styles.logo} style={{ backgroundImage: `url(${selectedToken.logo})` ?? undefined }} />
+                <div
+                  className={styles.logo}
+                  style={{
+                    backgroundImage: `url(${selectedToken.logo})` ?? undefined,
+                  }}
+                />
                 <div className={styles.symbol}>{selectedToken.symbol}</div>
-                <IconButton className={styles.clearButton}
-                            size={'small'}
-                            onClick={() => setSelectedToken(null)}
+                <IconButton
+                  className={styles.clearButton}
+                  size={"small"}
+                  onClick={() => setSelectedToken(null)}
                 >
-                  <Close/>
+                  <Close />
                 </IconButton>
               </div>
             )}
           </div>
         </div>
+
+        {!selectedToken && !!contractAddress && contractAddress.length && (
+          <div className={styles.tokenTypeHolder}>
+            <label>Token contract type</label>
+
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography>ERC20</Typography>
+              <Switch defaultChecked />
+              <Typography>ERC721 (NFT)</Typography>
+            </Stack>
+          </div>
+        )}
+
         <div className={styles.inputMaxWidth}>
           <InputWrapper
             value={amount}
