@@ -21,8 +21,6 @@ var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrap
 
 var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
 
-var _FileDropper = _interopRequireDefault(require("../../FileDropper"));
-
 var _Navigation = _interopRequireDefault(require("../../Navigation"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

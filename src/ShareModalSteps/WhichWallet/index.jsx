@@ -5,7 +5,6 @@ import styles from "./which-wallet.module.scss";
 
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
-import FileDropper from "../../FileDropper";
 import Navigation from "../../Navigation";
 
 const WhichWallet = ({
