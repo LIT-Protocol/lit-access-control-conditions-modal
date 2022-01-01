@@ -64,7 +64,7 @@ Object.defineProperty(exports, "ChoosePOAP", {
   }
 });
 
-var _WhatToDo = _interopRequireDefault(require("./WhatToDo"));
+var _WhatToDo = _interopRequireDefault(require("./WhatToDo/WhatToDo"));
 
 var _AbleToAccess = _interopRequireDefault(require("./AbleToAccess"));
 

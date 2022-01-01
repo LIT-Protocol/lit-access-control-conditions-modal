@@ -21,11 +21,6 @@ const SelectTokens = ({
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
 
-  // useEffect(() => {
-  //   console.log('CHECK SELECTED', selectedToken)
-  //   console.log('CONTRACT ADDRESS', contractAddress)
-  // }, [selectedToken, contractAddress])
-
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 

@@ -48,10 +48,7 @@ const SelectTokens = _ref => {
   const [amount, setAmount] = (0, _react.useState)("");
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
-  const [chain, setChain] = (0, _react.useState)(null); // useEffect(() => {
-  //   console.log('CHECK SELECTED', selectedToken)
-  //   console.log('CONTRACT ADDRESS', contractAddress)
-  // }, [selectedToken, contractAddress])
+  const [chain, setChain] = (0, _react.useState)(null);
 
   const handleSubmit = async () => {
     console.log("handleSubmit and selectedToken is", selectedToken);

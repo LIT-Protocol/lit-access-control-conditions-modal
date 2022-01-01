@@ -7,6 +7,7 @@ import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
 import FileDropper from "../../FileDropper";
 import Navigation from "../../Navigation";
+import { Button } from "@mui/material";
 
 const WhichWallet = ({
   setActiveStep,
