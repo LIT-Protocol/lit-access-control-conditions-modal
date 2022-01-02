@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import styles from "./what-to-do.module.scss";
 
+
+
 const WhatToDo = ({
   setActiveStep,
   sharingItems,
