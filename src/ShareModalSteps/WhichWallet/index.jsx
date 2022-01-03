@@ -6,6 +6,7 @@ import styles from "./which-wallet.module.scss";
 import InputWrapper from "../../InputWrapper/InputWrapper";
 import ChainSelector from "../../ChainSelector/ChainSelector";
 import Navigation from "../../Navigation";
+import { Button } from "@mui/material";
 
 const WhichWallet = ({
   setActiveStep,

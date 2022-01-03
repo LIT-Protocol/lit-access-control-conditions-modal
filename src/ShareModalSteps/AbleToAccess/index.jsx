@@ -4,6 +4,7 @@ import cx from "classnames";
 import styles from "./able-to-access.module.scss";
 
 import Navigation from "../../Navigation";
+import { Button } from "@mui/material";
 
 const TypeButton = (props) => {
   const { type, icon, title, onClick } = props;

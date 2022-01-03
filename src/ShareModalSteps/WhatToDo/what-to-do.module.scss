@@ -1,0 +1,89 @@
+@import "../../vars.scss";
+
+.titles h3 {
+  color: $primary-text;
+  font-size: 1.5em;
+  margin: 0 0 $space-s;
+  @media (max-width: 600px) {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+  }
+  @media (max-width: 450px) {
+    font-size: 1em;
+    margin: 0 0 10px;
+  }
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
+}
+.type {
+  //flex: 0 1 200px;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+  border: 1px solid #2c0c72;
+  cursor: pointer;
+  border-radius: 4px;
+  @media (max-width: 600px) {
+    flex: 0 1 150px;
+    margin: 10px;
+  }
+
+  h4 {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0 0 $space-m;
+    color: $primary-text;
+    @media (max-width: 600px) {
+      font-size: 1em;
+    }
+  }
+
+  .btnBock {
+    border-radius: 4px;
+    border: 1px solid $brand;
+    padding: $space-xl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: all 0.3s;
+
+    .lockIcon {
+      background-image: url("../../assets/lock.png");
+      margin: 24px 20px;
+    }
+    .linkIcon {
+      background-image: url("../../assets/link.png");
+      margin: 20px;
+    }
+
+    .lockIcon,
+    .linkIcon {
+      filter: grayscale(1);
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 60px;
+      height: 60px;
+    }
+
+    svg {
+      path {
+        fill: $brand;
+      }
+    }
+    h5 {
+      text-align: center;
+      margin: 0;
+      color: $primary-text;
+    }
+  }
+}
