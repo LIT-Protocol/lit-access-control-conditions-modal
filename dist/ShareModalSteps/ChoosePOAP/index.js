@@ -87,8 +87,8 @@ const DAOMembers = _ref => {
     placeholder: "Select one...",
     isClearable: true,
     options: matchConditionOptions,
-    value: matchCondition,
-    menuPortalTarget: document.body,
+    value: matchCondition // menuPortalTarget={document.body}
+    ,
     onChange: value => setMatchCondition(value)
   }))), /*#__PURE__*/_react.default.createElement(_Navigation.default, {
     backward: {

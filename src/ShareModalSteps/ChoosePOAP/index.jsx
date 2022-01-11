@@ -77,7 +77,7 @@ const DAOMembers = ({ setActiveStep, onAccessControlConditionsSelected }) => {
             isClearable
             options={matchConditionOptions}
             value={matchCondition}
-            menuPortalTarget={document.body}
+            // menuPortalTarget={document.body}
             onChange={(value) => setMatchCondition(value)}
           />
         </div>
