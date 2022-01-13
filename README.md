@@ -11,6 +11,10 @@ This React package provides a modal for the use with Lit Protocol that lets the 
 
 ![Screenshot](https://github.com/LIT-Protocol/lit-access-control-conditions-modal/raw/main/assets/screenshot.png)
 
+# Example
+
+You can find an example implementation of this modal in the [lit-access-control-conditions-modal-example](https://github.com/LIT-Protocol/lit-access-control-conditions-modal-example) repository.
+
 # Installation
 
 `yarn add lit-access-control-conditions-modal`
