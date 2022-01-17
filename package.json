@@ -30,11 +30,11 @@
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
-    "react-scripts": "^4.0.3"
-  },
-  "peerDependencies": {
-    "lit-js-sdk": "^1.1.99",
+    "babel-plugin-transform-scss": "^1.1.0",
+    "react-scripts": "^4.0.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  }
+    "react-dom": "^17.0.2",
+    "lit-js-sdk": "^1.1.110"
+  },
+  "peerDependencies": {}
 }

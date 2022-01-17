@@ -19,8 +19,6 @@ var _reactWindowedSelect = require("react-windowed-select");
 
 var _creatable = _interopRequireDefault(require("react-select/creatable"));
 
-var _tokenSelectModule = _interopRequireDefault(require("./token-select.module.scss"));
-
 var _material = require("@mui/material");
 
 const _excluded = ["children", "data"],
@@ -43,6 +41,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+const styles = ".topButton {\n  padding-top: 0.8rem !important;\n  padding-bottom: 0.8rem !important;\n}\n\n.modal .modalInner {\n  padding: 25px 38px;\n  width: 400px;\n}\n.modal .modalInner label {\n  color: #2C0C72;\n  text-transform: uppercase;\n  font-family: \"Space Grotesk\";\n  font-weight: 500;\n  font-size: 12px;\n  line-height: 26px;\n}\n.modal .modalInner .topTokens {\n  display: flex;\n}\n.modal .modalInner .topTokens > div {\n  padding: 0 5px;\n  background-color: white;\n  display: flex;\n  align-items: center;\n  border: 1.25px solid #2C0C72;\n  border-radius: 5px;\n  margin-right: 8px;\n  cursor: pointer;\n}\n.modal .modalInner .topTokens > div .logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 100%;\n  background-color: #ccc;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  margin-right: 3px;\n}\n.modal .modalInner .topTokens > div .symbol {\n  font-size: 18px;\n  line-height: 150%;\n  color: #2C0C72;\n}\n.modal .modalInner .topTokens .selected {\n  border-width: 2px;\n}\n.modal .modalInner .topTokens .notSelected {\n  margin: 1px 9px 1px 1px;\n}\n.modal .modalInner .search {\n  margin-top: 25px;\n}\n.modal .modalInner .button {\n  display: block;\n  margin-left: auto;\n  margin-top: 35px;\n}\n\n.option {\n  display: flex;\n  align-items: center;\n  height: 63px;\n}\n.option .logo {\n  width: 36px;\n  height: 36px;\n  border-radius: 100%;\n  background-color: #ccc;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  margin-right: 10px;\n  margin-left: 10px;\n}\n.option .label {\n  font-size: 16px;\n  line-height: 150%;\n  color: black;\n}\n.option .symbol {\n  font-size: 14px;\n  line-height: 150%;\n  color: rgba(0, 5, 51, 0.6);\n}\n.option:hover {\n  background-color: rgba(0, 66, 105, 0.05);\n}";
 
 // import Modal from '../Modal'
 const Option = _ref => {
@@ -72,16 +72,16 @@ const Option = _ref => {
       zIndex: 105
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.option
+    className: styles.option
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.logo,
+    className: styles.logo,
     style: {
       backgroundImage: logo ? "url(".concat(logo, ")") : undefined
     }
   }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.label
+    className: styles.label
   }, label), /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.symbol
+    className: styles.symbol
   }, symbol))));
 };
 
@@ -135,27 +135,27 @@ const TokenSelect = props => {
 
   const checkForSelected = token => {
     if (token && token["symbol"] && selectedToken && token["symbol"] === selectedToken["symbol"]) {
-      return _tokenSelectModule.default.selected;
+      return styles.selected;
     } else {
-      return _tokenSelectModule.default.notSelected;
+      return styles.notSelected;
     }
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_material.Button, {
     size: "large",
-    className: _tokenSelectModule.default.topButton,
+    className: styles.topButton,
     variant: "outlined",
     onClick: () => setModalIsOpen(true)
   }, "Search for a token/NFT"), /*#__PURE__*/_react.default.createElement(_material.Dialog, {
-    className: _tokenSelectModule.default.modal,
+    className: styles.modal,
     open: modalIsOpen,
     title: "Select a token",
     onClose: () => setModalIsOpen(false),
     maxWidth: "lg"
   }, /*#__PURE__*/_react.default.createElement(_material.DialogContent, {
-    className: _tokenSelectModule.default.modalInner
+    className: styles.modalInner
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("label", null, "Top Tokens/NFTS"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.topTokens
+    className: styles.topTokens
   }, TOP_LIST.map((t, i) => /*#__PURE__*/_react.default.createElement("div", {
     className: checkForSelected(t),
     key: t.symbol,
@@ -163,14 +163,14 @@ const TokenSelect = props => {
       setSelectedToken(t);
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.logo,
+    className: styles.logo,
     style: {
       backgroundImage: t.logo ? "url(".concat(t.logo, ")") : undefined
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.symbol
+    className: styles.symbol
   }, t.symbol))))), /*#__PURE__*/_react.default.createElement("div", {
-    className: _tokenSelectModule.default.search
+    className: styles.search
   }, /*#__PURE__*/_react.default.createElement("label", null, "Search"), /*#__PURE__*/_react.default.createElement(_creatable.default, {
     filterOption: (0, _reactWindowedSelect.createFilter)({
       ignoreAccents: false
@@ -193,7 +193,7 @@ const TokenSelect = props => {
     onChange: setSelectedToken
   })), /*#__PURE__*/_react.default.createElement(_material.Button, {
     variation: "contained",
-    className: _tokenSelectModule.default.button,
+    className: styles.button,
     size: "large",
     disabled: !selectedToken,
     onClick: handleSelect

@@ -7,13 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _navigationModule = _interopRequireDefault(require("./navigation.module.scss"));
-
 var _material = require("@mui/material");
 
 var _iconsMaterial = require("@mui/icons-material");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const styles = ".navigation {\n  margin-top: 48px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}";
 
 const Navigation = props => {
   var _backward$label, _forward$label;
@@ -23,7 +23,7 @@ const Navigation = props => {
     forward
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: _navigationModule.default.navigation
+    className: styles.navigation
   }, backward ? /*#__PURE__*/_react.default.createElement(_material.Button, {
     variant: 'outlined',
     onClick: backward.onClick,

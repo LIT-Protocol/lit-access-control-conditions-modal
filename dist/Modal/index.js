@@ -13,8 +13,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-var _modalModule = _interopRequireDefault(require("./modal.module.scss"));
-
 var _material = require("@mui/material");
 
 var _UnsavedPopup = _interopRequireDefault(require("./UnsavedPopup"));
@@ -34,6 +32,8 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+const styles = ".modalContainer {\n  position: relative;\n}\n.modalContainer .modal {\n  border-radius: 10px;\n  border: 1px solid #333;\n  display: flex;\n  justify-content: space-between;\n}\n.modalContainer .modal .title {\n  width: 100%;\n  background-color: rgba(158, 119, 243, 0.1);\n  padding: 19px 25px;\n  font-family: \"Space Grotesk\";\n  font-weight: 500;\n  font-size: 18px;\n  line-height: 26px;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  color: rgba(0, 5, 51, 0.6);\n  box-sizing: border-box;\n}\n.modalContainer .modal .closeButton {\n  position: absolute;\n  top: 20px;\n  right: 25px;\n}\n.modalContainer .modal .closeButton .icon {\n  cursor: pointer;\n}\n.modalContainer .modal.dark {\n  background-color: #ece3ff;\n  border: 2px solid #5E36B7;\n}\n.modalContainer .modal.dark .title {\n  color: #BFA1FF;\n  background-color: #5E36B7;\n  box-shadow: 0px 4px 4px rgba(94, 54, 183, 0.5);\n}\n.modalContainer .modal.dark .closeButton .icon {\n  color: #BFA1FF;\n}";
 
 const ModalComponent = props => {
   const {
@@ -69,7 +69,7 @@ const ModalComponent = props => {
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: _modalModule.default.modalContainer
+    className: styles.modalContainer
   }, /*#__PURE__*/_react.default.createElement(_UnsavedPopup.default, {
     open: showUnsavedPopup,
     onClose: onClose,
@@ -77,19 +77,19 @@ const ModalComponent = props => {
   }), /*#__PURE__*/_react.default.createElement(_material.Modal, _extends({
     open: isOpen
   }, passedProps, {
-    className: (0, _classnames.default)(passedProps.className, _modalModule.default.modal && _modalModule.default.dark),
+    className: (0, _classnames.default)(passedProps.className, styles.modal && styles.dark),
     hideBackdrop: true
   }), /*#__PURE__*/_react.default.createElement(_material.Box, {
-    className: _modalModule.default.modal
+    className: styles.modal
   }, withCloseButton ? /*#__PURE__*/_react.default.createElement("div", {
-    className: _modalModule.default.closeButton
+    className: styles.closeButton
   }, /*#__PURE__*/_react.default.createElement(_material.IconButton, {
-    className: _modalModule.default.icon,
+    className: styles.icon,
     onClick: handleClose
   }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))) : null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _modalModule.default.inner
+    className: styles.inner
   }, title ? /*#__PURE__*/_react.default.createElement("div", {
-    className: _modalModule.default.title
+    className: styles.title
   }, title) : null, children))));
 };
 

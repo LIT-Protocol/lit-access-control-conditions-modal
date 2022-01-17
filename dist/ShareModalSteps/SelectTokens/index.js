@@ -17,8 +17,6 @@ var _ethers = require("ethers");
 
 var _litJsSdk = _interopRequireDefault(require("lit-js-sdk"));
 
-var _selectTokensModule = _interopRequireDefault(require("./select-tokens.module.scss"));
-
 var _InputWrapper = _interopRequireDefault(require("../../InputWrapper/InputWrapper"));
 
 var _ChainSelector = _interopRequireDefault(require("../../ChainSelector/ChainSelector"));
@@ -42,6 +40,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const styles = ".title {\n  font-size: 18px;\n  line-height: 150%;\n  color: rgba(0, 5, 51, 0.6);\n}\n\nlabel {\n  display: block;\n  color: rgba(0, 5, 51, 0.6);\n  font-size: 16px;\n  line-height: 150%;\n  margin-bottom: 8px;\n}\n@media (max-width: 700px) {\n  label {\n    font-size: 16px;\n    line-height: 150%;\n  }\n}\n@media (max-width: 450px) {\n  label {\n    font-size: 14px;\n    line-height: 150%;\n  }\n}\n\n@keyframes fadein {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n.tokenTypeHolder {\n  margin-top: 24px;\n}\n\n.form {\n  margin-top: 1rem;\n}\n.form .select {\n  margin-top: 1rem;\n}\n.form .input {\n  margin-top: 1rem;\n}\n.form .tokenOrContractAddress {\n  display: flex;\n  align-items: center;\n  transition-duration: 0.2s;\n}\n.form .tokenOrContractAddress .leftSelect {\n  display: flex;\n  align-items: center;\n}\n.form .tokenOrContractAddress .tokenSelect {\n  animation-name: fadein;\n  animation-duration: 0.25s;\n}\n.form .tokenOrContractAddress .separator {\n  margin: 0 14px;\n  color: rgba(0, 5, 51, 0.6);\n  font-size: 14px;\n}\n.form .tokenOrContractAddress .input {\n  margin-top: 0;\n  width: 250px;\n  animation-name: fadein;\n  animation-duration: 0.25s;\n}\n.form .tokenOrContractAddress .clearButton {\n  transition-duration: 0.2s;\n  margin-left: 1rem;\n  border-radius: 100%;\n  animation-name: fadein;\n  animation-duration: 0.25s;\n}\n.form .tokenOrContractAddress .selectedTokenContainer {\n  padding: 0 5px;\n  background-color: white;\n  display: flex;\n  align-items: center;\n  border: 1.25px solid #2c0c72;\n  border-radius: 5px;\n  margin: 0.57rem 8px 0.58rem 0;\n  cursor: pointer;\n  animation-name: fadein;\n  animation-duration: 0.25s;\n}\n.form .tokenOrContractAddress .selectedTokenContainer .logo {\n  width: 22px;\n  height: 22px;\n  border-radius: 100%;\n  background-color: #ccc;\n  background-repeat: no-repeat;\n  background-size: contain;\n  background-position: center;\n  margin-right: 3px;\n}\n.form .tokenOrContractAddress .selectedTokenContainer .symbol {\n  font-size: 18px;\n  line-height: 150%;\n  color: #2c0c72;\n}";
 
 const SelectTokens = _ref => {
   var _ref2;
@@ -188,55 +188,55 @@ const SelectTokens = _ref => {
 
   console.log("chain", chain);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.title
+    className: styles.title
   }, "Which wallet should be able to access this asset?"), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.form
+    className: styles.form
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.inputMaxWidth
+    className: styles.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.select
+    className: styles.select
   }, /*#__PURE__*/_react.default.createElement("label", null, "Select blockchain to check requirements against:"), /*#__PURE__*/_react.default.createElement(_ChainSelector.default, {
     chain: chain,
     setChain: setChain
   }))), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.select
+    className: styles.select
   }, /*#__PURE__*/_react.default.createElement("label", null, "Select token/NFT or enter contract address: "), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.tokenOrContractAddress
+    className: styles.tokenOrContractAddress
   }, (!contractAddress || !contractAddress.length) && !selectedToken && /*#__PURE__*/_react.default.createElement("span", {
-    className: _selectTokensModule.default.leftSelect
+    className: styles.leftSelect
   }, /*#__PURE__*/_react.default.createElement(_TokenSelect.default, {
-    className: _selectTokensModule.default.tokenSelect,
+    className: styles.tokenSelect,
     tokenList: tokenList,
     onSelect: setSelectedToken
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.separator
+    className: styles.separator
   }, "OR")), !selectedToken && /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     placeholder: "ERC20 or ERC721 address",
     value: contractAddress,
-    className: _selectTokensModule.default.input,
+    className: styles.input,
     id: "amount",
     autoFocus: true,
     size: "m",
     handleChange: v => setContractAddress(v)
   }), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement(_material.IconButton, {
-    className: _selectTokensModule.default.clearButton,
+    className: styles.clearButton,
     size: "small",
     onClick: () => setContractAddress("")
   }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null)), !!selectedToken && !contractAddress && !contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.selectedTokenContainer
+    className: styles.selectedTokenContainer
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.logo,
+    className: styles.logo,
     style: {
       backgroundImage: (_ref2 = "url(".concat(selectedToken.logo, ")")) !== null && _ref2 !== void 0 ? _ref2 : undefined
     }
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.symbol
+    className: styles.symbol
   }, selectedToken.symbol), /*#__PURE__*/_react.default.createElement(_material.IconButton, {
-    className: _selectTokensModule.default.clearButton,
+    className: styles.clearButton,
     size: "small",
     onClick: () => setSelectedToken(null)
   }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))))), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.tokenTypeHolder
+    className: styles.tokenTypeHolder
   }, /*#__PURE__*/_react.default.createElement("label", null, "Token contract type"), /*#__PURE__*/_react.default.createElement(_Stack.default, {
     direction: "row",
     spacing: 1,
@@ -245,10 +245,10 @@ const SelectTokens = _ref => {
     checked: contractType === "ERC721",
     onChange: handleChangeContractType
   }), /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC721 (NFT)"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: _selectTokensModule.default.inputMaxWidth
+    className: styles.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,
-    className: _selectTokensModule.default.input,
+    className: styles.input,
     label: "How many tokens does the wallet need to own?",
     id: "amount",
     autoFocus: true,
