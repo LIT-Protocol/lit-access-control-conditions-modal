@@ -36,7 +36,7 @@ const ITEMS = [
   {
     type: "choosePOAP",
     icon: "poap",
-    title: "POAP Owners",
+    title: "POAP Collectors",
   },
 ];
 
