@@ -13,6 +13,11 @@ import { IconButton } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const SelectTokens = ({
   setActiveStep,
@@ -24,6 +29,7 @@ const SelectTokens = ({
   const [contractAddress, setContractAddress] = useState("");
   const [chain, setChain] = useState(null);
   const [contractType, setContractType] = useState("ERC721");
+  const [erc1155TokenId, setErc1155TokenId] = useState("");
 
   // useEffect(() => {
   //   console.log('CHECK SELECTED', selectedToken)
@@ -34,19 +40,36 @@ const SelectTokens = ({
     console.log("handleSubmit and selectedToken is", selectedToken);
 
     if (contractAddress && contractAddress.length) {
-      const accessControlConditions = [
-        {
-          contractAddress: contractAddress,
-          standardContractType: contractType,
-          chain: chain.value,
-          method: "balanceOf",
-          parameters: [":userAddress"],
-          returnValueTest: {
-            comparator: ">=",
-            value: amount.toString(),
+      let accessControlConditions;
+      if (contractType === "ERC20" || contractType === "ERC721") {
+        accessControlConditions = [
+          {
+            contractAddress: contractAddress,
+            standardContractType: contractType,
+            chain: chain.value,
+            method: "balanceOf",
+            parameters: [":userAddress"],
+            returnValueTest: {
+              comparator: ">=",
+              value: amount.toString(),
+            },
           },
-        },
-      ];
+        ];
+      } else if (contractType === "ERC1155") {
+        accessControlConditions = [
+          {
+            contractAddress: contractAddress,
+            standardContractType: contractType,
+            chain: chain.value,
+            method: "balanceOf",
+            parameters: [":userAddress", erc1155TokenId],
+            returnValueTest: {
+              comparator: ">=",
+              value: amount.toString(),
+            },
+          },
+        ];
+      }
       console.log("accessControlConditions contract", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
@@ -157,7 +180,7 @@ const SelectTokens = ({
   };
 
   const handleChangeContractType = (event) => {
-    setContractType(event.target.checked ? "ERC721" : "ERC20");
+    setContractType(event.target.value);
   };
 
   console.log("chain", chain);
@@ -189,7 +212,7 @@ const SelectTokens = ({
             )}
             {!selectedToken && (
               <InputWrapper
-                placeholder="ERC20 or ERC721 address"
+                placeholder="ERC20 or ERC721 or ERC1155 address"
                 value={contractAddress}
                 className={styles.input}
                 id="amount"
@@ -230,7 +253,48 @@ const SelectTokens = ({
 
         {!selectedToken && !!contractAddress && contractAddress.length && (
           <div className={styles.tokenTypeHolder}>
-            <label>Token contract type</label>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                Token contract type
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                value={contractType}
+                onChange={handleChangeContractType}
+              >
+                <FormControlLabel
+                  value="ERC20"
+                  control={<Radio />}
+                  label="ERC20"
+                />
+                <FormControlLabel
+                  value="ERC721"
+                  control={<Radio />}
+                  label="ERC721"
+                />
+                <FormControlLabel
+                  value="ERC1155"
+                  control={<Radio />}
+                  label="ERC1155"
+                />
+              </RadioGroup>
+            </FormControl>
+
+            {contractType === "ERC1155" ? (
+              <div>
+                <InputWrapper
+                  value={erc1155TokenId}
+                  className={styles.input}
+                  label="ERC1155 Token Id"
+                  id="erc1155TokenId"
+                  size="m"
+                  handleChange={(value) => setErc1155TokenId(value)}
+                />
+              </div>
+            ) : null}
+            {/* <label>Token contract type</label>
 
             <Stack direction="row" spacing={1} alignItems="center">
               <Typography>ERC20</Typography>
@@ -239,7 +303,7 @@ const SelectTokens = ({
                 onChange={handleChangeContractType}
               />
               <Typography>ERC721 (NFT)</Typography>
-            </Stack>
+            </Stack> */}
           </div>
         )}
 

@@ -37,6 +37,16 @@ var _Typography = _interopRequireDefault(require("@mui/material/Typography"));
 
 var _Stack = _interopRequireDefault(require("@mui/material/Stack"));
 
+var _Radio = _interopRequireDefault(require("@mui/material/Radio"));
+
+var _RadioGroup = _interopRequireDefault(require("@mui/material/RadioGroup"));
+
+var _FormControlLabel = _interopRequireDefault(require("@mui/material/FormControlLabel"));
+
+var _FormControl = _interopRequireDefault(require("@mui/material/FormControl"));
+
+var _FormLabel = _interopRequireDefault(require("@mui/material/FormLabel"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -55,7 +65,8 @@ const SelectTokens = _ref => {
   const [selectedToken, setSelectedToken] = (0, _react.useState)(null);
   const [contractAddress, setContractAddress] = (0, _react.useState)("");
   const [chain, setChain] = (0, _react.useState)(null);
-  const [contractType, setContractType] = (0, _react.useState)("ERC721"); // useEffect(() => {
+  const [contractType, setContractType] = (0, _react.useState)("ERC721");
+  const [erc1155TokenId, setErc1155TokenId] = (0, _react.useState)(""); // useEffect(() => {
   //   console.log('CHECK SELECTED', selectedToken)
   //   console.log('CONTRACT ADDRESS', contractAddress)
   // }, [selectedToken, contractAddress])
@@ -64,17 +75,34 @@ const SelectTokens = _ref => {
     console.log("handleSubmit and selectedToken is", selectedToken);
 
     if (contractAddress && contractAddress.length) {
-      const accessControlConditions = [{
-        contractAddress: contractAddress,
-        standardContractType: contractType,
-        chain: chain.value,
-        method: "balanceOf",
-        parameters: [":userAddress"],
-        returnValueTest: {
-          comparator: ">=",
-          value: amount.toString()
-        }
-      }];
+      let accessControlConditions;
+
+      if (contractType === "ERC20" || contractType === "ERC721") {
+        accessControlConditions = [{
+          contractAddress: contractAddress,
+          standardContractType: contractType,
+          chain: chain.value,
+          method: "balanceOf",
+          parameters: [":userAddress"],
+          returnValueTest: {
+            comparator: ">=",
+            value: amount.toString()
+          }
+        }];
+      } else if (contractType === "ERC1155") {
+        accessControlConditions = [{
+          contractAddress: contractAddress,
+          standardContractType: contractType,
+          chain: chain.value,
+          method: "balanceOf",
+          parameters: [":userAddress", erc1155TokenId],
+          returnValueTest: {
+            comparator: ">=",
+            value: amount.toString()
+          }
+        }];
+      }
+
       console.log("accessControlConditions contract", accessControlConditions);
       onAccessControlConditionsSelected(accessControlConditions);
     } else if (selectedToken && selectedToken.value === "ethereum") {
@@ -183,7 +211,7 @@ const SelectTokens = _ref => {
   };
 
   const handleChangeContractType = event => {
-    setContractType(event.target.checked ? "ERC721" : "ERC20");
+    setContractType(event.target.value);
   };
 
   console.log("chain", chain);
@@ -211,7 +239,7 @@ const SelectTokens = _ref => {
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.separator
   }, "OR")), !selectedToken && /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
-    placeholder: "ERC20 or ERC721 address",
+    placeholder: "ERC20 or ERC721 or ERC1155 address",
     value: contractAddress,
     className: _selectTokensModule.default.input,
     id: "amount",
@@ -237,14 +265,34 @@ const SelectTokens = _ref => {
     onClick: () => setSelectedToken(null)
   }, /*#__PURE__*/_react.default.createElement(_iconsMaterial.Close, null))))), !selectedToken && !!contractAddress && contractAddress.length && /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.tokenTypeHolder
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Token contract type"), /*#__PURE__*/_react.default.createElement(_Stack.default, {
-    direction: "row",
-    spacing: 1,
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC20"), /*#__PURE__*/_react.default.createElement(_Switch.default, {
-    checked: contractType === "ERC721",
+  }, /*#__PURE__*/_react.default.createElement(_FormControl.default, null, /*#__PURE__*/_react.default.createElement(_FormLabel.default, {
+    id: "demo-row-radio-buttons-group-label"
+  }, "Token contract type"), /*#__PURE__*/_react.default.createElement(_RadioGroup.default, {
+    row: true,
+    "aria-labelledby": "demo-row-radio-buttons-group-label",
+    name: "row-radio-buttons-group",
+    value: contractType,
     onChange: handleChangeContractType
-  }), /*#__PURE__*/_react.default.createElement(_Typography.default, null, "ERC721 (NFT)"))), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement(_FormControlLabel.default, {
+    value: "ERC20",
+    control: /*#__PURE__*/_react.default.createElement(_Radio.default, null),
+    label: "ERC20"
+  }), /*#__PURE__*/_react.default.createElement(_FormControlLabel.default, {
+    value: "ERC721",
+    control: /*#__PURE__*/_react.default.createElement(_Radio.default, null),
+    label: "ERC721"
+  }), /*#__PURE__*/_react.default.createElement(_FormControlLabel.default, {
+    value: "ERC1155",
+    control: /*#__PURE__*/_react.default.createElement(_Radio.default, null),
+    label: "ERC1155"
+  }))), contractType === "ERC1155" ? /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
+    value: erc1155TokenId,
+    className: _selectTokensModule.default.input,
+    label: "ERC1155 Token Id",
+    id: "erc1155TokenId",
+    size: "m",
+    handleChange: value => setErc1155TokenId(value)
+  })) : null), /*#__PURE__*/_react.default.createElement("div", {
     className: _selectTokensModule.default.inputMaxWidth
   }, /*#__PURE__*/_react.default.createElement(_InputWrapper.default, {
     value: amount,
