@@ -41,7 +41,32 @@ const SelectTokens = ({
 
     if (contractAddress && contractAddress.length) {
       let accessControlConditions;
-      if (contractType === "ERC20" || contractType === "ERC721") {
+      if (contractType === "ERC20") {
+        let decimals = 0;
+        try {
+          decimals = await LitJsSdk.decimalPlaces({
+            chain: chain.value,
+            contractAddress: selectedToken.value,
+          });
+        } catch (e) {
+          console.log(e);
+        }
+        console.log(`decimals in ${selectedToken.value}`, decimals);
+        amountInBaseUnit = ethers.utils.parseUnits(amount, decimals);
+        accessControlConditions = [
+          {
+            contractAddress: contractAddress,
+            standardContractType: contractType,
+            chain: chain.value,
+            method: "balanceOf",
+            parameters: [":userAddress"],
+            returnValueTest: {
+              comparator: ">=",
+              value: amountInBaseUnit.toString(),
+            },
+          },
+        ];
+      } else if (contractType === "ERC721") {
         accessControlConditions = [
           {
             contractAddress: contractAddress,

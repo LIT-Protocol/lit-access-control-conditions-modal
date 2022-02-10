@@ -33,7 +33,7 @@
     "react-scripts": "^4.0.3"
   },
   "peerDependencies": {
-    "lit-js-sdk": "^1.1.99",
+    "lit-js-sdk": "^1.1.118",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
