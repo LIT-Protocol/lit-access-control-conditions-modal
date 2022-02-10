@@ -52,7 +52,7 @@ const SelectTokens = ({
           console.log(e);
         }
         console.log(`decimals`, decimals);
-        amountInBaseUnit = ethers.utils.parseUnits(amount, decimals);
+        const amountInBaseUnit = ethers.utils.parseUnits(amount, decimals);
         accessControlConditions = [
           {
             contractAddress: contractAddress,

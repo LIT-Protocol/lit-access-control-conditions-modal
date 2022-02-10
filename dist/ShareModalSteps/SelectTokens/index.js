@@ -90,7 +90,9 @@ const SelectTokens = _ref => {
         }
 
         console.log("decimals", decimals);
-        amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, decimals);
+
+        const amountInBaseUnit = _ethers.ethers.utils.parseUnits(amount, decimals);
+
         accessControlConditions = [{
           contractAddress: contractAddress,
           standardContractType: contractType,
