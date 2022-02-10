@@ -46,12 +46,12 @@ const SelectTokens = ({
         try {
           decimals = await LitJsSdk.decimalPlaces({
             chain: chain.value,
-            contractAddress: selectedToken.value,
+            contractAddress: contractAddress,
           });
         } catch (e) {
           console.log(e);
         }
-        console.log(`decimals in ${selectedToken.value}`, decimals);
+        console.log(`decimals`, decimals);
         amountInBaseUnit = ethers.utils.parseUnits(amount, decimals);
         accessControlConditions = [
           {
