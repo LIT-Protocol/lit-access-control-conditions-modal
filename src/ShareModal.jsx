@@ -49,8 +49,6 @@ const ShareModal = (props) => {
     myWalletAddress,
   } = props;
 
-  //console.log("rendering ShareModal and sharingItems is", sharingItems);
-
   const [showingSnackbar, setShowingSnackbar] = useState(false);
   const [activeStep, setActiveStep] = useState(showStep || "whatToDo");
   const [tokenList, setTokenList] = useState([]);
