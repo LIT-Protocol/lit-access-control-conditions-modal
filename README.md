@@ -1,9 +1,11 @@
 A new version of the Share Modal with additional functionality is now available.
-- [GitHub](https://github.com/LIT-Protocol/lit-share-modal-v2)
-- [NPM](https://www.npmjs.com/package/lit-share-modal)
+- [Lit Share Modal v2 on GitHub](https://github.com/LIT-Protocol/lit-share-modal-v2)
+- [Lit Share Modal v2 on NPM](https://www.npmjs.com/package/lit-share-modal)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+# Lit Access Control Conditions Modal
 
 - [Installation](#installation)
 - [Usage](#usage)
